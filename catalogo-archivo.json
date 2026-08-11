@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-11T22:32:57.167Z",
+  "actualizadaEn": "2026-08-11T22:34:04.197Z",
   "actividades": [
     {
       "id": "msp8kspa-7e2be8",
@@ -12,9 +12,9 @@
       "archivoOriginal": "prueba-tecnica-publicacion-rapida.html",
       "archivoRepositorio": "msp8kspa-7e2be8-prueba-tecnica-publicacion-rapida.html",
       "archivoPublico": "msp8kspa-7e2be8-prueba-tecnica-publicacion-rapida.html",
-      "habilitada": true,
+      "habilitada": false,
       "creadaEn": "2026-08-11T22:32:57.166Z",
-      "actualizadaEn": "2026-08-11T22:32:57.166Z"
+      "actualizadaEn": "2026-08-11T22:34:04.197Z"
     }
   ]
 }
