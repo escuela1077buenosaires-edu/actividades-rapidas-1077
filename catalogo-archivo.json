@@ -1,20 +1,6 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-11T22:34:04.197Z",
-  "actividades": [
-    {
-      "id": "msp8kspa-7e2be8",
-      "titulo": "Prueba tecnica de publicacion rapida",
-      "area": "General",
-      "grado": "4",
-      "tipo": "A",
-      "archivoOriginal": "prueba-tecnica-publicacion-rapida.html",
-      "archivoRepositorio": "msp8kspa-7e2be8-prueba-tecnica-publicacion-rapida.html",
-      "archivoPublico": "msp8kspa-7e2be8-prueba-tecnica-publicacion-rapida.html",
-      "habilitada": false,
-      "creadaEn": "2026-08-11T22:32:57.166Z",
-      "actualizadaEn": "2026-08-11T22:34:04.197Z"
-    }
-  ]
+  "actualizadaEn": "2026-08-11T22:25:16.020Z",
+  "actividades": []
 }
