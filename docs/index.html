@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#176f73">
+  <title>Actividades r&aacute;pidas - Escuela 1077</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <span>Escuela 1077 &quot;Provincia de Buenos Aires&quot;</span>
+      <h1>Actividades educativas</h1>
+      <p>Seleccione una actividad habilitada para comenzar.</p>
+    </header>
+    <section class="panel filters" aria-label="Buscar actividades">
+      <label>Buscar<input id="search" type="search" placeholder="T&iacute;tulo, &aacute;rea o archivo"></label>
+      <label>&Aacute;rea<select id="area"><option value="">Todas</option></select></label>
+      <label>Grado<select id="grade"><option value="">Todos</option></select></label>
+      <button id="clear" type="button">Limpiar</button>
+    </section>
+    <section class="panel">
+      <div class="list-head"><h2>Actividades disponibles</h2><span id="count">0</span></div>
+      <div id="status" class="status">Cargando actividades...</div>
+      <div id="activities" class="activities"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
