@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-08-12T15:49:10.615Z",
+  "actualizadaEn": "2026-08-12T15:49:15.393Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -28,15 +28,6 @@
       "tipo": "B",
       "archivo": "mspgg3hm-9d9e9e-Lengua-Completar-LA-LE-LI-LO-LU-1.html",
       "actualizadaEn": "2026-08-12T02:13:14.794Z"
-    },
-    {
-      "id": "mspgg3ho-0a274c",
-      "titulo": "Lengua Completar MA ME MI MO MU 1",
-      "area": "Lengua",
-      "grado": "1",
-      "tipo": "B",
-      "archivo": "mspgg3ho-0a274c-Lengua-Completar-MA-ME-MI-MO-MU-1.html",
-      "actualizadaEn": "2026-08-12T02:13:14.796Z"
     }
   ]
 }
