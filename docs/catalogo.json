@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-08-12T15:48:34.339Z",
+  "actualizadaEn": "2026-08-12T15:48:40.760Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -55,15 +55,6 @@
       "tipo": "B",
       "archivo": "mspgg3hp-484ddf-Lengua-Escribir-Palabras-Sonidos-T-y-N-1.html",
       "actualizadaEn": "2026-08-12T02:13:14.797Z"
-    },
-    {
-      "id": "mspgg3hq-eb7bd4",
-      "titulo": "Lengua Escribir Palabras Sonidos M y S 1",
-      "area": "Lengua",
-      "grado": "1",
-      "tipo": "B",
-      "archivo": "mspgg3hq-eb7bd4-Lengua-Escribir-Palabras-Sonidos-M-y-S-1.html",
-      "actualizadaEn": "2026-08-12T02:13:14.798Z"
     }
   ]
 }
