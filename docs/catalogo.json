@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-08-12T15:48:08.854Z",
+  "actualizadaEn": "2026-08-12T15:48:13.981Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -73,15 +73,6 @@
       "tipo": "B",
       "archivo": "mspgg3hq-eb7bd4-Lengua-Escribir-Palabras-Sonidos-M-y-S-1.html",
       "actualizadaEn": "2026-08-12T02:13:14.798Z"
-    },
-    {
-      "id": "mspgqz8n-74eafe",
-      "titulo": "Matematica Multiplicaciones Sucesivas Suma Reiterada 2 3",
-      "area": "Matematica",
-      "grado": "2",
-      "tipo": "",
-      "archivo": "mspgqz8n-74eafe-Matematica-Multiplicaciones-Sucesivas-Suma-Reiterada-2-3.html",
-      "actualizadaEn": "2026-08-12T02:21:42.503Z"
     }
   ]
 }
