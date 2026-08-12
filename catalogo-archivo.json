@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-12T15:49:40.358Z",
+  "actualizadaEn": "2026-08-12T15:49:45.192Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -12,9 +12,9 @@
       "archivoOriginal": "Lengua-Completar-BA-BE-BI-BO-BU-1.html",
       "archivoRepositorio": "mspgg3hh-264105-Lengua-Completar-BA-BE-BI-BO-BU-1.html",
       "archivoPublico": "mspgg3hh-264105-Lengua-Completar-BA-BE-BI-BO-BU-1.html",
-      "habilitada": true,
+      "habilitada": false,
       "creadaEn": "2026-08-12T02:13:14.789Z",
-      "actualizadaEn": "2026-08-12T02:13:14.789Z"
+      "actualizadaEn": "2026-08-12T15:49:45.192Z"
     },
     {
       "id": "mspgg3hk-bd26bf",
