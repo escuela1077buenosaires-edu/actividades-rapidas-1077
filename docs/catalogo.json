@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-08-12T15:49:24.750Z",
+  "actualizadaEn": "2026-08-12T15:49:29.668Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -19,15 +19,6 @@
       "tipo": "B",
       "archivo": "mspgg3hk-bd26bf-Lengua-Completar-TA-TE-TI-TO-TU-1.html",
       "actualizadaEn": "2026-08-12T02:13:14.792Z"
-    },
-    {
-      "id": "mspgg3hm-9d9e9e",
-      "titulo": "Lengua Completar LA LE LI LO LU 1",
-      "area": "Lengua",
-      "grado": "1",
-      "tipo": "B",
-      "archivo": "mspgg3hm-9d9e9e-Lengua-Completar-LA-LE-LI-LO-LU-1.html",
-      "actualizadaEn": "2026-08-12T02:13:14.794Z"
     }
   ]
 }
