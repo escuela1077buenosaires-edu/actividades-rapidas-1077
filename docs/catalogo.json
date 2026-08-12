@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-08-12T02:13:14.812Z",
+  "actualizadaEn": "2026-08-12T02:21:42.510Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -73,6 +73,51 @@
       "tipo": "B",
       "archivo": "mspgg3hq-eb7bd4-Lengua-Escribir-Palabras-Sonidos-M-y-S-1.html",
       "actualizadaEn": "2026-08-12T02:13:14.798Z"
+    },
+    {
+      "id": "mspgqz8n-296cf1",
+      "titulo": "Matematica Cuerpos Geometricos Clasificar Aristas Vertices 1 2",
+      "area": "Matematica",
+      "grado": "1",
+      "tipo": "",
+      "archivo": "mspgqz8n-296cf1-Matematica-Cuerpos-Geometricos-Clasificar-Aristas-Vertices-1-2.html",
+      "actualizadaEn": "2026-08-12T02:21:42.503Z"
+    },
+    {
+      "id": "mspgqz8n-46276a",
+      "titulo": "Matematica Division Parametrizable Caja Paracaidista Sopa Letra",
+      "area": "Matematica",
+      "grado": "5",
+      "tipo": "",
+      "archivo": "mspgqz8n-46276a-Matematica-Division-Parametrizable-Caja-Paracaidista-Sopa-Letra.html",
+      "actualizadaEn": "2026-08-12T02:21:42.503Z"
+    },
+    {
+      "id": "mspgqz8n-74eafe",
+      "titulo": "Matematica Multiplicaciones Sucesivas Suma Reiterada 2 3",
+      "area": "Matematica",
+      "grado": "2",
+      "tipo": "",
+      "archivo": "mspgqz8n-74eafe-Matematica-Multiplicaciones-Sucesivas-Suma-Reiterada-2-3.html",
+      "actualizadaEn": "2026-08-12T02:21:42.503Z"
+    },
+    {
+      "id": "mspgqz8p-1071ad",
+      "titulo": "Matematica Multiplicacion Parametrizable Con Sin Decimales AUTOCORREGIBLE Submarino Tesoro Sopa Letra",
+      "area": "Matematica",
+      "grado": "4",
+      "tipo": "",
+      "archivo": "mspgqz8p-1071ad-Matematica-Multiplicacion-Parametrizable-Con-Sin-Decimales-AUTOCORREGIBLE-Submarino-Tesoro-Sopa-Letr.html",
+      "actualizadaEn": "2026-08-12T02:21:42.505Z"
+    },
+    {
+      "id": "mspgqz8p-f4305b",
+      "titulo": "Matematica Multiplicacion Parametrizable Con Sin Decimales CoheteALaLuna Sopa Letra",
+      "area": "Matematica",
+      "grado": "4",
+      "tipo": "",
+      "archivo": "mspgqz8p-f4305b-Matematica-Multiplicacion-Parametrizable-Con-Sin-Decimales-CoheteALaLuna-Sopa-Letra.html",
+      "actualizadaEn": "2026-08-12T02:21:42.505Z"
     }
   ]
 }
