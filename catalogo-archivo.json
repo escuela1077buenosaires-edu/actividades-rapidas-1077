@@ -1,6 +1,111 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-11T22:25:16.020Z",
-  "actividades": []
+  "actualizadaEn": "2026-08-12T02:13:14.812Z",
+  "actividades": [
+    {
+      "id": "mspgg3hh-264105",
+      "titulo": "Lengua Completar BA BE BI BO BU 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Completar-BA-BE-BI-BO-BU-1.html",
+      "archivoRepositorio": "mspgg3hh-264105-Lengua-Completar-BA-BE-BI-BO-BU-1.html",
+      "archivoPublico": "mspgg3hh-264105-Lengua-Completar-BA-BE-BI-BO-BU-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-08-12T02:13:14.789Z",
+      "actualizadaEn": "2026-08-12T02:13:14.789Z"
+    },
+    {
+      "id": "mspgg3hk-bd26bf",
+      "titulo": "Lengua Completar TA TE TI TO TU 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Completar-TA-TE-TI-TO-TU-1.html",
+      "archivoRepositorio": "mspgg3hk-bd26bf-Lengua-Completar-TA-TE-TI-TO-TU-1.html",
+      "archivoPublico": "mspgg3hk-bd26bf-Lengua-Completar-TA-TE-TI-TO-TU-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-08-12T02:13:14.792Z",
+      "actualizadaEn": "2026-08-12T02:13:14.792Z"
+    },
+    {
+      "id": "mspgg3hm-9d9e9e",
+      "titulo": "Lengua Completar LA LE LI LO LU 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Completar-LA-LE-LI-LO-LU-1.html",
+      "archivoRepositorio": "mspgg3hm-9d9e9e-Lengua-Completar-LA-LE-LI-LO-LU-1.html",
+      "archivoPublico": "mspgg3hm-9d9e9e-Lengua-Completar-LA-LE-LI-LO-LU-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-08-12T02:13:14.794Z",
+      "actualizadaEn": "2026-08-12T02:13:14.794Z"
+    },
+    {
+      "id": "mspgg3ho-0a274c",
+      "titulo": "Lengua Completar MA ME MI MO MU 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Completar-MA-ME-MI-MO-MU-1.html",
+      "archivoRepositorio": "mspgg3ho-0a274c-Lengua-Completar-MA-ME-MI-MO-MU-1.html",
+      "archivoPublico": "mspgg3ho-0a274c-Lengua-Completar-MA-ME-MI-MO-MU-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-08-12T02:13:14.796Z",
+      "actualizadaEn": "2026-08-12T02:13:14.796Z"
+    },
+    {
+      "id": "mspgg3hp-7663db",
+      "titulo": "Lengua Escribir Palabras Segun Imagen Sopa Letras 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Escribir-Palabras-Segun-Imagen-Sopa-Letras-1.html",
+      "archivoRepositorio": "mspgg3hp-7663db-Lengua-Escribir-Palabras-Segun-Imagen-Sopa-Letras-1.html",
+      "archivoPublico": "mspgg3hp-7663db-Lengua-Escribir-Palabras-Segun-Imagen-Sopa-Letras-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-08-12T02:13:14.797Z",
+      "actualizadaEn": "2026-08-12T02:13:14.797Z"
+    },
+    {
+      "id": "mspgg3hp-484ddf",
+      "titulo": "Lengua Escribir Palabras Sonidos T y N 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Escribir-Palabras-Sonidos-T-y-N-1.html",
+      "archivoRepositorio": "mspgg3hp-484ddf-Lengua-Escribir-Palabras-Sonidos-T-y-N-1.html",
+      "archivoPublico": "mspgg3hp-484ddf-Lengua-Escribir-Palabras-Sonidos-T-y-N-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-08-12T02:13:14.797Z",
+      "actualizadaEn": "2026-08-12T02:13:14.797Z"
+    },
+    {
+      "id": "mspgg3hq-b0d6a7",
+      "titulo": "Lengua Escribir Palabras Sonidos P y L 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
+      "archivoRepositorio": "mspgg3hq-b0d6a7-Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
+      "archivoPublico": "mspgg3hq-b0d6a7-Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-08-12T02:13:14.798Z",
+      "actualizadaEn": "2026-08-12T02:13:14.798Z"
+    },
+    {
+      "id": "mspgg3hq-eb7bd4",
+      "titulo": "Lengua Escribir Palabras Sonidos M y S 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Escribir-Palabras-Sonidos-M-y-S-1.html",
+      "archivoRepositorio": "mspgg3hq-eb7bd4-Lengua-Escribir-Palabras-Sonidos-M-y-S-1.html",
+      "archivoPublico": "mspgg3hq-eb7bd4-Lengua-Escribir-Palabras-Sonidos-M-y-S-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-08-12T02:13:14.798Z",
+      "actualizadaEn": "2026-08-12T02:13:14.798Z"
+    }
+  ]
 }
