@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-19T09:57:45.825Z",
+  "actualizadaEn": "2026-08-19T09:57:51.762Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -181,9 +181,9 @@
       "archivoOriginal": "Historia-7-SanMartin-Rep-Rok.html",
       "archivoRepositorio": "mspih5la-faa838-Historia-7-SanMartin-Rep-Rok.html",
       "archivoPublico": "mspih5la-faa838-Historia-7-SanMartin-Rep-Rok.html",
-      "habilitada": false,
+      "habilitada": true,
       "creadaEn": "2026-08-12T03:10:03.406Z",
-      "actualizadaEn": "2026-08-12T15:47:36.704Z"
+      "actualizadaEn": "2026-08-19T09:57:51.762Z"
     }
   ]
 }
