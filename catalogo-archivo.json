@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-19T09:56:57.472Z",
+  "actualizadaEn": "2026-08-19T09:56:59.837Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -25,9 +25,9 @@
       "archivoOriginal": "Lengua-Completar-TA-TE-TI-TO-TU-1.html",
       "archivoRepositorio": "mspgg3hk-bd26bf-Lengua-Completar-TA-TE-TI-TO-TU-1.html",
       "archivoPublico": "mspgg3hk-bd26bf-Lengua-Completar-TA-TE-TI-TO-TU-1.html",
-      "habilitada": false,
+      "habilitada": true,
       "creadaEn": "2026-08-12T02:13:14.792Z",
-      "actualizadaEn": "2026-08-12T15:49:40.358Z"
+      "actualizadaEn": "2026-08-19T09:56:59.837Z"
     },
     {
       "id": "mspgg3hm-9d9e9e",
