@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-08-19T09:57:27.859Z",
+  "actualizadaEn": "2026-08-19T09:57:30.525Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -73,6 +73,15 @@
       "tipo": "B",
       "archivo": "mspgg3hq-eb7bd4-Lengua-Escribir-Palabras-Sonidos-M-y-S-1.html",
       "actualizadaEn": "2026-08-19T09:57:14.934Z"
+    },
+    {
+      "id": "mspgqz8n-296cf1",
+      "titulo": "Matematica Cuerpos Geometricos Clasificar Aristas Vertices 1 2",
+      "area": "Matematica",
+      "grado": "1",
+      "tipo": "",
+      "archivo": "mspgqz8n-296cf1-Matematica-Cuerpos-Geometricos-Clasificar-Aristas-Vertices-1-2.html",
+      "actualizadaEn": "2026-08-19T09:57:30.525Z"
     },
     {
       "id": "mspgqz8n-46276a",
