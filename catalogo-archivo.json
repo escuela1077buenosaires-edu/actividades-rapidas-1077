@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-19T09:57:23.442Z",
+  "actualizadaEn": "2026-08-19T09:57:27.859Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -129,9 +129,9 @@
       "archivoOriginal": "Matematica-Division-Parametrizable-Caja-Paracaidista-Sopa-Letra.html",
       "archivoRepositorio": "mspgqz8n-46276a-Matematica-Division-Parametrizable-Caja-Paracaidista-Sopa-Letra.html",
       "archivoPublico": "mspgqz8n-46276a-Matematica-Division-Parametrizable-Caja-Paracaidista-Sopa-Letra.html",
-      "habilitada": false,
+      "habilitada": true,
       "creadaEn": "2026-08-12T02:21:42.503Z",
-      "actualizadaEn": "2026-08-12T15:48:24.015Z"
+      "actualizadaEn": "2026-08-19T09:57:27.859Z"
     },
     {
       "id": "mspgqz8n-74eafe",
