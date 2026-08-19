@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-19T09:57:04.939Z",
+  "actualizadaEn": "2026-08-19T09:57:07.209Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -51,9 +51,9 @@
       "archivoOriginal": "Lengua-Completar-MA-ME-MI-MO-MU-1.html",
       "archivoRepositorio": "mspgg3ho-0a274c-Lengua-Completar-MA-ME-MI-MO-MU-1.html",
       "archivoPublico": "mspgg3ho-0a274c-Lengua-Completar-MA-ME-MI-MO-MU-1.html",
-      "habilitada": false,
+      "habilitada": true,
       "creadaEn": "2026-08-12T02:13:14.796Z",
-      "actualizadaEn": "2026-08-12T15:49:24.750Z"
+      "actualizadaEn": "2026-08-19T09:57:07.209Z"
     },
     {
       "id": "mspgg3hp-7663db",
