@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-08-19T09:57:30.525Z",
+  "actualizadaEn": "2026-08-19T09:57:33.706Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -100,6 +100,15 @@
       "tipo": "",
       "archivo": "mspgqz8n-74eafe-Matematica-Multiplicaciones-Sucesivas-Suma-Reiterada-2-3.html",
       "actualizadaEn": "2026-08-19T09:57:23.442Z"
+    },
+    {
+      "id": "mspgqz8p-f4305b",
+      "titulo": "Matematica Multiplicacion Parametrizable Con Sin Decimales CoheteALaLuna Sopa Letra",
+      "area": "Matematica",
+      "grado": "4",
+      "tipo": "",
+      "archivo": "mspgqz8p-f4305b-Matematica-Multiplicacion-Parametrizable-Con-Sin-Decimales-CoheteALaLuna-Sopa-Letra.html",
+      "actualizadaEn": "2026-08-19T09:57:33.706Z"
     }
   ]
 }
