@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-19T09:57:10.052Z",
+  "actualizadaEn": "2026-08-19T09:57:12.470Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -64,9 +64,9 @@
       "archivoOriginal": "Lengua-Escribir-Palabras-Segun-Imagen-Sopa-Letras-1.html",
       "archivoRepositorio": "mspgg3hp-7663db-Lengua-Escribir-Palabras-Segun-Imagen-Sopa-Letras-1.html",
       "archivoPublico": "mspgg3hp-7663db-Lengua-Escribir-Palabras-Segun-Imagen-Sopa-Letras-1.html",
-      "habilitada": false,
+      "habilitada": true,
       "creadaEn": "2026-08-12T02:13:14.797Z",
-      "actualizadaEn": "2026-08-12T15:49:05.585Z"
+      "actualizadaEn": "2026-08-19T09:57:12.470Z"
     },
     {
       "id": "mspgg3hp-484ddf",
