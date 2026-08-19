@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-19T09:57:17.811Z",
+  "actualizadaEn": "2026-08-19T09:57:23.442Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -142,9 +142,9 @@
       "archivoOriginal": "Matematica-Multiplicaciones-Sucesivas-Suma-Reiterada-2-3.html",
       "archivoRepositorio": "mspgqz8n-74eafe-Matematica-Multiplicaciones-Sucesivas-Suma-Reiterada-2-3.html",
       "archivoPublico": "mspgqz8n-74eafe-Matematica-Multiplicaciones-Sucesivas-Suma-Reiterada-2-3.html",
-      "habilitada": false,
+      "habilitada": true,
       "creadaEn": "2026-08-12T02:21:42.503Z",
-      "actualizadaEn": "2026-08-12T15:48:29.026Z"
+      "actualizadaEn": "2026-08-19T09:57:23.442Z"
     },
     {
       "id": "mspgqz8p-1071ad",
