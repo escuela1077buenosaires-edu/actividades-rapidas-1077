@@ -1,7 +1,16 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-08-26T14:41:43.506Z",
+  "actualizadaEn": "2026-08-26T14:41:45.607Z",
   "actividades": [
+    {
+      "id": "mspgg3hq-b0d6a7",
+      "titulo": "Lengua Escribir Palabras Sonidos P y L 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivo": "mspgg3hq-b0d6a7-Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
+      "actualizadaEn": "2026-08-26T14:41:45.607Z"
+    },
     {
       "id": "mspgqz8n-74eafe",
       "titulo": "Matematica Multiplicaciones Sucesivas Suma Reiterada 2 3",
