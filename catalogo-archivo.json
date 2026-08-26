@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-26T14:41:45.607Z",
+  "actualizadaEn": "2026-08-26T14:41:48.349Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -194,9 +194,9 @@
       "archivoOriginal": "Matematica-Fracciones-Comparar-Sumar-Restar-4.html",
       "archivoRepositorio": "mt9ixcmq-be7ea4-Matematica-Fracciones-Comparar-Sumar-Restar-4.html",
       "archivoPublico": "mt9ixcmq-be7ea4-Matematica-Fracciones-Comparar-Sumar-Restar-4.html",
-      "habilitada": true,
+      "habilitada": false,
       "creadaEn": "2026-08-26T03:18:02.546Z",
-      "actualizadaEn": "2026-08-26T03:18:02.546Z"
+      "actualizadaEn": "2026-08-26T14:41:48.349Z"
     }
   ]
 }
