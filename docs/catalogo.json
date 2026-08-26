@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-08-26T14:41:21.110Z",
+  "actualizadaEn": "2026-08-26T14:41:24.330Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -37,15 +37,6 @@
       "tipo": "B",
       "archivo": "mspgg3ho-0a274c-Lengua-Completar-MA-ME-MI-MO-MU-1.html",
       "actualizadaEn": "2026-08-19T09:57:07.209Z"
-    },
-    {
-      "id": "mspgg3hp-7663db",
-      "titulo": "Lengua Escribir Palabras Segun Imagen Sopa Letras 1",
-      "area": "Lengua",
-      "grado": "1",
-      "tipo": "B",
-      "archivo": "mspgg3hp-7663db-Lengua-Escribir-Palabras-Segun-Imagen-Sopa-Letras-1.html",
-      "actualizadaEn": "2026-08-19T09:57:12.470Z"
     },
     {
       "id": "mspgg3hp-484ddf",
