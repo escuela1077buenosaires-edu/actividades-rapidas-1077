@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-08-26T03:16:58.666Z",
+  "actualizadaEn": "2026-08-26T03:18:02.548Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -82,6 +82,15 @@
       "tipo": "",
       "archivo": "mspgqz8n-74eafe-Matematica-Multiplicaciones-Sucesivas-Suma-Reiterada-2-3.html",
       "actualizadaEn": "2026-08-26T03:16:58.666Z"
+    },
+    {
+      "id": "mt9ixcmq-be7ea4",
+      "titulo": "Matematica Fracciones Comparar Sumar Restar 4",
+      "area": "Matematica",
+      "grado": "4",
+      "tipo": "",
+      "archivo": "mt9ixcmq-be7ea4-Matematica-Fracciones-Comparar-Sumar-Restar-4.html",
+      "actualizadaEn": "2026-08-26T03:18:02.546Z"
     }
   ]
 }
