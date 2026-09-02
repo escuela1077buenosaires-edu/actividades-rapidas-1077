@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-02T02:45:38.326Z",
+  "actualizadaEn": "2026-09-02T02:45:46.675Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -220,9 +220,9 @@
       "archivoOriginal": "Lengua-Escribir-Palabras-Sonidos-Z-y-Q-1.html",
       "archivoRepositorio": "mtjgdt0s-1378af-Lengua-Escribir-Palabras-Sonidos-Z-y-Q-1.html",
       "archivoPublico": "mtjgdt0s-1378af-Lengua-Escribir-Palabras-Sonidos-Z-y-Q-1.html",
-      "habilitada": false,
+      "habilitada": true,
       "creadaEn": "2026-09-02T02:04:33.196Z",
-      "actualizadaEn": "2026-09-02T02:45:38.326Z"
+      "actualizadaEn": "2026-09-02T02:45:46.675Z"
     }
   ]
 }

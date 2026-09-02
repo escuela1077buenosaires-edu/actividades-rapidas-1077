@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-09-02T02:45:38.326Z",
+  "actualizadaEn": "2026-09-02T02:45:46.675Z",
   "actividades": [
     {
       "id": "mtjgdt0r-30df07",
@@ -10,6 +10,15 @@
       "tipo": "",
       "archivo": "mtjgdt0r-30df07-Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
       "actualizadaEn": "2026-09-02T02:04:33.195Z"
+    },
+    {
+      "id": "mtjgdt0s-1378af",
+      "titulo": "Lengua Escribir Palabras Sonidos Z y Q 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "",
+      "archivo": "mtjgdt0s-1378af-Lengua-Escribir-Palabras-Sonidos-Z-y-Q-1.html",
+      "actualizadaEn": "2026-09-02T02:45:46.675Z"
     }
   ]
 }
