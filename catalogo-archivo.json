@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-02T18:32:02.165Z",
+  "actualizadaEn": "2026-09-02T18:32:09.122Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -233,9 +233,9 @@
       "archivoOriginal": "Lengua-Familia-de-Palabras-2-3.html",
       "archivoRepositorio": "mtkd4ui1-81a3c0-Lengua-Familia-de-Palabras-2-3.html",
       "archivoPublico": "mtkd4ui1-81a3c0-Lengua-Familia-de-Palabras-2-3.html",
-      "habilitada": true,
+      "habilitada": false,
       "creadaEn": "2026-09-02T17:21:22.537Z",
-      "actualizadaEn": "2026-09-02T17:21:22.537Z"
+      "actualizadaEn": "2026-09-02T18:32:09.122Z"
     },
     {
       "id": "mtkd4ui7-4cb91e",
