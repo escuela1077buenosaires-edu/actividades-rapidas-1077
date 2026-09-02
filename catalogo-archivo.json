@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-02T03:02:26.772Z",
+  "actualizadaEn": "2026-09-02T03:02:31.043Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -207,9 +207,9 @@
       "archivoOriginal": "Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
       "archivoRepositorio": "mtjgdt0r-30df07-Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
       "archivoPublico": "mtjgdt0r-30df07-Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
-      "habilitada": true,
+      "habilitada": false,
       "creadaEn": "2026-09-02T02:04:33.195Z",
-      "actualizadaEn": "2026-09-02T02:04:33.195Z"
+      "actualizadaEn": "2026-09-02T03:02:31.043Z"
     },
     {
       "id": "mtjgdt0s-1378af",
