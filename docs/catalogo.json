@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-09-02T17:21:22.546Z",
+  "actualizadaEn": "2026-09-02T17:22:48.484Z",
   "actividades": [
     {
       "id": "mtjgdt0r-30df07",
@@ -37,6 +37,24 @@
       "tipo": "",
       "archivo": "mtkd4ui7-4cb91e-Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
       "actualizadaEn": "2026-09-02T17:21:22.543Z"
+    },
+    {
+      "id": "mtkd6otb-1c567b",
+      "titulo": "Lengua Familia de Palabras 2 3",
+      "area": "Lengua",
+      "grado": "2",
+      "tipo": "",
+      "archivo": "mtkd6otb-1c567b-Lengua-Familia-de-Palabras-2-3.html",
+      "actualizadaEn": "2026-09-02T17:22:48.479Z"
+    },
+    {
+      "id": "mtkd6otb-1478a2",
+      "titulo": "Matematica Mediciones Convencionales Y O Arbitrarias Por Compar 3Grado",
+      "area": "Matematica",
+      "grado": "3",
+      "tipo": "",
+      "archivo": "mtkd6otb-1478a2-Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
+      "actualizadaEn": "2026-09-02T17:22:48.479Z"
     }
   ]
 }

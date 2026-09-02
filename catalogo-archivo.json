@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-02T17:21:22.546Z",
+  "actualizadaEn": "2026-09-02T17:22:48.484Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -249,6 +249,32 @@
       "habilitada": true,
       "creadaEn": "2026-09-02T17:21:22.543Z",
       "actualizadaEn": "2026-09-02T17:21:22.543Z"
+    },
+    {
+      "id": "mtkd6otb-1c567b",
+      "titulo": "Lengua Familia de Palabras 2 3",
+      "area": "Lengua",
+      "grado": "2",
+      "tipo": "",
+      "archivoOriginal": "Lengua-Familia-de-Palabras-2-3.html",
+      "archivoRepositorio": "mtkd6otb-1c567b-Lengua-Familia-de-Palabras-2-3.html",
+      "archivoPublico": "mtkd6otb-1c567b-Lengua-Familia-de-Palabras-2-3.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-02T17:22:48.479Z",
+      "actualizadaEn": "2026-09-02T17:22:48.479Z"
+    },
+    {
+      "id": "mtkd6otb-1478a2",
+      "titulo": "Matematica Mediciones Convencionales Y O Arbitrarias Por Compar 3Grado",
+      "area": "Matematica",
+      "grado": "3",
+      "tipo": "",
+      "archivoOriginal": "Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
+      "archivoRepositorio": "mtkd6otb-1478a2-Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
+      "archivoPublico": "mtkd6otb-1478a2-Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-02T17:22:48.479Z",
+      "actualizadaEn": "2026-09-02T17:22:48.479Z"
     }
   ]
 }
