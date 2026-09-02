@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-02T18:32:59.711Z",
+  "actualizadaEn": "2026-09-02T18:34:32.644Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -246,9 +246,9 @@
       "archivoOriginal": "Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
       "archivoRepositorio": "mtkd4ui7-4cb91e-Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
       "archivoPublico": "mtkd4ui7-4cb91e-Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
-      "habilitada": false,
+      "habilitada": true,
       "creadaEn": "2026-09-02T17:21:22.543Z",
-      "actualizadaEn": "2026-09-02T18:32:29.266Z"
+      "actualizadaEn": "2026-09-02T18:34:32.644Z"
     }
   ]
 }
