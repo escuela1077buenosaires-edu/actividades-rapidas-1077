@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-02T17:22:48.484Z",
+  "actualizadaEn": "2026-09-02T17:23:24.267Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -275,6 +275,19 @@
       "habilitada": true,
       "creadaEn": "2026-09-02T17:22:48.479Z",
       "actualizadaEn": "2026-09-02T17:22:48.479Z"
+    },
+    {
+      "id": "mtkd7gfd-6ad9d1",
+      "titulo": "Matematica Mediciones Convencionales Y O Arbitrarias Por Compar 3Grado",
+      "area": "Matematica",
+      "grado": "3",
+      "tipo": "",
+      "archivoOriginal": "Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
+      "archivoRepositorio": "mtkd7gfd-6ad9d1-Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
+      "archivoPublico": "mtkd7gfd-6ad9d1-Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-02T17:23:24.265Z",
+      "actualizadaEn": "2026-09-02T17:23:24.265Z"
     }
   ]
 }
