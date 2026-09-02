@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-08-26T14:42:02.760Z",
+  "actualizadaEn": "2026-09-02T02:04:33.233Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -197,6 +197,32 @@
       "habilitada": false,
       "creadaEn": "2026-08-26T03:18:02.546Z",
       "actualizadaEn": "2026-08-26T14:41:58.180Z"
+    },
+    {
+      "id": "mtjgdt0r-30df07",
+      "titulo": "Lengua Escribir Palabras Sonidos P y L 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "",
+      "archivoOriginal": "Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
+      "archivoRepositorio": "mtjgdt0r-30df07-Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
+      "archivoPublico": "mtjgdt0r-30df07-Lengua-Escribir-Palabras-Sonidos-P-y-L-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-02T02:04:33.195Z",
+      "actualizadaEn": "2026-09-02T02:04:33.195Z"
+    },
+    {
+      "id": "mtjgdt0s-1378af",
+      "titulo": "Lengua Escribir Palabras Sonidos Z y Q 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "",
+      "archivoOriginal": "Lengua-Escribir-Palabras-Sonidos-Z-y-Q-1.html",
+      "archivoRepositorio": "mtjgdt0s-1378af-Lengua-Escribir-Palabras-Sonidos-Z-y-Q-1.html",
+      "archivoPublico": "mtjgdt0s-1378af-Lengua-Escribir-Palabras-Sonidos-Z-y-Q-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-02T02:04:33.196Z",
+      "actualizadaEn": "2026-09-02T02:04:33.196Z"
     }
   ]
 }
