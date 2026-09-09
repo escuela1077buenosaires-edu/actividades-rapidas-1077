@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-06T23:11:18.320Z",
+  "actualizadaEn": "2026-09-09T01:07:21.460Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -249,6 +249,62 @@
       "habilitada": false,
       "creadaEn": "2026-09-02T17:21:22.543Z",
       "actualizadaEn": "2026-09-06T23:10:58.569Z"
+    },
+    {
+      "id": "mttef6sc-a1fa41",
+      "solicitudSubida": "dc9032f4e660a80493a05ae4bde4b6e53cdb560723f8c291c20b7a9b34289975",
+      "titulo": "Lengua Completar VA VE VI VO VU 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Completar-VA-VE-VI-VO-VU-1.html",
+      "archivoRepositorio": "mttef6sc-a1fa41-Lengua-Completar-VA-VE-VI-VO-VU-1.html",
+      "archivoPublico": "mttef6sc-a1fa41-Lengua-Completar-VA-VE-VI-VO-VU-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-09T01:07:20.220Z",
+      "actualizadaEn": "2026-09-09T01:07:20.220Z"
+    },
+    {
+      "id": "mttef6sd-34c711",
+      "solicitudSubida": "794e11a92177653a7bb6288669b8f11fb821d54b79b1ff1294789c88771db20b",
+      "titulo": "Lengua Adjetivos Formar Oraciones Palabras Que Describen 2",
+      "area": "Lengua",
+      "grado": "2",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Adjetivos-Formar-Oraciones-Palabras-Que-Describen-2.html",
+      "archivoRepositorio": "mttef6sd-34c711-Lengua-Adjetivos-Formar-Oraciones-Palabras-Que-Describen-2.html",
+      "archivoPublico": "mttef6sd-34c711-Lengua-Adjetivos-Formar-Oraciones-Palabras-Que-Describen-2.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-09T01:07:20.221Z",
+      "actualizadaEn": "2026-09-09T01:07:20.221Z"
+    },
+    {
+      "id": "mttef6se-20b96c",
+      "solicitudSubida": "ecb23234f202020cff7656df711533e96f4bd4c11c7158c17e0dba2473b14e4f",
+      "titulo": "Matematica Geometria Circulos Circunferencias 4",
+      "area": "Matematica",
+      "grado": "4",
+      "tipo": "B",
+      "archivoOriginal": "Matematica-Geometria-Circulos-Circunferencias-4.html",
+      "archivoRepositorio": "mttef6se-20b96c-Matematica-Geometria-Circulos-Circunferencias-4.html",
+      "archivoPublico": "mttef6se-20b96c-Matematica-Geometria-Circulos-Circunferencias-4.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-09T01:07:20.222Z",
+      "actualizadaEn": "2026-09-09T01:07:20.222Z"
+    },
+    {
+      "id": "mttef6se-a21a68",
+      "solicitudSubida": "974c609bb393b7646353e73b368285b9f9460f224ca848b85b6fe681ae440ed6",
+      "titulo": "Lengua Sustantivos Adjetivos Verbos Antonimos Sinonimos Texto Stubby 5",
+      "area": "Lengua",
+      "grado": "5",
+      "tipo": "B",
+      "archivoOriginal": "Lengua-Sustantivos-Adjetivos-Verbos-Antonimos-Sinonimos-Texto-Stubby-5.html",
+      "archivoRepositorio": "mttef6se-a21a68-Lengua-Sustantivos-Adjetivos-Verbos-Antonimos-Sinonimos-Texto-Stubby-5.html",
+      "archivoPublico": "mttef6se-a21a68-Lengua-Sustantivos-Adjetivos-Verbos-Antonimos-Sinonimos-Texto-Stubby-5.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-09T01:07:20.222Z",
+      "actualizadaEn": "2026-09-09T01:07:20.222Z"
     }
   ]
 }

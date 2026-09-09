@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-09-06T23:11:18.320Z",
+  "actualizadaEn": "2026-09-09T01:07:21.460Z",
   "actividades": [
     {
       "id": "mtjgdt0s-1378af",
@@ -10,6 +10,42 @@
       "tipo": "",
       "archivo": "mtjgdt0s-1378af-Lengua-Escribir-Palabras-Sonidos-Z-y-Q-1.html",
       "actualizadaEn": "2026-09-06T23:09:03.404Z"
+    },
+    {
+      "id": "mttef6sc-a1fa41",
+      "titulo": "Lengua Completar VA VE VI VO VU 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivo": "mttef6sc-a1fa41-Lengua-Completar-VA-VE-VI-VO-VU-1.html",
+      "actualizadaEn": "2026-09-09T01:07:20.220Z"
+    },
+    {
+      "id": "mttef6sd-34c711",
+      "titulo": "Lengua Adjetivos Formar Oraciones Palabras Que Describen 2",
+      "area": "Lengua",
+      "grado": "2",
+      "tipo": "B",
+      "archivo": "mttef6sd-34c711-Lengua-Adjetivos-Formar-Oraciones-Palabras-Que-Describen-2.html",
+      "actualizadaEn": "2026-09-09T01:07:20.221Z"
+    },
+    {
+      "id": "mttef6se-20b96c",
+      "titulo": "Matematica Geometria Circulos Circunferencias 4",
+      "area": "Matematica",
+      "grado": "4",
+      "tipo": "B",
+      "archivo": "mttef6se-20b96c-Matematica-Geometria-Circulos-Circunferencias-4.html",
+      "actualizadaEn": "2026-09-09T01:07:20.222Z"
+    },
+    {
+      "id": "mttef6se-a21a68",
+      "titulo": "Lengua Sustantivos Adjetivos Verbos Antonimos Sinonimos Texto Stubby 5",
+      "area": "Lengua",
+      "grado": "5",
+      "tipo": "B",
+      "archivo": "mttef6se-a21a68-Lengua-Sustantivos-Adjetivos-Verbos-Antonimos-Sinonimos-Texto-Stubby-5.html",
+      "actualizadaEn": "2026-09-09T01:07:20.222Z"
     }
   ]
 }

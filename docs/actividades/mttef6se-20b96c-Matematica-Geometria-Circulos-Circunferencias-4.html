@@ -1,0 +1,3177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Círculos y Circunferencias | 4° grado</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: linear-gradient(145deg, #2b5a7a 0%, #1e3e58 100%); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; min-height: 100vh; padding: 12px; display: flex; justify-content: center; align-items: flex-start; }
+        .game-box { max-width: 920px; width: 100%; margin: 0 auto; background: #FFF8E7; border-radius: 32px; box-shadow: 0 15px 25px rgba(0,0,0,0.4); overflow: hidden; border: 3px solid #FFC107; }
+        .config-screen { padding: 20px 22px; }
+        .config-title { text-align: center; color: #1F3A4B; margin-bottom: 6px; font-size: 1.6rem; }
+        .config-subtitle { text-align: center; color: #6B4E1B; margin-bottom: 14px; font-size: 0.95rem; }
+        .config-explain { background: #E8F1FA; border-left: 5px solid #2C7A9B; border-radius: 12px; padding: 12px 15px; margin: 8px 0 14px; font-size: 0.92rem; color: #1a3d54; line-height: 1.5; }
+        .config-group { background: #FFFFFF; border-radius: 18px; padding: 12px 15px; margin: 8px 0; box-shadow: 0 3px 0 #d9c589; }
+        .config-group label { font-weight: bold; color: #1F3A4B; display: block; margin-bottom: 5px; font-size: 0.98rem; }
+        .config-group input, .config-group select { width: 100%; padding: 10px 12px; border: 2px solid #C0A56B; border-radius: 12px; font-size: 1.05rem; background: #FFFDF3; font-family: inherit; }
+        .config-group input:focus, .config-group select:focus { outline: none; border-color: #4CAF50; }
+        .config-hint { font-size: 0.82rem; color: #6B4E1B; margin-top: 4px; }
+        .config-row { display: flex; gap: 10px; }
+        .config-row > .config-group { flex: 1; }
+        .btn-start { display: block; margin: 14px auto 4px; background: #2C7A47; color: white; border: none; padding: 14px 34px; font-size: 1.25rem; font-weight: bold; border-radius: 44px; cursor: pointer; box-shadow: 0 5px 0 #1A4D2A; }
+        .btn-start:disabled { background: #999; box-shadow: 0 5px 0 #666; cursor: not-allowed; }
+        .btn-start:not(:disabled):active { transform: translateY(3px); box-shadow: 0 2px 0 #1A4D2A; }
+        .theory-screen { padding: 18px 22px; }
+        .theory-title { text-align: center; color: #1F3A4B; margin-bottom: 6px; font-size: 1.45rem; }
+        .theory-intro { text-align: center; color: #6B4E1B; font-size: 0.9rem; margin-bottom: 12px; }
+        .theory-card { background: #FFFFFF; border-radius: 18px; padding: 14px 18px; margin: 10px 0; box-shadow: 0 3px 0 #d9c589; border-left: 6px solid #E67E22; }
+        .theory-card h3 { color: #B45F1B; margin-bottom: 8px; font-size: 1.2rem; }
+        .theory-card p { color: #333; font-size: 0.98rem; line-height: 1.55; margin: 4px 0; }
+        .theory-card.blue { border-left-color: #2196F3; } .theory-card.blue h3 { color: #1565C0; }
+        .theory-card.green { border-left-color: #43A047; } .theory-card.green h3 { color: #1B5E20; }
+        .theory-card.purple { border-left-color: #8E44AD; } .theory-card.purple h3 { color: #5C2D82; }
+        .theory-figs { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 10px 0; }
+        .theory-fig { text-align: center; }
+        .theory-fig svg { width: 150px; height: 150px; display: block; margin: 0 auto; }
+        .theory-fig .label { display: inline-block; background: #FFE8CC; padding: 4px 12px; border-radius: 12px; margin-top: 6px; font-weight: bold; color: #8B4513; font-size: 0.95rem; }
+        .theory-key { background: #FFF3DF; border-radius: 12px; padding: 10px 14px; margin: 8px 0; font-size: 1rem; text-align: center; font-weight: bold; color: #B45F1B; }
+        .theory-key.big { font-size: 1.3rem; padding: 12px 18px; letter-spacing: 1px; }
+        .btn-theory-next { display: block; margin: 16px auto 4px; background: #118AB2; color: white; border: none; padding: 12px 30px; font-size: 1.15rem; font-weight: bold; border-radius: 40px; cursor: pointer; box-shadow: 0 4px 0 #0E6B8A; }
+        .btn-theory-next:active { transform: translateY(2px); box-shadow: 0 2px 0 #0E6B8A; }
+        .game-header { background: #1F3A4B; padding: 10px 16px; color: white; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; border-bottom: 5px solid #FFC107; gap: 8px; }
+        .header-left { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .player-info { background: #0f2a38; padding: 6px 14px; border-radius: 100px; font-size: 0.88rem; font-weight: bold; }
+        .round-badge { background: #E67E22; display: inline-block; padding: 6px 14px; border-radius: 40px; color: white; font-weight: bold; font-size: 0.82rem; box-shadow: 0 2px 0 #a85508; }
+        .score-info { display: flex; gap: 14px; background: #0f2a38; padding: 5px 14px; border-radius: 100px; align-items: center; }
+        .score-info div { font-size: 0.88rem; }
+        .score-info span { font-size: 1.1rem; font-weight: bold; color: #FFD966; margin-left: 4px; }
+        .btn-see-theory { background: #F1C40F; color: #5a3a1e; border: none; padding: 6px 12px; border-radius: 22px; font-weight: bold; font-size: 0.82rem; cursor: pointer; box-shadow: 0 3px 0 #a37a04; }
+        .btn-see-theory:active { transform: translateY(2px); box-shadow: 0 1px 0 #a37a04; }
+        .coins-bar { background: #F7E5C2; padding: 6px 14px; border-bottom: 2px dashed #F1C40F; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+        .coins-title { font-weight: bold; color: #B45F1B; font-size: 0.85rem; }
+        .coins-count { font-weight: bold; color: #B45F1B; font-size: 1.05rem; }
+        .coins-track { flex: 1; min-width: 100px; display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+        .coin { background: radial-gradient(circle at 30% 35%, #FFD966, #D4A017); width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: bold; color: #7a4a04; box-shadow: 0 2px 3px rgba(0,0,0,0.3); border: 1px solid #FFB347; animation: coinPop 0.5s ease; }
+        @keyframes coinPop { 0% { transform: scale(0) rotate(-180deg); opacity: 0; } 100% { transform: scale(1) rotate(0); opacity: 1; } }
+        .coin-plus { position: fixed; z-index: 200; font-size: 2rem; font-weight: bold; color: #D4A017; text-shadow: 0 2px 4px rgba(0,0,0,0.5); pointer-events: none; animation: coinFly 1.2s ease-out forwards; }
+        @keyframes coinFly { 0% { opacity: 1; transform: translate(0, 0) scale(1); } 100% { opacity: 0; transform: translate(0, -80px) scale(1.4); } }
+        .car-panel { position: relative; margin: 10px 20px 4px; height: 120px; border-radius: 20px; overflow: hidden; border: 3px solid #FFC107; box-shadow: 0 5px 0 #888; background: linear-gradient(180deg, #FDD87A 0%, #FDBB2A 40%, #7C8B99 42%, #556270 100%); }
+        .car-title { position: absolute; top: 3px; left: 0; right: 0; text-align: center; color: #1F3A4B; font-size: 0.68rem; font-weight: bold; letter-spacing: 1px; z-index: 8; text-shadow: 0 1px 0 #fff; }
+        .car-progress { position: absolute; bottom: 3px; right: 8px; color: #fff; font-size: 0.72rem; font-weight: bold; z-index: 8; text-shadow: 0 1px 2px #000; background: rgba(0,0,0,0.4); padding: 1px 8px; border-radius: 10px; }
+        .car-sun { position: absolute; top: 6px; right: 30px; font-size: 1.4rem; }
+        .car-cloud { position: absolute; top: 10px; font-size: 1.2rem; opacity: 0.85; }
+        .car-checkpoints { position: absolute; bottom: 24px; left: 0; right: 0; height: 42px; }
+        .car-cp { position: absolute; bottom: 0; font-size: 1.7rem; text-align: center; width: 34px; }
+        .car-cp-label { position: absolute; font-size: 0.55rem; font-weight: bold; color: #FFF; background: rgba(0,0,0,0.55); border-radius: 8px; padding: 0 3px; text-align: center; width: 34px; bottom: -10px; }
+        .car-lane { position: absolute; bottom: 8px; left: 0; right: 0; height: 4px; background: repeating-linear-gradient(90deg, #FFF 0 20px, transparent 20px 40px); border-radius: 2px; opacity: 0.9; }
+        .car-el { position: absolute; bottom: 12px; left: 3%; transition: left 0.6s ease; z-index: 5; font-size: 2.2rem; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4)); display: inline-block; transform: scaleX(-1); }
+        .exercise-card { background: #FFFFFF; border-radius: 24px; padding: 16px 18px 20px; box-shadow: 0 5px 0 #C0A56B; margin: 10px 20px; text-align: center; }
+        .exercise-round-label { display: inline-block; background: #E67E22; color: white; padding: 5px 14px; border-radius: 24px; font-weight: bold; font-size: 0.9rem; margin-bottom: 8px; }
+        .exercise-question { color: #1F3A4B; font-size: 1.2rem; font-weight: bold; margin: 8px 0 8px; line-height: 1.4; }
+        .exercise-svg-wrap { background: #FEFBE9; border-radius: 16px; padding: 10px; display: inline-block; margin: 6px auto; box-shadow: inset 0 -2px 0 #FFCF9A; }
+        .exercise-svg-wrap svg { display: block; width: 200px; height: 200px; }
+        .exercise-numeric { background: #FFF3DF; border-radius: 16px; padding: 14px 18px; margin: 10px auto; font-size: 1.15rem; color: #2c3e2f; max-width: 640px; line-height: 1.5; }
+        .exercise-numeric b { color: #B45F1B; font-size: 1.35rem; letter-spacing: 1px; }
+        .options-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px auto; max-width: 640px; }
+        .opt-btn { background: #EFF9FF; border: 3px solid #7BAECC; color: #1F3A4B; font-size: 1.1rem; font-weight: bold; padding: 14px 8px; border-radius: 22px; cursor: pointer; transition: 0.1s linear; word-break: break-word; min-height: 60px; }
+        .opt-btn:hover:not(:disabled) { background: #DCEEF9; }
+        .opt-btn:active:not(:disabled) { transform: translateY(2px); }
+        .opt-btn.correct { background: #C8E6C9; border-color: #2E7D32; color: #1B5E20; animation: flashOk 0.5s; }
+        .opt-btn.wrong { background: #FFCDD2; border-color: #B71C1C; color: #B71C1C; animation: shakeErr 0.5s; }
+        @keyframes flashOk { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes shakeErr { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-6px); } 40%,80% { transform: translateX(6px); } }
+        .feedback { margin: 10px auto 4px; font-size: 1rem; font-weight: bold; min-height: 30px; padding: 10px; border-radius: 20px; max-width: 640px; }
+        .feedback.ok { background: #E8F5E9; color: #1B5E20; }
+        .feedback.err { background: #FFEBEE; color: #B71C1C; }
+        .feedback .hint-extra { display: block; margin-top: 4px; font-weight: normal; font-size: 0.9rem; color: #5a4a1a; }
+        .btn-next { background: #E76F51; color: white; border: none; padding: 12px 26px; font-size: 1.15rem; font-weight: bold; border-radius: 32px; cursor: pointer; box-shadow: 0 4px 0 #B6451A; margin-top: 8px; }
+        .btn-next:active { transform: translateY(2px); box-shadow: 0 2px 0 #B6451A; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 100; justify-content: center; align-items: center; padding: 15px; }
+        .modal-overlay.open { display: flex; }
+        .modal-box { background: #FFF8E7; max-width: 820px; width: 100%; max-height: 90vh; border-radius: 22px; padding: 16px 20px; overflow-y: auto; border: 3px solid #FFC107; position: relative; }
+        .modal-close { position: absolute; top: 10px; right: 12px; background: #E76F51; color: white; border: none; width: 34px; height: 34px; border-radius: 50%; font-weight: bold; font-size: 1.1rem; cursor: pointer; box-shadow: 0 3px 0 #B6451A; }
+        .modal-close:active { transform: translateY(2px); box-shadow: 0 1px 0 #B6451A; }
+        .sopa-screen, .cruci-screen { padding: 14px 20px; }
+        .sopa-title, .cruci-title { text-align: center; color: #1F3A4B; font-size: 1.35rem; margin-bottom: 4px; }
+        .sopa-subtitle, .cruci-subtitle { text-align: center; color: #6B4E1B; font-size: 0.92rem; margin-bottom: 10px; }
+        .sopa-instr, .cruci-instr { background: #E8F1FA; border-left: 4px solid #2C7A9B; border-radius: 10px; padding: 8px 12px; font-size: 0.85rem; color: #1a3d54; margin: 6px 0 10px; }
+        .sopa-layout { display: flex; gap: 12px; align-items: flex-start; flex-wrap: wrap; justify-content: center; }
+        .sopa-grid { display: grid; gap: 2px; background: #FFF3DF; padding: 8px; border-radius: 14px; border: 3px solid #FFC107; box-shadow: 0 4px 0 #C0A56B; }
+        .sopa-cell { width: 30px; height: 30px; background: #FFFFFF; border: 1px solid #E0C68A; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-weight: bold; font-size: 1rem; color: #333; cursor: pointer; user-select: none; border-radius: 4px; }
+        .sopa-cell:hover { background: #FFFDE7; }
+        .sopa-cell.selected { background: #FFD966; color: #5a3a1e; border-color: #D4A017; }
+        .sopa-cell.found { background: #C8E6C9; color: #1B5E20; border-color: #2E7D32; }
+        .sopa-cell.hint { animation: hintFlash 1.5s ease-in-out; }
+        @keyframes hintFlash { 0%,100% { background: #FFFFFF; } 40%,60% { background: #FFF176; box-shadow: 0 0 8px #FFD54F; } }
+        .sopa-words { display: flex; flex-direction: column; gap: 6px; min-width: 160px; max-width: 200px; }
+        .sopa-word-item { background: #EFF9FF; border: 2px solid #7BAECC; color: #1F3A4B; padding: 6px 10px; border-radius: 12px; font-weight: bold; font-size: 0.92rem; font-family: 'Courier New', monospace; text-align: center; }
+        .sopa-word-item.found { background: #C8E6C9; border-color: #2E7D32; color: #1B5E20; text-decoration: line-through; }
+        .sopa-actions, .cruci-actions { display: flex; justify-content: center; gap: 10px; margin: 12px 0 4px; flex-wrap: wrap; }
+        .btn-hint { background: #F1C40F; color: #5a3a1e; border: none; padding: 10px 20px; font-size: 1rem; font-weight: bold; border-radius: 32px; cursor: pointer; box-shadow: 0 4px 0 #a37a04; }
+        .btn-hint:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-hint:not(:disabled):active { transform: translateY(2px); box-shadow: 0 2px 0 #a37a04; }
+        .btn-continue-sopa, .btn-continue-cruci { background: #2C7A47; color: white; border: none; padding: 10px 22px; font-size: 1.05rem; font-weight: bold; border-radius: 32px; cursor: pointer; box-shadow: 0 4px 0 #1A4D2A; }
+        .btn-continue-sopa:active, .btn-continue-cruci:active { transform: translateY(2px); box-shadow: 0 2px 0 #1A4D2A; }
+        .sopa-bonus-msg, .cruci-bonus-msg { text-align: center; font-weight: bold; color: #B45F1B; margin-top: 6px; font-size: 0.9rem; min-height: 20px; }
+        .cruci-layout { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; justify-content: center; }
+        .cruci-grid { display: grid; gap: 2px; background: #333; padding: 4px; border-radius: 12px; border: 3px solid #FFC107; box-shadow: 0 4px 0 #C0A56B; }
+        .cruci-cell { width: 34px; height: 34px; position: relative; background: #FFFFFF; border-radius: 3px; }
+        .cruci-cell.blocked { background: #333; border-radius: 3px; }
+        .cruci-cell input { width: 100%; height: 100%; border: none; text-align: center; font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.05rem; text-transform: uppercase; background: transparent; color: #1F3A4B; padding: 0; border-radius: 3px; }
+        .cruci-cell input:focus { outline: 2px solid #E67E22; background: #FFF3DF; }
+        .cruci-cell.ok { background: #C8E6C9; }
+        .cruci-cell.err { background: #FFCDD2; }
+        .cruci-cell.hint-cell { background: #FFF176; }
+        .cruci-cell .num { position: absolute; top: 1px; left: 2px; font-size: 0.55rem; font-weight: bold; color: #B45F1B; pointer-events: none; }
+        .cruci-clues { max-width: 340px; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
+        .cruci-clue-group { background: #FFFFFF; border-radius: 12px; padding: 10px 12px; box-shadow: 0 2px 0 #d9c589; }
+        .cruci-clue-group h4 { color: #1565C0; font-size: 0.9rem; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+        .cruci-clue-group .clue { font-size: 0.85rem; color: #333; margin: 4px 0; line-height: 1.35; }
+        .cruci-clue-group .clue b { color: #B45F1B; margin-right: 4px; }
+        .cruci-clue-group .clue.done { color: #1B5E20; text-decoration: line-through; }
+        .summary-screen { padding: 18px 22px; text-align: center; }
+        .summary-title { color: #1F3A4B; font-size: 1.55rem; margin-bottom: 10px; }
+        .summary-stats { background: #FFFFFF; border-radius: 18px; padding: 14px; margin: 10px 0; box-shadow: 0 3px 0 #d9c589; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+        .summary-stats .stat { padding: 8px; }
+        .summary-stats .stat b { display: block; font-size: 1.5rem; color: #1F3A4B; margin-bottom: 4px; }
+        .summary-stats .stat span { font-size: 0.9rem; color: #6B4E1B; }
+        .grade-big { background: linear-gradient(135deg, #FFC107, #E67E22); color: white; border-radius: 20px; padding: 14px; margin: 10px 0; font-size: 2rem; font-weight: bold; box-shadow: 0 4px 0 #a85508; }
+        .qr-box { background: white; padding: 14px; border-radius: 16px; margin: 12px auto; display: inline-block; box-shadow: 0 3px 0 #d9c589; }
+        .qr-box svg { display: block; width: 260px; height: 260px; }
+        .send-msg { padding: 10px; border-radius: 14px; margin: 10px 0; font-weight: bold; }
+        .send-msg.err { background: #FFEBEE; color: #B71C1C; }
+        .send-msg.ok { background: #E8F5E9; color: #1B5E20; }
+        .btn-send { background: #2C7A47; color: white; border: none; padding: 12px 28px; font-size: 1.1rem; font-weight: bold; border-radius: 40px; cursor: pointer; box-shadow: 0 4px 0 #1A4D2A; margin: 6px; }
+        .btn-send:disabled { background: #999; box-shadow: 0 4px 0 #666; cursor: not-allowed; }
+        .btn-send:not(:disabled):active { transform: translateY(2px); box-shadow: 0 2px 0 #1A4D2A; }
+        .btn-restart { background: #6c757d; color: white; border: none; padding: 10px 22px; font-size: 1rem; font-weight: bold; border-radius: 36px; cursor: pointer; box-shadow: 0 4px 0 #4a5258; margin: 6px; }
+        .btn-restart:active { transform: translateY(2px); box-shadow: 0 2px 0 #4a5258; }
+        @media (max-width: 620px) {
+            .config-row { flex-direction: column; gap: 0; }
+            .options-grid { grid-template-columns: 1fr; }
+            .car-panel { height: 100px; }
+            .exercise-question { font-size: 1rem; }
+            .opt-btn { font-size: 1rem; padding: 12px 6px; }
+            .exercise-svg-wrap svg { width: 160px; height: 160px; }
+            .sopa-cell { width: 26px; height: 26px; font-size: 0.9rem; }
+            .cruci-cell { width: 26px; height: 26px; }
+            .cruci-cell input { font-size: 0.85rem; }
+            .cruci-cell .num { font-size: 0.5rem; }
+            .sopa-words { max-width: 100%; min-width: 100%; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+            .cruci-clues { max-width: 100%; min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-box">
+        <div id="configScreen" class="config-screen">
+            <h1 class="config-title">🎡 Círculos y Circunferencias</h1>
+            <div class="config-subtitle">Geometría · Matemática · 4° grado</div>
+            <div class="config-explain">
+                <b>¿De qué se trata?</b> Trabajamos <b>círculos y circunferencias</b>: diferencias, elementos, cálculos con radio y diámetro (incluyendo compás), problemas de la vida real y problemas más difíciles con operaciones. <b>5 rondas de 10 ejercicios</b>, con una <b>mini-sopa de letras al final de cada ronda</b> (4 palabras cada una). Al terminar viene un <b>crucigrama final</b> con 6 palabras del vocabulario. Cada 5 aciertos ganás una moneda 🪙.
+            </div>
+            <div class="config-row">
+                <div class="config-group">
+                    <label for="cfgId">🧑‍🎓 ID del alumno *</label>
+                    <input type="text" id="cfgId" maxlength="2" value="1" autocomplete="off">
+                    <div class="config-hint">Obligatorio · máx 2 caracteres</div>
+                </div>
+                <div class="config-group">
+                    <label for="cfgTipo">📋 Tipo</label>
+                    <select id="cfgTipo"><option value="B" selected>B (juego por rondas)</option><option value="A">A (teórica)</option></select>
+                </div>
+            </div>
+            <div class="config-group">
+                <label for="cfgTitleExtra">✏️ Detalle adicional del título (opcional)</label>
+                <input type="text" id="cfgTitleExtra" maxlength="40" autocomplete="off" placeholder="Ej: repaso septiembre">
+            </div>
+            <div class="config-group">
+                <label for="cfgStartRound">🎯 Empezar desde la ronda</label>
+                <select id="cfgStartRound">
+                    <option value="1" selected>Ronda 1 (Reconocer)</option>
+                    <option value="2">Ronda 2 (Elementos)</option>
+                    <option value="3">Ronda 3 (Cálculos y compás)</option>
+                    <option value="4">Ronda 4 (Problemas aplicados)</option>
+                    <option value="5">Ronda 5 (Problemas con operaciones)</option>
+                </select>
+                <div class="config-hint">La nota se calcula sobre lo realizado.</div>
+            </div>
+            <div class="config-explain" style="background:#FFF3DF; border-left-color:#E67E22;">
+                📖 <b>La pantalla de teoría siempre se muestra antes de empezar</b> (la docente lo pidió). También queda disponible durante la actividad con el botón 📖.
+            </div>
+            <button id="btnStart" class="btn-start">🚀 Comenzar</button>
+        </div>
+
+        <div id="theoryScreen" class="theory-screen" style="display:none;">
+            <h2 class="theory-title">📚 Teoría: Círculos y Circunferencias</h2>
+            <div class="theory-intro">Leé con atención. Vas a poder volver acá durante la actividad con el botón 📖.</div>
+            <div class="theory-card blue">
+                <h3>1️⃣ Circunferencia vs Círculo</h3>
+                <p>La <b>circunferencia</b> es <b>solo la línea</b> (el borde), como un aro. El <b>círculo</b> es <b>toda la superficie</b> de adentro, como un disco pintado.</p>
+                <div class="theory-figs">
+                    <div class="theory-fig">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="80" fill="none" stroke="#1565C0" stroke-width="5"/></svg>
+                        <span class="label">CIRCUNFERENCIA (línea)</span>
+                    </div>
+                    <div class="theory-fig">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="80" fill="#2196F3" stroke="#1565C0" stroke-width="2"/></svg>
+                        <span class="label">CÍRCULO (superficie)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="theory-card green">
+                <h3>2️⃣ Elementos de la circunferencia</h3>
+                <div class="theory-figs">
+                    <div class="theory-fig">
+                        <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="120" cy="120" r="90" fill="none" stroke="#666" stroke-width="3"/>
+                            <line x1="120" y1="120" x2="200" y2="80" stroke="#E67E22" stroke-width="5"/>
+                            <text x="165" y="90" font-size="14" font-weight="bold" fill="#E67E22">radio</text>
+                            <line x1="30" y1="120" x2="210" y2="120" stroke="#B71C1C" stroke-width="5"/>
+                            <text x="60" y="140" font-size="14" font-weight="bold" fill="#B71C1C">diámetro</text>
+                            <circle cx="120" cy="120" r="6" fill="#1F3A4B"/>
+                            <text x="128" y="115" font-size="13" font-weight="bold" fill="#1F3A4B">centro</text>
+                            <line x1="60" y1="60" x2="180" y2="200" stroke="#8E44AD" stroke-width="4"/>
+                            <text x="160" y="210" font-size="14" font-weight="bold" fill="#8E44AD">cuerda</text>
+                            <path d="M 30 120 A 90 90 0 0 1 60 60" stroke="#2E7D32" stroke-width="6" fill="none"/>
+                            <text x="8" y="80" font-size="14" font-weight="bold" fill="#2E7D32">arco</text>
+                        </svg>
+                    </div>
+                </div>
+                <p><b style="color:#1F3A4B;">CENTRO:</b> punto del medio.</p>
+                <p><b style="color:#E67E22;">RADIO:</b> del centro a un punto del borde.</p>
+                <p><b style="color:#B71C1C;">DIÁMETRO:</b> pasa por el centro y une dos puntos del borde. Es la cuerda más larga.</p>
+                <p><b style="color:#8E44AD;">CUERDA:</b> une dos puntos del borde sin pasar por el centro.</p>
+                <p><b style="color:#2E7D32;">ARCO:</b> pedacito del borde.</p>
+            </div>
+            <div class="theory-card">
+                <h3>3️⃣ Propiedad clave</h3>
+                <div class="theory-key big">📏 diámetro = 2 × radio</div>
+                <div class="theory-key">radio = diámetro ÷ 2</div>
+                <p style="text-align:center; margin-top:8px;">Si el <b>radio</b> mide <b>5 cm</b>, el <b>diámetro</b> mide <b>10 cm</b>.<br>Si el <b>diámetro</b> mide <b>12 cm</b>, el <b>radio</b> mide <b>6 cm</b>.</p>
+                <p style="text-align:center; color:#B45F1B; margin-top:6px;">Todos los puntos de la circunferencia están a la <b>misma distancia</b> del centro.</p>
+            </div>
+            <div class="theory-card purple">
+                <h3>4️⃣ El compás</h3>
+                <p>El <b>compás</b> es el instrumento para dibujar circunferencias. Tiene dos puntas: una <b>pincha</b> (queda el centro), la otra <b>dibuja</b>. La distancia entre las dos puntas es el <b>radio</b>.</p>
+                <div class="theory-key">✂️ Abertura del compás = RADIO</div>
+                <p>También sirve para <b>transportar (copiar) segmentos</b>.</p>
+            </div>
+            <button id="btnTheoryNext" class="btn-theory-next">✅ Entendí, empezar la práctica ➜</button>
+        </div>
+
+        <div id="activityScreen" style="display:none;">
+            <div class="game-header">
+                <div class="header-left">
+                    <div class="player-info">🧑‍🎓 <span id="hdrStudent">ID</span></div>
+                    <div class="round-badge" id="hdrRound">Ronda 1</div>
+                </div>
+                <div class="score-info">
+                    <div>⭐ <span id="hdrPoints">0</span></div>
+                    <div>🎯 <span id="hdrExNum">1</span>/<span id="hdrExTotal">76</span></div>
+                    <div>⏱️ <span id="hdrTimer">00:00</span></div>
+                    <button class="btn-see-theory" id="btnOpenTheory">📖 Teoría</button>
+                </div>
+            </div>
+            <div class="coins-bar">
+                <div class="coins-title">🪙 MONEDAS DE ORO</div>
+                <div class="coins-count"><span id="hdrCoins">0</span></div>
+                <div class="coins-track" id="coinsTrack"></div>
+            </div>
+            <div class="car-panel">
+                <div class="car-title">🚗 EL AUTO CON RUEDAS REDONDAS LLEGA A LA META</div>
+                <div class="car-sun">☀️</div>
+                <div class="car-cloud" style="left:22%;">☁️</div>
+                <div class="car-cloud" style="left:55%; top:16px;">☁️</div>
+                <div class="car-checkpoints">
+                    <div class="car-cp" style="left:4%;">🏠</div><div class="car-cp-label" style="left:4%;">Inicio</div>
+                    <div class="car-cp" style="left:22%;">🌳</div><div class="car-cp-label" style="left:22%;">R1</div>
+                    <div class="car-cp" style="left:40%;">🌲</div><div class="car-cp-label" style="left:40%;">R2</div>
+                    <div class="car-cp" style="left:58%;">⛰️</div><div class="car-cp-label" style="left:58%;">R3</div>
+                    <div class="car-cp" style="left:76%;">🏔️</div><div class="car-cp-label" style="left:76%;">R4</div>
+                    <div class="car-cp" style="left:92%;">🏁</div><div class="car-cp-label" style="left:92%;">R5</div>
+                </div>
+                <div class="car-lane"></div>
+                <div class="car-el" id="carEl">🚗</div>
+                <div class="car-progress" id="carProgress">0 / 50</div>
+            </div>
+            <div class="exercise-card">
+                <div class="exercise-round-label" id="exRoundLabel">Ronda 1</div>
+                <div class="exercise-question" id="exQuestion">?</div>
+                <div id="exBody"></div>
+                <div class="feedback" id="exFeedback" style="display:none;"></div>
+                <button id="btnNext" class="btn-next" style="display:none;">Siguiente ➜</button>
+            </div>
+        </div>
+
+        <div id="sopaScreen" class="sopa-screen" style="display:none;">
+            <h2 class="sopa-title" id="sopaTitle">🔤 Mini-Sopa</h2>
+            <div class="sopa-subtitle" id="sopaSubtitle"></div>
+            <div class="sopa-instr"><b>Encontrá las palabras:</b> click en la <b>primera letra</b> y después en la <b>última letra</b>. Cada palabra encontrada suma <b>1 acierto</b> y <b>1 moneda</b> 🪙.</div>
+            <div class="sopa-layout">
+                <div class="sopa-grid" id="sopaGrid"></div>
+                <div class="sopa-words" id="sopaWords"></div>
+            </div>
+            <div class="sopa-actions">
+                <button id="btnSopaHint" class="btn-hint">💡 Pista (usa 1 moneda)</button>
+                <button id="btnSopaContinue" class="btn-continue-sopa">➜ Continuar</button>
+            </div>
+            <div class="sopa-bonus-msg" id="sopaBonusMsg"></div>
+        </div>
+
+        <div id="cruciScreen" class="cruci-screen" style="display:none;">
+            <h2 class="cruci-title">🧩 Crucigrama final</h2>
+            <div class="cruci-subtitle">Repaso integrador del vocabulario de geometría</div>
+            <div class="cruci-instr"><b>Completá las palabras cruzadas.</b> Escribí una letra por celda blanca. Cuando termines apretá <b>✅ Verificar</b>: cada palabra correcta suma <b>1 acierto</b> y <b>1 moneda</b>. Podés pedir una <b>pista</b> (revela una letra, cuesta 2 monedas).</div>
+            <div class="cruci-layout">
+                <div class="cruci-grid" id="cruciGrid"></div>
+                <div class="cruci-clues" id="cruciClues"></div>
+            </div>
+            <div class="cruci-actions">
+                <button id="btnCruciHint" class="btn-hint">💡 Pista (2 🪙)</button>
+                <button id="btnCruciVerify" class="btn-continue-cruci" style="background:#118AB2; box-shadow:0 4px 0 #0E6B8A;">✅ Verificar</button>
+                <button id="btnCruciFinish" class="btn-continue-cruci">🏁 Terminar</button>
+            </div>
+            <div class="cruci-bonus-msg" id="cruciBonusMsg"></div>
+        </div>
+
+        <div id="summaryScreen" class="summary-screen" style="display:none;">
+            <h2 class="summary-title">🎉 ¡Actividad terminada!</h2>
+            <div class="summary-stats">
+                <div class="stat"><b id="sumOk">0</b><span>✅ Correctas</span></div>
+                <div class="stat"><b id="sumErr">0</b><span>❌ Incorrectas</span></div>
+                <div class="stat"><b id="sumTotal">0</b><span>🎯 Total</span></div>
+                <div class="stat"><b id="sumTime">0</b><span>⏱️ Minutos</span></div>
+                <div class="stat"><b id="sumCoins">0</b><span>🪙 Monedas</span></div>
+            </div>
+            <div class="grade-big">📝 Nota: <span id="sumGrade">0</span> / 10</div>
+            <div id="qrArea">
+                <p style="margin:8px 0 4px; color:#5a3a1e; font-weight:bold;">📱 Mostrale este QR a la profe:</p>
+                <div class="qr-box" id="qrBox"></div>
+            </div>
+            <div id="sendMsg" class="send-msg" style="display:none;"></div>
+            <div>
+                <button id="btnSend" class="btn-send" disabled>📤 Enviar resultados</button>
+                <button id="btnRestart" class="btn-restart">🔄 Reiniciar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalTheory">
+        <div class="modal-box">
+            <button class="modal-close" id="btnCloseModal">✕</button>
+            <div id="modalTheoryBody"></div>
+        </div>
+    </div>
+
+    <script>
+        var qrcode = function() {
+
+  //---------------------------------------------------------------------
+  // qrcode
+  //---------------------------------------------------------------------
+
+  /**
+   * qrcode
+   * @param typeNumber 1 to 40
+   * @param errorCorrectionLevel 'L','M','Q','H'
+   */
+  var qrcode = function(typeNumber, errorCorrectionLevel) {
+
+    var PAD0 = 0xEC;
+    var PAD1 = 0x11;
+
+    var _typeNumber = typeNumber;
+    var _errorCorrectionLevel = QRErrorCorrectionLevel[errorCorrectionLevel];
+    var _modules = null;
+    var _moduleCount = 0;
+    var _dataCache = null;
+    var _dataList = [];
+
+    var _this = {};
+
+    var makeImpl = function(test, maskPattern) {
+
+      _moduleCount = _typeNumber * 4 + 17;
+      _modules = function(moduleCount) {
+        var modules = new Array(moduleCount);
+        for (var row = 0; row < moduleCount; row += 1) {
+          modules[row] = new Array(moduleCount);
+          for (var col = 0; col < moduleCount; col += 1) {
+            modules[row][col] = null;
+          }
+        }
+        return modules;
+      }(_moduleCount);
+
+      setupPositionProbePattern(0, 0);
+      setupPositionProbePattern(_moduleCount - 7, 0);
+      setupPositionProbePattern(0, _moduleCount - 7);
+      setupPositionAdjustPattern();
+      setupTimingPattern();
+      setupTypeInfo(test, maskPattern);
+
+      if (_typeNumber >= 7) {
+        setupTypeNumber(test);
+      }
+
+      if (_dataCache == null) {
+        _dataCache = createData(_typeNumber, _errorCorrectionLevel, _dataList);
+      }
+
+      mapData(_dataCache, maskPattern);
+    };
+
+    var setupPositionProbePattern = function(row, col) {
+
+      for (var r = -1; r <= 7; r += 1) {
+
+        if (row + r <= -1 || _moduleCount <= row + r) continue;
+
+        for (var c = -1; c <= 7; c += 1) {
+
+          if (col + c <= -1 || _moduleCount <= col + c) continue;
+
+          if ( (0 <= r && r <= 6 && (c == 0 || c == 6) )
+              || (0 <= c && c <= 6 && (r == 0 || r == 6) )
+              || (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+            _modules[row + r][col + c] = true;
+          } else {
+            _modules[row + r][col + c] = false;
+          }
+        }
+      }
+    };
+
+    var getBestMaskPattern = function() {
+
+      var minLostPoint = 0;
+      var pattern = 0;
+
+      for (var i = 0; i < 8; i += 1) {
+
+        makeImpl(true, i);
+
+        var lostPoint = QRUtil.getLostPoint(_this);
+
+        if (i == 0 || minLostPoint > lostPoint) {
+          minLostPoint = lostPoint;
+          pattern = i;
+        }
+      }
+
+      return pattern;
+    };
+
+    var setupTimingPattern = function() {
+
+      for (var r = 8; r < _moduleCount - 8; r += 1) {
+        if (_modules[r][6] != null) {
+          continue;
+        }
+        _modules[r][6] = (r % 2 == 0);
+      }
+
+      for (var c = 8; c < _moduleCount - 8; c += 1) {
+        if (_modules[6][c] != null) {
+          continue;
+        }
+        _modules[6][c] = (c % 2 == 0);
+      }
+    };
+
+    var setupPositionAdjustPattern = function() {
+
+      var pos = QRUtil.getPatternPosition(_typeNumber);
+
+      for (var i = 0; i < pos.length; i += 1) {
+
+        for (var j = 0; j < pos.length; j += 1) {
+
+          var row = pos[i];
+          var col = pos[j];
+
+          if (_modules[row][col] != null) {
+            continue;
+          }
+
+          for (var r = -2; r <= 2; r += 1) {
+
+            for (var c = -2; c <= 2; c += 1) {
+
+              if (r == -2 || r == 2 || c == -2 || c == 2
+                  || (r == 0 && c == 0) ) {
+                _modules[row + r][col + c] = true;
+              } else {
+                _modules[row + r][col + c] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+
+    var setupTypeNumber = function(test) {
+
+      var bits = QRUtil.getBCHTypeNumber(_typeNumber);
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[Math.floor(i / 3)][i % 3 + _moduleCount - 8 - 3] = mod;
+      }
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[i % 3 + _moduleCount - 8 - 3][Math.floor(i / 3)] = mod;
+      }
+    };
+
+    var setupTypeInfo = function(test, maskPattern) {
+
+      var data = (_errorCorrectionLevel << 3) | maskPattern;
+      var bits = QRUtil.getBCHTypeInfo(data);
+
+      // vertical
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 6) {
+          _modules[i][8] = mod;
+        } else if (i < 8) {
+          _modules[i + 1][8] = mod;
+        } else {
+          _modules[_moduleCount - 15 + i][8] = mod;
+        }
+      }
+
+      // horizontal
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 8) {
+          _modules[8][_moduleCount - i - 1] = mod;
+        } else if (i < 9) {
+          _modules[8][15 - i - 1 + 1] = mod;
+        } else {
+          _modules[8][15 - i - 1] = mod;
+        }
+      }
+
+      // fixed module
+      _modules[_moduleCount - 8][8] = (!test);
+    };
+
+    var mapData = function(data, maskPattern) {
+
+      var inc = -1;
+      var row = _moduleCount - 1;
+      var bitIndex = 7;
+      var byteIndex = 0;
+      var maskFunc = QRUtil.getMaskFunction(maskPattern);
+
+      for (var col = _moduleCount - 1; col > 0; col -= 2) {
+
+        if (col == 6) col -= 1;
+
+        while (true) {
+
+          for (var c = 0; c < 2; c += 1) {
+
+            if (_modules[row][col - c] == null) {
+
+              var dark = false;
+
+              if (byteIndex < data.length) {
+                dark = ( ( (data[byteIndex] >>> bitIndex) & 1) == 1);
+              }
+
+              var mask = maskFunc(row, col - c);
+
+              if (mask) {
+                dark = !dark;
+              }
+
+              _modules[row][col - c] = dark;
+              bitIndex -= 1;
+
+              if (bitIndex == -1) {
+                byteIndex += 1;
+                bitIndex = 7;
+              }
+            }
+          }
+
+          row += inc;
+
+          if (row < 0 || _moduleCount <= row) {
+            row -= inc;
+            inc = -inc;
+            break;
+          }
+        }
+      }
+    };
+
+    var createBytes = function(buffer, rsBlocks) {
+
+      var offset = 0;
+
+      var maxDcCount = 0;
+      var maxEcCount = 0;
+
+      var dcdata = new Array(rsBlocks.length);
+      var ecdata = new Array(rsBlocks.length);
+
+      for (var r = 0; r < rsBlocks.length; r += 1) {
+
+        var dcCount = rsBlocks[r].dataCount;
+        var ecCount = rsBlocks[r].totalCount - dcCount;
+
+        maxDcCount = Math.max(maxDcCount, dcCount);
+        maxEcCount = Math.max(maxEcCount, ecCount);
+
+        dcdata[r] = new Array(dcCount);
+
+        for (var i = 0; i < dcdata[r].length; i += 1) {
+          dcdata[r][i] = 0xff & buffer.getBuffer()[i + offset];
+        }
+        offset += dcCount;
+
+        var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+        var rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1);
+
+        var modPoly = rawPoly.mod(rsPoly);
+        ecdata[r] = new Array(rsPoly.getLength() - 1);
+        for (var i = 0; i < ecdata[r].length; i += 1) {
+          var modIndex = i + modPoly.getLength() - ecdata[r].length;
+          ecdata[r][i] = (modIndex >= 0)? modPoly.getAt(modIndex) : 0;
+        }
+      }
+
+      var totalCodeCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalCodeCount += rsBlocks[i].totalCount;
+      }
+
+      var data = new Array(totalCodeCount);
+      var index = 0;
+
+      for (var i = 0; i < maxDcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < dcdata[r].length) {
+            data[index] = dcdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      for (var i = 0; i < maxEcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < ecdata[r].length) {
+            data[index] = ecdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      return data;
+    };
+
+    var createData = function(typeNumber, errorCorrectionLevel, dataList) {
+
+      var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectionLevel);
+
+      var buffer = qrBitBuffer();
+
+      for (var i = 0; i < dataList.length; i += 1) {
+        var data = dataList[i];
+        buffer.put(data.getMode(), 4);
+        buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+        data.write(buffer);
+      }
+
+      // calc num max data.
+      var totalDataCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalDataCount += rsBlocks[i].dataCount;
+      }
+
+      if (buffer.getLengthInBits() > totalDataCount * 8) {
+        throw 'code length overflow. ('
+          + buffer.getLengthInBits()
+          + '>'
+          + totalDataCount * 8
+          + ')';
+      }
+
+      // end code
+      if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+        buffer.put(0, 4);
+      }
+
+      // padding
+      while (buffer.getLengthInBits() % 8 != 0) {
+        buffer.putBit(false);
+      }
+
+      // padding
+      while (true) {
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD0, 8);
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD1, 8);
+      }
+
+      return createBytes(buffer, rsBlocks);
+    };
+
+    _this.addData = function(data, mode) {
+
+      mode = mode || 'Byte';
+
+      var newData = null;
+
+      switch(mode) {
+      case 'Numeric' :
+        newData = qrNumber(data);
+        break;
+      case 'Alphanumeric' :
+        newData = qrAlphaNum(data);
+        break;
+      case 'Byte' :
+        newData = qr8BitByte(data);
+        break;
+      case 'Kanji' :
+        newData = qrKanji(data);
+        break;
+      default :
+        throw 'mode:' + mode;
+      }
+
+      _dataList.push(newData);
+      _dataCache = null;
+    };
+
+    _this.isDark = function(row, col) {
+      if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) {
+        throw row + ',' + col;
+      }
+      return _modules[row][col];
+    };
+
+    _this.getModuleCount = function() {
+      return _moduleCount;
+    };
+
+    _this.make = function() {
+      if (_typeNumber < 1) {
+        var typeNumber = 1;
+
+        for (; typeNumber < 40; typeNumber++) {
+          var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, _errorCorrectionLevel);
+          var buffer = qrBitBuffer();
+
+          for (var i = 0; i < _dataList.length; i++) {
+            var data = _dataList[i];
+            buffer.put(data.getMode(), 4);
+            buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+            data.write(buffer);
+          }
+
+          var totalDataCount = 0;
+          for (var i = 0; i < rsBlocks.length; i++) {
+            totalDataCount += rsBlocks[i].dataCount;
+          }
+
+          if (buffer.getLengthInBits() <= totalDataCount * 8) {
+            break;
+          }
+        }
+
+        _typeNumber = typeNumber;
+      }
+
+      makeImpl(false, getBestMaskPattern() );
+    };
+
+    _this.createTableTag = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var qrHtml = '';
+
+      qrHtml += '<table style="';
+      qrHtml += ' border-width: 0px; border-style: none;';
+      qrHtml += ' border-collapse: collapse;';
+      qrHtml += ' padding: 0px; margin: ' + margin + 'px;';
+      qrHtml += '">';
+      qrHtml += '<tbody>';
+
+      for (var r = 0; r < _this.getModuleCount(); r += 1) {
+
+        qrHtml += '<tr>';
+
+        for (var c = 0; c < _this.getModuleCount(); c += 1) {
+          qrHtml += '<td style="';
+          qrHtml += ' border-width: 0px; border-style: none;';
+          qrHtml += ' border-collapse: collapse;';
+          qrHtml += ' padding: 0px; margin: 0px;';
+          qrHtml += ' width: ' + cellSize + 'px;';
+          qrHtml += ' height: ' + cellSize + 'px;';
+          qrHtml += ' background-color: ';
+          qrHtml += _this.isDark(r, c)? '#000000' : '#ffffff';
+          qrHtml += ';';
+          qrHtml += '"/>';
+        }
+
+        qrHtml += '</tr>';
+      }
+
+      qrHtml += '</tbody>';
+      qrHtml += '</table>';
+
+      return qrHtml;
+    };
+
+    _this.createSvgTag = function(cellSize, margin, alt, title) {
+
+      var opts = {};
+      if (typeof arguments[0] == 'object') {
+        // Called by options.
+        opts = arguments[0];
+        // overwrite cellSize and margin.
+        cellSize = opts.cellSize;
+        margin = opts.margin;
+        alt = opts.alt;
+        title = opts.title;
+      }
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      // Compose alt property surrogate
+      alt = (typeof alt === 'string') ? {text: alt} : alt || {};
+      alt.text = alt.text || null;
+      alt.id = (alt.text) ? alt.id || 'qrcode-description' : null;
+
+      // Compose title property surrogate
+      title = (typeof title === 'string') ? {text: title} : title || {};
+      title.text = title.text || null;
+      title.id = (title.text) ? title.id || 'qrcode-title' : null;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var c, mc, r, mr, qrSvg='', rect;
+
+      rect = 'l' + cellSize + ',0 0,' + cellSize +
+        ' -' + cellSize + ',0 0,-' + cellSize + 'z ';
+
+      qrSvg += '<svg version="1.1" xmlns="http://www.w3.org/2000/svg"';
+      qrSvg += !opts.scalable ? ' width="' + size + 'px" height="' + size + 'px"' : '';
+      qrSvg += ' viewBox="0 0 ' + size + ' ' + size + '" ';
+      qrSvg += ' preserveAspectRatio="xMinYMin meet"';
+      qrSvg += (title.text || alt.text) ? ' role="img" aria-labelledby="' +
+          escapeXml([title.id, alt.id].join(' ').trim() ) + '"' : '';
+      qrSvg += '>';
+      qrSvg += (title.text) ? '<title id="' + escapeXml(title.id) + '">' +
+          escapeXml(title.text) + '</title>' : '';
+      qrSvg += (alt.text) ? '<description id="' + escapeXml(alt.id) + '">' +
+          escapeXml(alt.text) + '</description>' : '';
+      qrSvg += '<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>';
+      qrSvg += '<path d="';
+
+      for (r = 0; r < _this.getModuleCount(); r += 1) {
+        mr = r * cellSize + margin;
+        for (c = 0; c < _this.getModuleCount(); c += 1) {
+          if (_this.isDark(r, c) ) {
+            mc = c*cellSize+margin;
+            qrSvg += 'M' + mc + ',' + mr + rect;
+          }
+        }
+      }
+
+      qrSvg += '" stroke="transparent" fill="black"/>';
+      qrSvg += '</svg>';
+
+      return qrSvg;
+    };
+
+    _this.createDataURL = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      return createDataURL(size, size, function(x, y) {
+        if (min <= x && x < max && min <= y && y < max) {
+          var c = Math.floor( (x - min) / cellSize);
+          var r = Math.floor( (y - min) / cellSize);
+          return _this.isDark(r, c)? 0 : 1;
+        } else {
+          return 1;
+        }
+      } );
+    };
+
+    _this.createImgTag = function(cellSize, margin, alt) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+
+      var img = '';
+      img += '<img';
+      img += '\u0020src="';
+      img += _this.createDataURL(cellSize, margin);
+      img += '"';
+      img += '\u0020width="';
+      img += size;
+      img += '"';
+      img += '\u0020height="';
+      img += size;
+      img += '"';
+      if (alt) {
+        img += '\u0020alt="';
+        img += escapeXml(alt);
+        img += '"';
+      }
+      img += '/>';
+
+      return img;
+    };
+
+    var escapeXml = function(s) {
+      var escaped = '';
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charAt(i);
+        switch(c) {
+        case '<': escaped += '&lt;'; break;
+        case '>': escaped += '&gt;'; break;
+        case '&': escaped += '&amp;'; break;
+        case '"': escaped += '&quot;'; break;
+        default : escaped += c; break;
+        }
+      }
+      return escaped;
+    };
+
+    var _createHalfASCII = function(margin) {
+      var cellSize = 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r1, r2, p;
+
+      var blocks = {
+        '██': '█',
+        '█ ': '▀',
+        ' █': '▄',
+        '  ': ' '
+      };
+
+      var blocksLastLineNoMargin = {
+        '██': '▀',
+        '█ ': '▀',
+        ' █': ' ',
+        '  ': ' '
+      };
+
+      var ascii = '';
+      for (y = 0; y < size; y += 2) {
+        r1 = Math.floor((y - min) / cellSize);
+        r2 = Math.floor((y + 1 - min) / cellSize);
+        for (x = 0; x < size; x += 1) {
+          p = '█';
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r1, Math.floor((x - min) / cellSize))) {
+            p = ' ';
+          }
+
+          if (min <= x && x < max && min <= y+1 && y+1 < max && _this.isDark(r2, Math.floor((x - min) / cellSize))) {
+            p += ' ';
+          }
+          else {
+            p += '█';
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          ascii += (margin < 1 && y+1 >= max) ? blocksLastLineNoMargin[p] : blocks[p];
+        }
+
+        ascii += '\n';
+      }
+
+      if (size % 2 && margin > 0) {
+        return ascii.substring(0, ascii.length - size - 1) + Array(size+1).join('▀');
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.createASCII = function(cellSize, margin) {
+      cellSize = cellSize || 1;
+
+      if (cellSize < 2) {
+        return _createHalfASCII(margin);
+      }
+
+      cellSize -= 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r, p;
+
+      var white = Array(cellSize+1).join('██');
+      var black = Array(cellSize+1).join('  ');
+
+      var ascii = '';
+      var line = '';
+      for (y = 0; y < size; y += 1) {
+        r = Math.floor( (y - min) / cellSize);
+        line = '';
+        for (x = 0; x < size; x += 1) {
+          p = 1;
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r, Math.floor((x - min) / cellSize))) {
+            p = 0;
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          line += p ? white : black;
+        }
+
+        for (r = 0; r < cellSize; r += 1) {
+          ascii += line + '\n';
+        }
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.renderTo2dContext = function(context, cellSize) {
+      cellSize = cellSize || 2;
+      var length = _this.getModuleCount();
+      for (var row = 0; row < length; row++) {
+        for (var col = 0; col < length; col++) {
+          context.fillStyle = _this.isDark(row, col) ? 'black' : 'white';
+          context.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrcode.stringToBytes
+  //---------------------------------------------------------------------
+
+  qrcode.stringToBytesFuncs = {
+    'default' : function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        bytes.push(c & 0xff);
+      }
+      return bytes;
+    }
+  };
+
+  qrcode.stringToBytes = qrcode.stringToBytesFuncs['default'];
+
+  //---------------------------------------------------------------------
+  // qrcode.createStringToBytes
+  //---------------------------------------------------------------------
+
+  /**
+   * @param unicodeData base64 string of byte array.
+   * [16bit Unicode],[16bit Bytes], ...
+   * @param numChars
+   */
+  qrcode.createStringToBytes = function(unicodeData, numChars) {
+
+    // create conversion map.
+
+    var unicodeMap = function() {
+
+      var bin = base64DecodeInputStream(unicodeData);
+      var read = function() {
+        var b = bin.read();
+        if (b == -1) throw 'eof';
+        return b;
+      };
+
+      var count = 0;
+      var unicodeMap = {};
+      while (true) {
+        var b0 = bin.read();
+        if (b0 == -1) break;
+        var b1 = read();
+        var b2 = read();
+        var b3 = read();
+        var k = String.fromCharCode( (b0 << 8) | b1);
+        var v = (b2 << 8) | b3;
+        unicodeMap[k] = v;
+        count += 1;
+      }
+      if (count != numChars) {
+        throw count + ' != ' + numChars;
+      }
+
+      return unicodeMap;
+    }();
+
+    var unknownChar = '?'.charCodeAt(0);
+
+    return function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        if (c < 128) {
+          bytes.push(c);
+        } else {
+          var b = unicodeMap[s.charAt(i)];
+          if (typeof b == 'number') {
+            if ( (b & 0xff) == b) {
+              // 1byte
+              bytes.push(b);
+            } else {
+              // 2bytes
+              bytes.push(b >>> 8);
+              bytes.push(b & 0xff);
+            }
+          } else {
+            bytes.push(unknownChar);
+          }
+        }
+      }
+      return bytes;
+    };
+  };
+
+  //---------------------------------------------------------------------
+  // QRMode
+  //---------------------------------------------------------------------
+
+  var QRMode = {
+    MODE_NUMBER :    1 << 0,
+    MODE_ALPHA_NUM : 1 << 1,
+    MODE_8BIT_BYTE : 1 << 2,
+    MODE_KANJI :     1 << 3
+  };
+
+  //---------------------------------------------------------------------
+  // QRErrorCorrectionLevel
+  //---------------------------------------------------------------------
+
+  var QRErrorCorrectionLevel = {
+    L : 1,
+    M : 0,
+    Q : 3,
+    H : 2
+  };
+
+  //---------------------------------------------------------------------
+  // QRMaskPattern
+  //---------------------------------------------------------------------
+
+  var QRMaskPattern = {
+    PATTERN000 : 0,
+    PATTERN001 : 1,
+    PATTERN010 : 2,
+    PATTERN011 : 3,
+    PATTERN100 : 4,
+    PATTERN101 : 5,
+    PATTERN110 : 6,
+    PATTERN111 : 7
+  };
+
+  //---------------------------------------------------------------------
+  // QRUtil
+  //---------------------------------------------------------------------
+
+  var QRUtil = function() {
+
+    var PATTERN_POSITION_TABLE = [
+      [],
+      [6, 18],
+      [6, 22],
+      [6, 26],
+      [6, 30],
+      [6, 34],
+      [6, 22, 38],
+      [6, 24, 42],
+      [6, 26, 46],
+      [6, 28, 50],
+      [6, 30, 54],
+      [6, 32, 58],
+      [6, 34, 62],
+      [6, 26, 46, 66],
+      [6, 26, 48, 70],
+      [6, 26, 50, 74],
+      [6, 30, 54, 78],
+      [6, 30, 56, 82],
+      [6, 30, 58, 86],
+      [6, 34, 62, 90],
+      [6, 28, 50, 72, 94],
+      [6, 26, 50, 74, 98],
+      [6, 30, 54, 78, 102],
+      [6, 28, 54, 80, 106],
+      [6, 32, 58, 84, 110],
+      [6, 30, 58, 86, 114],
+      [6, 34, 62, 90, 118],
+      [6, 26, 50, 74, 98, 122],
+      [6, 30, 54, 78, 102, 126],
+      [6, 26, 52, 78, 104, 130],
+      [6, 30, 56, 82, 108, 134],
+      [6, 34, 60, 86, 112, 138],
+      [6, 30, 58, 86, 114, 142],
+      [6, 34, 62, 90, 118, 146],
+      [6, 30, 54, 78, 102, 126, 150],
+      [6, 24, 50, 76, 102, 128, 154],
+      [6, 28, 54, 80, 106, 132, 158],
+      [6, 32, 58, 84, 110, 136, 162],
+      [6, 26, 54, 82, 110, 138, 166],
+      [6, 30, 58, 86, 114, 142, 170]
+    ];
+    var G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+    var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+    var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+
+    var _this = {};
+
+    var getBCHDigit = function(data) {
+      var digit = 0;
+      while (data != 0) {
+        digit += 1;
+        data >>>= 1;
+      }
+      return digit;
+    };
+
+    _this.getBCHTypeInfo = function(data) {
+      var d = data << 10;
+      while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
+        d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15) ) );
+      }
+      return ( (data << 10) | d) ^ G15_MASK;
+    };
+
+    _this.getBCHTypeNumber = function(data) {
+      var d = data << 12;
+      while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
+        d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18) ) );
+      }
+      return (data << 12) | d;
+    };
+
+    _this.getPatternPosition = function(typeNumber) {
+      return PATTERN_POSITION_TABLE[typeNumber - 1];
+    };
+
+    _this.getMaskFunction = function(maskPattern) {
+
+      switch (maskPattern) {
+
+      case QRMaskPattern.PATTERN000 :
+        return function(i, j) { return (i + j) % 2 == 0; };
+      case QRMaskPattern.PATTERN001 :
+        return function(i, j) { return i % 2 == 0; };
+      case QRMaskPattern.PATTERN010 :
+        return function(i, j) { return j % 3 == 0; };
+      case QRMaskPattern.PATTERN011 :
+        return function(i, j) { return (i + j) % 3 == 0; };
+      case QRMaskPattern.PATTERN100 :
+        return function(i, j) { return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 == 0; };
+      case QRMaskPattern.PATTERN101 :
+        return function(i, j) { return (i * j) % 2 + (i * j) % 3 == 0; };
+      case QRMaskPattern.PATTERN110 :
+        return function(i, j) { return ( (i * j) % 2 + (i * j) % 3) % 2 == 0; };
+      case QRMaskPattern.PATTERN111 :
+        return function(i, j) { return ( (i * j) % 3 + (i + j) % 2) % 2 == 0; };
+
+      default :
+        throw 'bad maskPattern:' + maskPattern;
+      }
+    };
+
+    _this.getErrorCorrectPolynomial = function(errorCorrectLength) {
+      var a = qrPolynomial([1], 0);
+      for (var i = 0; i < errorCorrectLength; i += 1) {
+        a = a.multiply(qrPolynomial([1, QRMath.gexp(i)], 0) );
+      }
+      return a;
+    };
+
+    _this.getLengthInBits = function(mode, type) {
+
+      if (1 <= type && type < 10) {
+
+        // 1 - 9
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 10;
+        case QRMode.MODE_ALPHA_NUM : return 9;
+        case QRMode.MODE_8BIT_BYTE : return 8;
+        case QRMode.MODE_KANJI     : return 8;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 27) {
+
+        // 10 - 26
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 12;
+        case QRMode.MODE_ALPHA_NUM : return 11;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 10;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 41) {
+
+        // 27 - 40
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 14;
+        case QRMode.MODE_ALPHA_NUM : return 13;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 12;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else {
+        throw 'type:' + type;
+      }
+    };
+
+    _this.getLostPoint = function(qrcode) {
+
+      var moduleCount = qrcode.getModuleCount();
+
+      var lostPoint = 0;
+
+      // LEVEL1
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount; col += 1) {
+
+          var sameCount = 0;
+          var dark = qrcode.isDark(row, col);
+
+          for (var r = -1; r <= 1; r += 1) {
+
+            if (row + r < 0 || moduleCount <= row + r) {
+              continue;
+            }
+
+            for (var c = -1; c <= 1; c += 1) {
+
+              if (col + c < 0 || moduleCount <= col + c) {
+                continue;
+              }
+
+              if (r == 0 && c == 0) {
+                continue;
+              }
+
+              if (dark == qrcode.isDark(row + r, col + c) ) {
+                sameCount += 1;
+              }
+            }
+          }
+
+          if (sameCount > 5) {
+            lostPoint += (3 + sameCount - 5);
+          }
+        }
+      };
+
+      // LEVEL2
+
+      for (var row = 0; row < moduleCount - 1; row += 1) {
+        for (var col = 0; col < moduleCount - 1; col += 1) {
+          var count = 0;
+          if (qrcode.isDark(row, col) ) count += 1;
+          if (qrcode.isDark(row + 1, col) ) count += 1;
+          if (qrcode.isDark(row, col + 1) ) count += 1;
+          if (qrcode.isDark(row + 1, col + 1) ) count += 1;
+          if (count == 0 || count == 4) {
+            lostPoint += 3;
+          }
+        }
+      }
+
+      // LEVEL3
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount - 6; col += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row, col + 1)
+              &&  qrcode.isDark(row, col + 2)
+              &&  qrcode.isDark(row, col + 3)
+              &&  qrcode.isDark(row, col + 4)
+              && !qrcode.isDark(row, col + 5)
+              &&  qrcode.isDark(row, col + 6) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount - 6; row += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row + 1, col)
+              &&  qrcode.isDark(row + 2, col)
+              &&  qrcode.isDark(row + 3, col)
+              &&  qrcode.isDark(row + 4, col)
+              && !qrcode.isDark(row + 5, col)
+              &&  qrcode.isDark(row + 6, col) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      // LEVEL4
+
+      var darkCount = 0;
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount; row += 1) {
+          if (qrcode.isDark(row, col) ) {
+            darkCount += 1;
+          }
+        }
+      }
+
+      var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+      lostPoint += ratio * 10;
+
+      return lostPoint;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // QRMath
+  //---------------------------------------------------------------------
+
+  var QRMath = function() {
+
+    var EXP_TABLE = new Array(256);
+    var LOG_TABLE = new Array(256);
+
+    // initialize tables
+    for (var i = 0; i < 8; i += 1) {
+      EXP_TABLE[i] = 1 << i;
+    }
+    for (var i = 8; i < 256; i += 1) {
+      EXP_TABLE[i] = EXP_TABLE[i - 4]
+        ^ EXP_TABLE[i - 5]
+        ^ EXP_TABLE[i - 6]
+        ^ EXP_TABLE[i - 8];
+    }
+    for (var i = 0; i < 255; i += 1) {
+      LOG_TABLE[EXP_TABLE[i] ] = i;
+    }
+
+    var _this = {};
+
+    _this.glog = function(n) {
+
+      if (n < 1) {
+        throw 'glog(' + n + ')';
+      }
+
+      return LOG_TABLE[n];
+    };
+
+    _this.gexp = function(n) {
+
+      while (n < 0) {
+        n += 255;
+      }
+
+      while (n >= 256) {
+        n -= 255;
+      }
+
+      return EXP_TABLE[n];
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrPolynomial
+  //---------------------------------------------------------------------
+
+  function qrPolynomial(num, shift) {
+
+    if (typeof num.length == 'undefined') {
+      throw num.length + '/' + shift;
+    }
+
+    var _num = function() {
+      var offset = 0;
+      while (offset < num.length && num[offset] == 0) {
+        offset += 1;
+      }
+      var _num = new Array(num.length - offset + shift);
+      for (var i = 0; i < num.length - offset; i += 1) {
+        _num[i] = num[i + offset];
+      }
+      return _num;
+    }();
+
+    var _this = {};
+
+    _this.getAt = function(index) {
+      return _num[index];
+    };
+
+    _this.getLength = function() {
+      return _num.length;
+    };
+
+    _this.multiply = function(e) {
+
+      var num = new Array(_this.getLength() + e.getLength() - 1);
+
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        for (var j = 0; j < e.getLength(); j += 1) {
+          num[i + j] ^= QRMath.gexp(QRMath.glog(_this.getAt(i) ) + QRMath.glog(e.getAt(j) ) );
+        }
+      }
+
+      return qrPolynomial(num, 0);
+    };
+
+    _this.mod = function(e) {
+
+      if (_this.getLength() - e.getLength() < 0) {
+        return _this;
+      }
+
+      var ratio = QRMath.glog(_this.getAt(0) ) - QRMath.glog(e.getAt(0) );
+
+      var num = new Array(_this.getLength() );
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        num[i] = _this.getAt(i);
+      }
+
+      for (var i = 0; i < e.getLength(); i += 1) {
+        num[i] ^= QRMath.gexp(QRMath.glog(e.getAt(i) ) + ratio);
+      }
+
+      // recursive call
+      return qrPolynomial(num, 0).mod(e);
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // QRRSBlock
+  //---------------------------------------------------------------------
+
+  var QRRSBlock = function() {
+
+    var RS_BLOCK_TABLE = [
+
+      // L
+      // M
+      // Q
+      // H
+
+      // 1
+      [1, 26, 19],
+      [1, 26, 16],
+      [1, 26, 13],
+      [1, 26, 9],
+
+      // 2
+      [1, 44, 34],
+      [1, 44, 28],
+      [1, 44, 22],
+      [1, 44, 16],
+
+      // 3
+      [1, 70, 55],
+      [1, 70, 44],
+      [2, 35, 17],
+      [2, 35, 13],
+
+      // 4
+      [1, 100, 80],
+      [2, 50, 32],
+      [2, 50, 24],
+      [4, 25, 9],
+
+      // 5
+      [1, 134, 108],
+      [2, 67, 43],
+      [2, 33, 15, 2, 34, 16],
+      [2, 33, 11, 2, 34, 12],
+
+      // 6
+      [2, 86, 68],
+      [4, 43, 27],
+      [4, 43, 19],
+      [4, 43, 15],
+
+      // 7
+      [2, 98, 78],
+      [4, 49, 31],
+      [2, 32, 14, 4, 33, 15],
+      [4, 39, 13, 1, 40, 14],
+
+      // 8
+      [2, 121, 97],
+      [2, 60, 38, 2, 61, 39],
+      [4, 40, 18, 2, 41, 19],
+      [4, 40, 14, 2, 41, 15],
+
+      // 9
+      [2, 146, 116],
+      [3, 58, 36, 2, 59, 37],
+      [4, 36, 16, 4, 37, 17],
+      [4, 36, 12, 4, 37, 13],
+
+      // 10
+      [2, 86, 68, 2, 87, 69],
+      [4, 69, 43, 1, 70, 44],
+      [6, 43, 19, 2, 44, 20],
+      [6, 43, 15, 2, 44, 16],
+
+      // 11
+      [4, 101, 81],
+      [1, 80, 50, 4, 81, 51],
+      [4, 50, 22, 4, 51, 23],
+      [3, 36, 12, 8, 37, 13],
+
+      // 12
+      [2, 116, 92, 2, 117, 93],
+      [6, 58, 36, 2, 59, 37],
+      [4, 46, 20, 6, 47, 21],
+      [7, 42, 14, 4, 43, 15],
+
+      // 13
+      [4, 133, 107],
+      [8, 59, 37, 1, 60, 38],
+      [8, 44, 20, 4, 45, 21],
+      [12, 33, 11, 4, 34, 12],
+
+      // 14
+      [3, 145, 115, 1, 146, 116],
+      [4, 64, 40, 5, 65, 41],
+      [11, 36, 16, 5, 37, 17],
+      [11, 36, 12, 5, 37, 13],
+
+      // 15
+      [5, 109, 87, 1, 110, 88],
+      [5, 65, 41, 5, 66, 42],
+      [5, 54, 24, 7, 55, 25],
+      [11, 36, 12, 7, 37, 13],
+
+      // 16
+      [5, 122, 98, 1, 123, 99],
+      [7, 73, 45, 3, 74, 46],
+      [15, 43, 19, 2, 44, 20],
+      [3, 45, 15, 13, 46, 16],
+
+      // 17
+      [1, 135, 107, 5, 136, 108],
+      [10, 74, 46, 1, 75, 47],
+      [1, 50, 22, 15, 51, 23],
+      [2, 42, 14, 17, 43, 15],
+
+      // 18
+      [5, 150, 120, 1, 151, 121],
+      [9, 69, 43, 4, 70, 44],
+      [17, 50, 22, 1, 51, 23],
+      [2, 42, 14, 19, 43, 15],
+
+      // 19
+      [3, 141, 113, 4, 142, 114],
+      [3, 70, 44, 11, 71, 45],
+      [17, 47, 21, 4, 48, 22],
+      [9, 39, 13, 16, 40, 14],
+
+      // 20
+      [3, 135, 107, 5, 136, 108],
+      [3, 67, 41, 13, 68, 42],
+      [15, 54, 24, 5, 55, 25],
+      [15, 43, 15, 10, 44, 16],
+
+      // 21
+      [4, 144, 116, 4, 145, 117],
+      [17, 68, 42],
+      [17, 50, 22, 6, 51, 23],
+      [19, 46, 16, 6, 47, 17],
+
+      // 22
+      [2, 139, 111, 7, 140, 112],
+      [17, 74, 46],
+      [7, 54, 24, 16, 55, 25],
+      [34, 37, 13],
+
+      // 23
+      [4, 151, 121, 5, 152, 122],
+      [4, 75, 47, 14, 76, 48],
+      [11, 54, 24, 14, 55, 25],
+      [16, 45, 15, 14, 46, 16],
+
+      // 24
+      [6, 147, 117, 4, 148, 118],
+      [6, 73, 45, 14, 74, 46],
+      [11, 54, 24, 16, 55, 25],
+      [30, 46, 16, 2, 47, 17],
+
+      // 25
+      [8, 132, 106, 4, 133, 107],
+      [8, 75, 47, 13, 76, 48],
+      [7, 54, 24, 22, 55, 25],
+      [22, 45, 15, 13, 46, 16],
+
+      // 26
+      [10, 142, 114, 2, 143, 115],
+      [19, 74, 46, 4, 75, 47],
+      [28, 50, 22, 6, 51, 23],
+      [33, 46, 16, 4, 47, 17],
+
+      // 27
+      [8, 152, 122, 4, 153, 123],
+      [22, 73, 45, 3, 74, 46],
+      [8, 53, 23, 26, 54, 24],
+      [12, 45, 15, 28, 46, 16],
+
+      // 28
+      [3, 147, 117, 10, 148, 118],
+      [3, 73, 45, 23, 74, 46],
+      [4, 54, 24, 31, 55, 25],
+      [11, 45, 15, 31, 46, 16],
+
+      // 29
+      [7, 146, 116, 7, 147, 117],
+      [21, 73, 45, 7, 74, 46],
+      [1, 53, 23, 37, 54, 24],
+      [19, 45, 15, 26, 46, 16],
+
+      // 30
+      [5, 145, 115, 10, 146, 116],
+      [19, 75, 47, 10, 76, 48],
+      [15, 54, 24, 25, 55, 25],
+      [23, 45, 15, 25, 46, 16],
+
+      // 31
+      [13, 145, 115, 3, 146, 116],
+      [2, 74, 46, 29, 75, 47],
+      [42, 54, 24, 1, 55, 25],
+      [23, 45, 15, 28, 46, 16],
+
+      // 32
+      [17, 145, 115],
+      [10, 74, 46, 23, 75, 47],
+      [10, 54, 24, 35, 55, 25],
+      [19, 45, 15, 35, 46, 16],
+
+      // 33
+      [17, 145, 115, 1, 146, 116],
+      [14, 74, 46, 21, 75, 47],
+      [29, 54, 24, 19, 55, 25],
+      [11, 45, 15, 46, 46, 16],
+
+      // 34
+      [13, 145, 115, 6, 146, 116],
+      [14, 74, 46, 23, 75, 47],
+      [44, 54, 24, 7, 55, 25],
+      [59, 46, 16, 1, 47, 17],
+
+      // 35
+      [12, 151, 121, 7, 152, 122],
+      [12, 75, 47, 26, 76, 48],
+      [39, 54, 24, 14, 55, 25],
+      [22, 45, 15, 41, 46, 16],
+
+      // 36
+      [6, 151, 121, 14, 152, 122],
+      [6, 75, 47, 34, 76, 48],
+      [46, 54, 24, 10, 55, 25],
+      [2, 45, 15, 64, 46, 16],
+
+      // 37
+      [17, 152, 122, 4, 153, 123],
+      [29, 74, 46, 14, 75, 47],
+      [49, 54, 24, 10, 55, 25],
+      [24, 45, 15, 46, 46, 16],
+
+      // 38
+      [4, 152, 122, 18, 153, 123],
+      [13, 74, 46, 32, 75, 47],
+      [48, 54, 24, 14, 55, 25],
+      [42, 45, 15, 32, 46, 16],
+
+      // 39
+      [20, 147, 117, 4, 148, 118],
+      [40, 75, 47, 7, 76, 48],
+      [43, 54, 24, 22, 55, 25],
+      [10, 45, 15, 67, 46, 16],
+
+      // 40
+      [19, 148, 118, 6, 149, 119],
+      [18, 75, 47, 31, 76, 48],
+      [34, 54, 24, 34, 55, 25],
+      [20, 45, 15, 61, 46, 16]
+    ];
+
+    var qrRSBlock = function(totalCount, dataCount) {
+      var _this = {};
+      _this.totalCount = totalCount;
+      _this.dataCount = dataCount;
+      return _this;
+    };
+
+    var _this = {};
+
+    var getRsBlockTable = function(typeNumber, errorCorrectionLevel) {
+
+      switch(errorCorrectionLevel) {
+      case QRErrorCorrectionLevel.L :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+      case QRErrorCorrectionLevel.M :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+      case QRErrorCorrectionLevel.Q :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+      case QRErrorCorrectionLevel.H :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+      default :
+        return undefined;
+      }
+    };
+
+    _this.getRSBlocks = function(typeNumber, errorCorrectionLevel) {
+
+      var rsBlock = getRsBlockTable(typeNumber, errorCorrectionLevel);
+
+      if (typeof rsBlock == 'undefined') {
+        throw 'bad rs block @ typeNumber:' + typeNumber +
+            '/errorCorrectionLevel:' + errorCorrectionLevel;
+      }
+
+      var length = rsBlock.length / 3;
+
+      var list = [];
+
+      for (var i = 0; i < length; i += 1) {
+
+        var count = rsBlock[i * 3 + 0];
+        var totalCount = rsBlock[i * 3 + 1];
+        var dataCount = rsBlock[i * 3 + 2];
+
+        for (var j = 0; j < count; j += 1) {
+          list.push(qrRSBlock(totalCount, dataCount) );
+        }
+      }
+
+      return list;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrBitBuffer
+  //---------------------------------------------------------------------
+
+  var qrBitBuffer = function() {
+
+    var _buffer = [];
+    var _length = 0;
+
+    var _this = {};
+
+    _this.getBuffer = function() {
+      return _buffer;
+    };
+
+    _this.getAt = function(index) {
+      var bufIndex = Math.floor(index / 8);
+      return ( (_buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+    };
+
+    _this.put = function(num, length) {
+      for (var i = 0; i < length; i += 1) {
+        _this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+      }
+    };
+
+    _this.getLengthInBits = function() {
+      return _length;
+    };
+
+    _this.putBit = function(bit) {
+
+      var bufIndex = Math.floor(_length / 8);
+      if (_buffer.length <= bufIndex) {
+        _buffer.push(0);
+      }
+
+      if (bit) {
+        _buffer[bufIndex] |= (0x80 >>> (_length % 8) );
+      }
+
+      _length += 1;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrNumber
+  //---------------------------------------------------------------------
+
+  var qrNumber = function(data) {
+
+    var _mode = QRMode.MODE_NUMBER;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _data;
+
+      var i = 0;
+
+      while (i + 2 < data.length) {
+        buffer.put(strToNum(data.substring(i, i + 3) ), 10);
+        i += 3;
+      }
+
+      if (i < data.length) {
+        if (data.length - i == 1) {
+          buffer.put(strToNum(data.substring(i, i + 1) ), 4);
+        } else if (data.length - i == 2) {
+          buffer.put(strToNum(data.substring(i, i + 2) ), 7);
+        }
+      }
+    };
+
+    var strToNum = function(s) {
+      var num = 0;
+      for (var i = 0; i < s.length; i += 1) {
+        num = num * 10 + chatToNum(s.charAt(i) );
+      }
+      return num;
+    };
+
+    var chatToNum = function(c) {
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      }
+      throw 'illegal char :' + c;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrAlphaNum
+  //---------------------------------------------------------------------
+
+  var qrAlphaNum = function(data) {
+
+    var _mode = QRMode.MODE_ALPHA_NUM;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var s = _data;
+
+      var i = 0;
+
+      while (i + 1 < s.length) {
+        buffer.put(
+          getCode(s.charAt(i) ) * 45 +
+          getCode(s.charAt(i + 1) ), 11);
+        i += 2;
+      }
+
+      if (i < s.length) {
+        buffer.put(getCode(s.charAt(i) ), 6);
+      }
+    };
+
+    var getCode = function(c) {
+
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      } else if ('A' <= c && c <= 'Z') {
+        return c.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
+      } else {
+        switch (c) {
+        case ' ' : return 36;
+        case '$' : return 37;
+        case '%' : return 38;
+        case '*' : return 39;
+        case '+' : return 40;
+        case '-' : return 41;
+        case '.' : return 42;
+        case '/' : return 43;
+        case ':' : return 44;
+        default :
+          throw 'illegal char :' + c;
+        }
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qr8BitByte
+  //---------------------------------------------------------------------
+
+  var qr8BitByte = function(data) {
+
+    var _mode = QRMode.MODE_8BIT_BYTE;
+    var _data = data;
+    var _bytes = qrcode.stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _bytes.length;
+    };
+
+    _this.write = function(buffer) {
+      for (var i = 0; i < _bytes.length; i += 1) {
+        buffer.put(_bytes[i], 8);
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrKanji
+  //---------------------------------------------------------------------
+
+  var qrKanji = function(data) {
+
+    var _mode = QRMode.MODE_KANJI;
+    var _data = data;
+
+    var stringToBytes = qrcode.stringToBytesFuncs['SJIS'];
+    if (!stringToBytes) {
+      throw 'sjis not supported.';
+    }
+    !function(c, code) {
+      // self test for sjis support.
+      var test = stringToBytes(c);
+      if (test.length != 2 || ( (test[0] << 8) | test[1]) != code) {
+        throw 'sjis not supported.';
+      }
+    }('\u53cb', 0x9746);
+
+    var _bytes = stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return ~~(_bytes.length / 2);
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _bytes;
+
+      var i = 0;
+
+      while (i + 1 < data.length) {
+
+        var c = ( (0xff & data[i]) << 8) | (0xff & data[i + 1]);
+
+        if (0x8140 <= c && c <= 0x9FFC) {
+          c -= 0x8140;
+        } else if (0xE040 <= c && c <= 0xEBBF) {
+          c -= 0xC140;
+        } else {
+          throw 'illegal char at ' + (i + 1) + '/' + c;
+        }
+
+        c = ( (c >>> 8) & 0xff) * 0xC0 + (c & 0xff);
+
+        buffer.put(c, 13);
+
+        i += 2;
+      }
+
+      if (i < data.length) {
+        throw 'illegal char at ' + (i + 1);
+      }
+    };
+
+    return _this;
+  };
+
+  //=====================================================================
+  // GIF Support etc.
+  //
+
+  //---------------------------------------------------------------------
+  // byteArrayOutputStream
+  //---------------------------------------------------------------------
+
+  var byteArrayOutputStream = function() {
+
+    var _bytes = [];
+
+    var _this = {};
+
+    _this.writeByte = function(b) {
+      _bytes.push(b & 0xff);
+    };
+
+    _this.writeShort = function(i) {
+      _this.writeByte(i);
+      _this.writeByte(i >>> 8);
+    };
+
+    _this.writeBytes = function(b, off, len) {
+      off = off || 0;
+      len = len || b.length;
+      for (var i = 0; i < len; i += 1) {
+        _this.writeByte(b[i + off]);
+      }
+    };
+
+    _this.writeString = function(s) {
+      for (var i = 0; i < s.length; i += 1) {
+        _this.writeByte(s.charCodeAt(i) );
+      }
+    };
+
+    _this.toByteArray = function() {
+      return _bytes;
+    };
+
+    _this.toString = function() {
+      var s = '';
+      s += '[';
+      for (var i = 0; i < _bytes.length; i += 1) {
+        if (i > 0) {
+          s += ',';
+        }
+        s += _bytes[i];
+      }
+      s += ']';
+      return s;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64EncodeOutputStream
+  //---------------------------------------------------------------------
+
+  var base64EncodeOutputStream = function() {
+
+    var _buffer = 0;
+    var _buflen = 0;
+    var _length = 0;
+    var _base64 = '';
+
+    var _this = {};
+
+    var writeEncoded = function(b) {
+      _base64 += String.fromCharCode(encode(b & 0x3f) );
+    };
+
+    var encode = function(n) {
+      if (n < 0) {
+        // error.
+      } else if (n < 26) {
+        return 0x41 + n;
+      } else if (n < 52) {
+        return 0x61 + (n - 26);
+      } else if (n < 62) {
+        return 0x30 + (n - 52);
+      } else if (n == 62) {
+        return 0x2b;
+      } else if (n == 63) {
+        return 0x2f;
+      }
+      throw 'n:' + n;
+    };
+
+    _this.writeByte = function(n) {
+
+      _buffer = (_buffer << 8) | (n & 0xff);
+      _buflen += 8;
+      _length += 1;
+
+      while (_buflen >= 6) {
+        writeEncoded(_buffer >>> (_buflen - 6) );
+        _buflen -= 6;
+      }
+    };
+
+    _this.flush = function() {
+
+      if (_buflen > 0) {
+        writeEncoded(_buffer << (6 - _buflen) );
+        _buffer = 0;
+        _buflen = 0;
+      }
+
+      if (_length % 3 != 0) {
+        // padding
+        var padlen = 3 - _length % 3;
+        for (var i = 0; i < padlen; i += 1) {
+          _base64 += '=';
+        }
+      }
+    };
+
+    _this.toString = function() {
+      return _base64;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64DecodeInputStream
+  //---------------------------------------------------------------------
+
+  var base64DecodeInputStream = function(str) {
+
+    var _str = str;
+    var _pos = 0;
+    var _buffer = 0;
+    var _buflen = 0;
+
+    var _this = {};
+
+    _this.read = function() {
+
+      while (_buflen < 8) {
+
+        if (_pos >= _str.length) {
+          if (_buflen == 0) {
+            return -1;
+          }
+          throw 'unexpected end of file./' + _buflen;
+        }
+
+        var c = _str.charAt(_pos);
+        _pos += 1;
+
+        if (c == '=') {
+          _buflen = 0;
+          return -1;
+        } else if (c.match(/^\s$/) ) {
+          // ignore if whitespace.
+          continue;
+        }
+
+        _buffer = (_buffer << 6) | decode(c.charCodeAt(0) );
+        _buflen += 6;
+      }
+
+      var n = (_buffer >>> (_buflen - 8) ) & 0xff;
+      _buflen -= 8;
+      return n;
+    };
+
+    var decode = function(c) {
+      if (0x41 <= c && c <= 0x5a) {
+        return c - 0x41;
+      } else if (0x61 <= c && c <= 0x7a) {
+        return c - 0x61 + 26;
+      } else if (0x30 <= c && c <= 0x39) {
+        return c - 0x30 + 52;
+      } else if (c == 0x2b) {
+        return 62;
+      } else if (c == 0x2f) {
+        return 63;
+      } else {
+        throw 'c:' + c;
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // gifImage (B/W)
+  //---------------------------------------------------------------------
+
+  var gifImage = function(width, height) {
+
+    var _width = width;
+    var _height = height;
+    var _data = new Array(width * height);
+
+    var _this = {};
+
+    _this.setPixel = function(x, y, pixel) {
+      _data[y * _width + x] = pixel;
+    };
+
+    _this.write = function(out) {
+
+      //---------------------------------
+      // GIF Signature
+
+      out.writeString('GIF87a');
+
+      //---------------------------------
+      // Screen Descriptor
+
+      out.writeShort(_width);
+      out.writeShort(_height);
+
+      out.writeByte(0x80); // 2bit
+      out.writeByte(0);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Global Color Map
+
+      // black
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+
+      // white
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+
+      //---------------------------------
+      // Image Descriptor
+
+      out.writeString(',');
+      out.writeShort(0);
+      out.writeShort(0);
+      out.writeShort(_width);
+      out.writeShort(_height);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Local Color Map
+
+      //---------------------------------
+      // Raster Data
+
+      var lzwMinCodeSize = 2;
+      var raster = getLZWRaster(lzwMinCodeSize);
+
+      out.writeByte(lzwMinCodeSize);
+
+      var offset = 0;
+
+      while (raster.length - offset > 255) {
+        out.writeByte(255);
+        out.writeBytes(raster, offset, 255);
+        offset += 255;
+      }
+
+      out.writeByte(raster.length - offset);
+      out.writeBytes(raster, offset, raster.length - offset);
+      out.writeByte(0x00);
+
+      //---------------------------------
+      // GIF Terminator
+      out.writeString(';');
+    };
+
+    var bitOutputStream = function(out) {
+
+      var _out = out;
+      var _bitLength = 0;
+      var _bitBuffer = 0;
+
+      var _this = {};
+
+      _this.write = function(data, length) {
+
+        if ( (data >>> length) != 0) {
+          throw 'length over';
+        }
+
+        while (_bitLength + length >= 8) {
+          _out.writeByte(0xff & ( (data << _bitLength) | _bitBuffer) );
+          length -= (8 - _bitLength);
+          data >>>= (8 - _bitLength);
+          _bitBuffer = 0;
+          _bitLength = 0;
+        }
+
+        _bitBuffer = (data << _bitLength) | _bitBuffer;
+        _bitLength = _bitLength + length;
+      };
+
+      _this.flush = function() {
+        if (_bitLength > 0) {
+          _out.writeByte(_bitBuffer);
+        }
+      };
+
+      return _this;
+    };
+
+    var getLZWRaster = function(lzwMinCodeSize) {
+
+      var clearCode = 1 << lzwMinCodeSize;
+      var endCode = (1 << lzwMinCodeSize) + 1;
+      var bitLength = lzwMinCodeSize + 1;
+
+      // Setup LZWTable
+      var table = lzwTable();
+
+      for (var i = 0; i < clearCode; i += 1) {
+        table.add(String.fromCharCode(i) );
+      }
+      table.add(String.fromCharCode(clearCode) );
+      table.add(String.fromCharCode(endCode) );
+
+      var byteOut = byteArrayOutputStream();
+      var bitOut = bitOutputStream(byteOut);
+
+      // clear code
+      bitOut.write(clearCode, bitLength);
+
+      var dataIndex = 0;
+
+      var s = String.fromCharCode(_data[dataIndex]);
+      dataIndex += 1;
+
+      while (dataIndex < _data.length) {
+
+        var c = String.fromCharCode(_data[dataIndex]);
+        dataIndex += 1;
+
+        if (table.contains(s + c) ) {
+
+          s = s + c;
+
+        } else {
+
+          bitOut.write(table.indexOf(s), bitLength);
+
+          if (table.size() < 0xfff) {
+
+            if (table.size() == (1 << bitLength) ) {
+              bitLength += 1;
+            }
+
+            table.add(s + c);
+          }
+
+          s = c;
+        }
+      }
+
+      bitOut.write(table.indexOf(s), bitLength);
+
+      // end code
+      bitOut.write(endCode, bitLength);
+
+      bitOut.flush();
+
+      return byteOut.toByteArray();
+    };
+
+    var lzwTable = function() {
+
+      var _map = {};
+      var _size = 0;
+
+      var _this = {};
+
+      _this.add = function(key) {
+        if (_this.contains(key) ) {
+          throw 'dup key:' + key;
+        }
+        _map[key] = _size;
+        _size += 1;
+      };
+
+      _this.size = function() {
+        return _size;
+      };
+
+      _this.indexOf = function(key) {
+        return _map[key];
+      };
+
+      _this.contains = function(key) {
+        return typeof _map[key] != 'undefined';
+      };
+
+      return _this;
+    };
+
+    return _this;
+  };
+
+  var createDataURL = function(width, height, getPixel) {
+    var gif = gifImage(width, height);
+    for (var y = 0; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        gif.setPixel(x, y, getPixel(x, y) );
+      }
+    }
+
+    var b = byteArrayOutputStream();
+    gif.write(b);
+
+    var base64 = base64EncodeOutputStream();
+    var bytes = b.toByteArray();
+    for (var i = 0; i < bytes.length; i += 1) {
+      base64.writeByte(bytes[i]);
+    }
+    base64.flush();
+
+    return 'data:image/gif;base64,' + base64;
+  };
+
+  //---------------------------------------------------------------------
+  // returns qrcode function.
+
+  return qrcode;
+}();
+
+// multibyte support
+!function() {
+
+  qrcode.stringToBytesFuncs['UTF-8'] = function(s) {
+    // http://stackoverflow.com/questions/18729405/how-to-convert-utf8-string-to-byte-array
+    function toUTF8Array(str) {
+      var utf8 = [];
+      for (var i=0; i < str.length; i++) {
+        var charcode = str.charCodeAt(i);
+        if (charcode < 0x80) utf8.push(charcode);
+        else if (charcode < 0x800) {
+          utf8.push(0xc0 | (charcode >> 6),
+              0x80 | (charcode & 0x3f));
+        }
+        else if (charcode < 0xd800 || charcode >= 0xe000) {
+          utf8.push(0xe0 | (charcode >> 12),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+        // surrogate pair
+        else {
+          i++;
+          // UTF-16 encodes 0x10000-0x10FFFF by
+          // subtracting 0x10000 and splitting the
+          // 20 bits of 0x0-0xFFFFF into two halves
+          charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+            | (str.charCodeAt(i) & 0x3ff));
+          utf8.push(0xf0 | (charcode >>18),
+              0x80 | ((charcode>>12) & 0x3f),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+      }
+      return utf8;
+    }
+    return toUTF8Array(s);
+  };
+
+}();
+
+        var RESULT_ENDPOINT_URL = "";
+        var RESULT_ENDPOINT_METHOD = "POST";
+        var RESULT_ENDPOINT_HEADERS = { "Content-Type": "application/json; charset=utf-8" };
+        var RESULT_ENDPOINT_EMPTY_MESSAGE = "No estás autorizado, consulta con el profe José.";
+        var TITULO_CANONICO = "Matematica - Geometria - Circulos y Circunferencias - 4°";
+
+        function svgCirculo(color){ return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="82" fill="'+color+'" stroke="none"/></svg>'; }
+        function svgCircunferencia(color, sw){ sw = sw||5; return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="82" fill="none" stroke="'+color+'" stroke-width="'+sw+'"/></svg>'; }
+        function svgConElemento(element){
+            var base = '<svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg"><circle cx="110" cy="110" r="88" fill="none" stroke="#888" stroke-width="3"/>';
+            var extra = '';
+            if (element === 'radio') extra = '<line x1="110" y1="110" x2="188" y2="70" stroke="#D32F2F" stroke-width="6"/><circle cx="110" cy="110" r="4" fill="#333"/>';
+            else if (element === 'diametro') extra = '<line x1="22" y1="110" x2="198" y2="110" stroke="#D32F2F" stroke-width="6"/><circle cx="110" cy="110" r="4" fill="#333"/>';
+            else if (element === 'cuerda') extra = '<line x1="45" y1="55" x2="185" y2="145" stroke="#D32F2F" stroke-width="6"/>';
+            else if (element === 'centro') extra = '<circle cx="110" cy="110" r="9" fill="#D32F2F"/>';
+            else if (element === 'arco') extra = '<path d="M 110 22 A 88 88 0 0 1 198 110" stroke="#D32F2F" stroke-width="8" fill="none"/>';
+            return base + extra + '</svg>';
+        }
+        function svgObjeto(tipo){
+            if (tipo === 'plato') return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="86" fill="#F5F5F5" stroke="#B0B0B0" stroke-width="3"/><circle cx="100" cy="100" r="60" fill="none" stroke="#D0D0D0" stroke-width="2"/><text x="100" y="196" text-anchor="middle" font-size="15" font-weight="bold" fill="#666">PLATO</text></svg>';
+            if (tipo === 'aro') return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="82" fill="none" stroke="#E67E22" stroke-width="14"/><text x="100" y="196" text-anchor="middle" font-size="15" font-weight="bold" fill="#666">ARO (hula-hula)</text></svg>';
+            if (tipo === 'moneda') return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="80" fill="#F1C40F" stroke="#B7950B" stroke-width="4"/><text x="100" y="112" text-anchor="middle" font-size="46" font-weight="bold" fill="#8B6914">$</text><text x="100" y="196" text-anchor="middle" font-size="15" font-weight="bold" fill="#666">MONEDA</text></svg>';
+            if (tipo === 'rueda') return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="82" fill="none" stroke="#333" stroke-width="10"/><circle cx="100" cy="100" r="18" fill="#666"/><line x1="100" y1="100" x2="100" y2="18" stroke="#666" stroke-width="4"/><line x1="100" y1="100" x2="100" y2="182" stroke="#666" stroke-width="4"/><line x1="100" y1="100" x2="18" y2="100" stroke="#666" stroke-width="4"/><line x1="100" y1="100" x2="182" y2="100" stroke="#666" stroke-width="4"/><text x="100" y="196" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">RUEDA (aro exterior)</text></svg>';
+            return '';
+        }
+
+        var EXERCISES = [
+            // R1 - RECONOCER (10)
+            {r:1,q:"¿Qué figura es esta?",svg:svgCirculo("#2196F3"),options:["Circunferencia","Círculo","Cuerda"],ok:1,expl:"CÍRCULO: toda la superficie pintada."},
+            {r:1,q:"¿Qué figura es esta?",svg:svgCircunferencia("#1565C0",5),options:["Circunferencia","Círculo","Diámetro"],ok:0,expl:"CIRCUNFERENCIA: solo la línea del borde."},
+            {r:1,q:"En un PLATO, si miramos toda su superficie, ¿qué figura vemos?",svg:svgObjeto('plato'),options:["Circunferencia","Círculo","Cuerda"],ok:1,expl:"El plato entero forma un CÍRCULO."},
+            {r:1,q:"Un ARO de hula-hula (solo el borde). ¿Qué representa?",svg:svgObjeto('aro'),options:["Circunferencia","Círculo","Radio"],ok:0,expl:"El aro representa una CIRCUNFERENCIA (solo la línea)."},
+            {r:1,q:"En una MONEDA de frente, ¿qué figura vemos?",svg:svgObjeto('moneda'),options:["Círculo","Circunferencia","Cuerda"],ok:0,expl:"CÍRCULO: la superficie de la moneda es toda una figura llena."},
+            {r:1,q:"En la RUEDA (mirando solo el aro exterior), ¿qué vemos?",svg:svgObjeto('rueda'),options:["Círculo","Circunferencia","Diámetro"],ok:1,expl:"El aro exterior de la rueda es una CIRCUNFERENCIA."},
+            {r:1,q:"¿Cuál de estas frases es VERDADERA?",options:["El círculo es solo el borde","El círculo es toda la superficie","La circunferencia es una superficie pintada"],ok:1,expl:"El CÍRCULO es la superficie. La CIRCUNFERENCIA es solo el borde."},
+            {r:1,q:"¿Cuál de estas frases es VERDADERA?",options:["La circunferencia tiene el interior pintado","La circunferencia es solo la línea del borde","Círculo y circunferencia son lo mismo"],ok:1,expl:"La CIRCUNFERENCIA es solo la línea."},
+            {r:1,q:"¿Cuál frase sobre el DIÁMETRO es VERDADERA?",options:["El diámetro es la mitad del radio","El diámetro pasa por el centro","El diámetro es más corto que el radio"],ok:1,expl:"El DIÁMETRO siempre pasa por el CENTRO. Es el doble del radio."},
+            {r:1,q:"¿Cuál afirmación es VERDADERA?",options:["Todos los puntos de la circunferencia están a la misma distancia del centro","El centro está en el borde de la circunferencia","El radio es más largo que el diámetro"],ok:0,expl:"Propiedad clave: todos los puntos de la CIRCUNFERENCIA están a la misma distancia del centro."},
+
+            // R2 - ELEMENTOS (10)
+            {r:2,q:"¿Qué es el segmento rojo?",svg:svgConElemento('radio'),options:["Radio","Diámetro","Cuerda"],ok:0,expl:"RADIO: del centro al borde."},
+            {r:2,q:"¿Qué es el segmento rojo?",svg:svgConElemento('diametro'),options:["Cuerda","Radio","Diámetro"],ok:2,expl:"DIÁMETRO: pasa por el centro."},
+            {r:2,q:"¿Qué es el segmento rojo?",svg:svgConElemento('cuerda'),options:["Diámetro","Cuerda","Radio"],ok:1,expl:"CUERDA: une dos puntos SIN pasar por el centro."},
+            {r:2,q:"¿Qué es el punto rojo?",svg:svgConElemento('centro'),options:["Radio","Centro","Arco"],ok:1,expl:"CENTRO: punto del medio."},
+            {r:2,q:"¿Qué es la parte roja?",svg:svgConElemento('arco'),options:["Cuerda","Arco","Diámetro"],ok:1,expl:"ARCO: parte del borde."},
+            {r:2,q:"¿Cuál CUERDA es la MÁS LARGA que se puede dibujar en una circunferencia?",options:["Una cuerda cualquiera","El diámetro","El radio"],ok:1,expl:"El DIÁMETRO es la cuerda más larga."},
+            {r:2,q:"El RADIO es la mitad de… ¿qué?",options:["De la cuerda","Del arco","Del diámetro"],ok:2,expl:"El radio es la mitad del DIÁMETRO."},
+            {r:2,q:"¿Qué es el segmento rojo?",svg:svgConElemento('radio'),options:["Diámetro","Radio","Arco"],ok:1,expl:"RADIO."},
+            {r:2,q:"¿Qué es el segmento rojo?",svg:svgConElemento('diametro'),options:["Diámetro","Radio","Cuerda"],ok:0,expl:"DIÁMETRO."},
+            {r:2,q:"¿Qué elemento une dos puntos del borde SIN pasar por el centro?",options:["Radio","Cuerda","Diámetro"],ok:1,expl:"CUERDA."},
+
+            // R3 - CÁLCULOS BÁSICOS + COMPÁS (10)
+            {r:3,q:"Si el RADIO mide 5 cm, ¿cuánto mide el DIÁMETRO?",num:{r:5},options:["10 cm","15 cm","20 cm"],ok:0,expl:"d = 2 × r → 2 × 5 = 10 cm."},
+            {r:3,q:"Si el DIÁMETRO mide 12 cm, ¿cuánto mide el RADIO?",num:{d:12},options:["6 cm","24 cm","4 cm"],ok:0,expl:"r = d ÷ 2 → 12 ÷ 2 = 6 cm."},
+            {r:3,q:"Si abro el compás 6 cm, ¿cuánto mide el RADIO de la circunferencia?",options:["3 cm","12 cm","6 cm"],ok:2,expl:"Abertura del compás = RADIO. Abrí 6 cm → radio 6 cm."},
+            {r:3,q:"Si el RADIO mide 8 cm, ¿cuánto mide el DIÁMETRO?",num:{r:8},options:["4 cm","16 cm","10 cm"],ok:1,expl:"d = 2 × 8 = 16 cm."},
+            {r:3,q:"Si el DIÁMETRO mide 20 cm, ¿cuánto mide el RADIO?",num:{d:20},options:["10 cm","40 cm","5 cm"],ok:0,expl:"r = 20 ÷ 2 = 10 cm."},
+            {r:3,q:"Para una circunferencia de DIÁMETRO 10 cm, ¿cuánto abro el compás?",options:["5 cm","10 cm","20 cm"],ok:0,expl:"El compás se abre al RADIO. Radio = 10 ÷ 2 = 5 cm."},
+            {r:3,q:"Si el RADIO mide 25 cm, ¿cuánto mide el DIÁMETRO?",num:{r:25},options:["12,5 cm","50 cm","25 cm"],ok:1,expl:"d = 2 × 25 = 50 cm."},
+            {r:3,q:"Compás abierto 15 cm. ¿Cuánto mide el DIÁMETRO de la circunferencia?",options:["7,5 cm","15 cm","30 cm"],ok:2,expl:"Abertura = radio = 15 cm. Diámetro = 2 × 15 = 30 cm."},
+            {r:3,q:"Quiero una circunferencia de RADIO 4 cm. ¿Cuánto abro el compás?",options:["8 cm","2 cm","4 cm"],ok:2,expl:"El compás se abre al RADIO: 4 cm."},
+            {r:3,q:"¿Cuál instrumento se usa para dibujar circunferencias?",options:["La regla","El compás","La escuadra"],ok:1,expl:"El COMPÁS. La escuadra sirve para líneas rectas y ángulos rectos."},
+
+            // R4 - PROBLEMAS APLICADOS (10) - una operación, contextualizado
+            {r:4,q:"Una PIZZA tiene 40 cm de diámetro. ¿Cuánto mide del centro al borde?",options:["10 cm","20 cm","40 cm"],ok:1,expl:"Del centro al borde es el RADIO = 40 ÷ 2 = 20 cm."},
+            {r:4,q:"Ana necesita dibujar una circunferencia de DIÁMETRO 12 cm. ¿Cuánto abre el compás?",options:["12 cm","6 cm","24 cm"],ok:1,expl:"Compás = radio = 12 ÷ 2 = 6 cm."},
+            {r:4,q:"Marta tiene un plato redondo de 30 cm de diámetro. ¿A qué distancia del borde está el centro?",options:["30 cm","60 cm","15 cm"],ok:2,expl:"Distancia centro-borde = RADIO = 30 ÷ 2 = 15 cm."},
+            {r:4,q:"Un CD tiene RADIO de 6 cm. ¿Cuál es su DIÁMETRO?",options:["3 cm","12 cm","36 cm"],ok:1,expl:"d = 2 × 6 = 12 cm."},
+            {r:4,q:"Dos MONEDAS iguales de radio 2 cm están tocándose por sus bordes. ¿Cuánto miden en total (largo)?",options:["4 cm","8 cm","2 cm"],ok:1,expl:"Cada moneda ocupa un DIÁMETRO (4 cm). Dos monedas: 4 + 4 = 8 cm."},
+            {r:4,q:"Un pozo tiene 3 metros de diámetro. Un balde cuelga desde el centro. ¿A qué distancia del borde queda?",options:["3 m","1,5 m","6 m"],ok:1,expl:"Del centro al borde = RADIO = 3 ÷ 2 = 1,5 m."},
+            {r:4,q:"Juan quiere una circunferencia de diámetro 30 cm. Su compás llega hasta 12 cm de abertura. ¿Puede hacerla?",options:["Sí, con 6 cm de abertura","No, porque necesitaría abrir 15 cm","Sí, con 30 cm de abertura"],ok:1,expl:"Necesita abrir el RADIO = 15 cm. Su compás solo llega a 12 cm. NO puede."},
+            {r:4,q:"El profe dibujó una circunferencia con el compás abierto 5 cm. Quiere dibujar OTRA MÁS GRANDE. ¿Qué debe hacer?",options:["Abrir más el compás","Cerrar el compás","Dejarlo igual"],ok:0,expl:"Más abertura = radio mayor = circunferencia más grande."},
+            {r:4,q:"Una ronda de niños forma una circunferencia con radio 4 m. Un niño está en el centro. ¿A qué distancia está de los demás?",options:["8 m","2 m","4 m"],ok:2,expl:"El centro está a distancia RADIO de todos los puntos = 4 m."},
+            {r:4,q:"Un cordel de 20 cm se ata al centro y se estira hasta el borde para dibujar una circunferencia. ¿Cuánto vale el DIÁMETRO?",options:["10 cm","20 cm","40 cm"],ok:2,expl:"El cordel es el RADIO. Diámetro = 2 × 20 = 40 cm."},
+
+            // R5 - PROBLEMAS CON OPERACIONES PREVIAS (10) - MÁS DIFÍCILES
+            {r:5,q:"3 tapas iguales de RADIO 4 cm apoyadas en fila por sus bordes. ¿Cuánto miden las 3 juntas (de largo)?",options:["12 cm","24 cm","36 cm"],ok:1,expl:"Cada tapa mide un DIÁMETRO = 4 × 2 = 8 cm. Tres tapas: 3 × 8 = 24 cm."},
+            {r:5,q:"En un plato de DIÁMETRO 30 cm entran justo 3 vasos redondos iguales tocándose. ¿Cuánto mide el DIÁMETRO de UN vaso?",options:["3 cm","10 cm","15 cm"],ok:1,expl:"Se reparte: 30 ÷ 3 = 10 cm de diámetro cada vaso."},
+            {r:5,q:"Un CD tiene DIÁMETRO 12 cm. Un DVD tiene 8 cm MÁS de diámetro que el CD. ¿Cuánto mide el RADIO del DVD?",options:["4 cm","10 cm","20 cm"],ok:1,expl:"Diámetro DVD = 12 + 8 = 20 cm. Radio = 20 ÷ 2 = 10 cm."},
+            {r:5,q:"El compás está abierto 10 cm. Lo cierro 3 cm. ¿Cuánto mide el RADIO de la nueva circunferencia?",options:["3 cm","7 cm","13 cm"],ok:1,expl:"Nueva abertura = 10 - 3 = 7 cm. Como abertura = radio → 7 cm."},
+            {r:5,q:"Dos ruedas iguales tocándose por sus bordes ocupan 60 cm en total. ¿Cuánto mide el RADIO de UNA rueda?",options:["10 cm","15 cm","30 cm"],ok:1,expl:"Cada rueda: 60 ÷ 2 = 30 cm de diámetro. Radio = 30 ÷ 2 = 15 cm."},
+            {r:5,q:"Ana dibujó 4 circunferencias iguales en fila, cada una con RADIO 3 cm. ¿Cuánto miden los 4 DIÁMETROS juntos?",options:["12 cm","24 cm","3 cm"],ok:1,expl:"Diámetro de cada una = 2 × 3 = 6 cm. Cuatro: 4 × 6 = 24 cm."},
+            {r:5,q:"Un plato tiene DIÁMETRO 24 cm. Otro plato mide el DOBLE del diámetro. ¿Cuánto vale el RADIO del segundo plato?",options:["12 cm","24 cm","48 cm"],ok:1,expl:"Diámetro segundo = 24 × 2 = 48 cm. Radio = 48 ÷ 2 = 24 cm."},
+            {r:5,q:"Tres circunferencias: A con RADIO 5, B con DIÁMETRO 8, C con RADIO 6. ¿Cuál es la MÁS GRANDE?",options:["La A","La B","La C"],ok:2,expl:"A→d=10, B→d=8, C→d=12. La MÁS GRANDE es C (12 cm)."},
+            {r:5,q:"Marta usa una regla de 20 cm y abre el compás con la MITAD de la regla. ¿Cuánto vale el DIÁMETRO de la circunferencia?",options:["10 cm","20 cm","40 cm"],ok:1,expl:"Abertura = 20 ÷ 2 = 10 cm (= radio). Diámetro = 2 × 10 = 20 cm."},
+            {r:5,q:"Una pizza de DIÁMETRO 40 cm se corta en 4 porciones desde el centro. Cada porción tiene 2 lados rectos (los cortes). ¿Cuánto miden los 2 lados juntos?",options:["20 cm","40 cm","80 cm"],ok:1,expl:"Cada lado es un RADIO = 40 ÷ 2 = 20 cm. Los 2 juntos: 20 + 20 = 40 cm."}
+        ];
+
+        var RONDA_NOMBRES = ["", "Reconocer", "Elementos", "Cálculos y compás", "Problemas aplicados", "Problemas con operaciones"];
+
+        var SOPAS = {
+            1: { words: ["CIRCULO","LINEA","BORDE","FIGURA"], seed: 111, size: 8 },
+            2: { words: ["CENTRO","RADIO","ARCO","CUERDA"], seed: 222, size: 8 },
+            3: { words: ["RADIO","DIAMETRO","DOBLE","MITAD"], seed: 333, size: 10 },
+            4: { words: ["PIZZA","RUEDA","PLATO","MONEDA"], seed: 444, size: 8 },
+            5: { words: ["SUMAR","RESTAR","DIVIDIR","COMPAS"], seed: 555, size: 10 }
+        };
+
+        var CRUCIGRAMA = {
+            rows: 12, cols: 10,
+            words: [
+                {num:1, word:"CENTRO", row:2, col:4, dir:"V", clue:"Punto del medio, a la misma distancia de todos los puntos de la circunferencia."},
+                {num:2, word:"RADIO", row:2, col:8, dir:"V", clue:"Distancia del centro al borde. También es la abertura del compás."},
+                {num:3, word:"DIAMETRO", row:3, col:0, dir:"H", clue:"El doble del radio. Es la cuerda más larga."},
+                {num:4, word:"ARCO", row:4, col:5, dir:"V", clue:"Pedazo o parte del borde de la circunferencia."},
+                {num:5, word:"CIRCULO", row:6, col:2, dir:"H", clue:"Figura formada por toda la superficie interior de una circunferencia."},
+                {num:5, word:"COMPAS", row:6, col:2, dir:"V", clue:"Instrumento con dos puntas para dibujar circunferencias."}
+            ]
+        };
+
+        var state = {
+            studentId:"", tipo:"B", titleExtra:"", startRound:1,
+            exercises:[], currentIdx:0, correct:0, wrong:0, totalItems:0, coins:0,
+            startMs:0, elapsedMs:0, timerId:null, answered:false,
+            sopa:null, sopaFirstCell:null, sopaFoundWords:{}, sopaRoundActive:0,
+            cruci:null, cruciCells:[], cruciWordCorrect:{}
+        };
+        function $(id){ return document.getElementById(id); }
+
+        function enableExitGuard(){ window.onbeforeunload = function(e){ var m='Si cerrás ahora vas a perder tu progreso.'; (e||window.event).returnValue=m; return m; }; }
+        function disableExitGuard(){ window.onbeforeunload = null; }
+        function pad2(n){ n=String(n); return n.length<2?"0"+n:n; }
+        function formatTime(ms){ var s=Math.floor(ms/1000), m=Math.floor(s/60), r=s%60; return pad2(m)+":"+pad2(r); }
+        function shuffleOptions(item){
+            var opts=item.options.slice(), ok=item.ok, mapping=[];
+            for (var q=0;q<opts.length;q++) mapping.push(q);
+            for (var i=mapping.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=mapping[i]; mapping[i]=mapping[j]; mapping[j]=t; }
+            var newOpts=[], newOk=0;
+            for (var k=0;k<mapping.length;k++){ newOpts.push(opts[mapping[k]]); if(mapping[k]===ok) newOk=k; }
+            return {options:newOpts, ok:newOk};
+        }
+        function buildExercises(startRound){ var out=[]; for(var i=0;i<EXERCISES.length;i++) if(EXERCISES[i].r>=startRound) out.push(EXERCISES[i]); return out; }
+        function totalItemsFor(startRound){
+            var exs=buildExercises(startRound).length, s=0;
+            for (var r=startRound;r<=5;r++) if(SOPAS[r]) s+=SOPAS[r].words.length;
+            return exs + s + CRUCIGRAMA.words.length;
+        }
+
+        function validateConfig(){ $("btnStart").disabled = $("cfgId").value.trim().length===0; }
+        $("cfgId").addEventListener("keyup", validateConfig);
+        $("cfgId").addEventListener("change", validateConfig);
+        $("cfgId").addEventListener("blur", validateConfig);
+        validateConfig();
+
+        function showScreen(id){
+            var screens=["configScreen","theoryScreen","activityScreen","sopaScreen","cruciScreen","summaryScreen"];
+            for(var i=0;i<screens.length;i++) $(screens[i]).style.display="none";
+            $(id).style.display="";
+            window.scrollTo(0,0);
+        }
+
+        $("btnStart").addEventListener("click", function(){
+            state.studentId = $("cfgId").value.trim();
+            state.tipo = $("cfgTipo").value;
+            state.titleExtra = $("cfgTitleExtra").value.trim();
+            state.startRound = parseInt($("cfgStartRound").value,10)||1;
+            state.exercises = buildExercises(state.startRound);
+            state.currentIdx=0; state.correct=0; state.wrong=0;
+            state.totalItems = totalItemsFor(state.startRound);
+            showScreen("theoryScreen");
+        });
+        $("btnTheoryNext").addEventListener("click", function(){ startActivity(); });
+
+        function openTheoryModal(){
+            $("modalTheoryBody").innerHTML = $("theoryScreen").innerHTML;
+            var b = $("modalTheoryBody").querySelector("#btnTheoryNext"); if(b) b.style.display="none";
+            $("modalTheory").classList.add("open");
+        }
+        $("btnOpenTheory").addEventListener("click", openTheoryModal);
+        $("btnCloseModal").addEventListener("click", function(){ $("modalTheory").classList.remove("open"); });
+        $("modalTheory").addEventListener("click", function(e){ if(e.target===this) this.classList.remove("open"); });
+
+        function startTimer(){
+            state.startMs=Date.now(); state.elapsedMs=0;
+            if(state.timerId) clearInterval(state.timerId);
+            state.timerId=setInterval(function(){ state.elapsedMs=Date.now()-state.startMs; $("hdrTimer").textContent=formatTime(state.elapsedMs); },1000);
+        }
+        function stopTimer(){ if(state.timerId){clearInterval(state.timerId);state.timerId=null;} state.elapsedMs=Date.now()-state.startMs; }
+
+        function updateCar(){
+            var doneItems=state.currentIdx, totalNormal=state.exercises.length;
+            var pct = totalNormal>0 ? (doneItems/totalNormal)*88+3 : 3;
+            if(pct>91) pct=91;
+            $("carEl").style.left = pct+"%";
+            $("carProgress").textContent = doneItems+" / "+totalNormal;
+        }
+
+        function renderCoins(){
+            $("hdrCoins").textContent=state.coins;
+            var track=$("coinsTrack"); track.innerHTML="";
+            var max=Math.min(state.coins,30);
+            for(var i=0;i<max;i++){ var c=document.createElement("span"); c.className="coin"; c.textContent="$"; track.appendChild(c); }
+            if(state.coins>30){ var ex=document.createElement("span"); ex.style.fontWeight="bold"; ex.style.color="#B45F1B"; ex.style.fontSize="0.85rem"; ex.style.padding="0 6px"; ex.textContent="+"+(state.coins-30); track.appendChild(ex); }
+        }
+        function addCoins(n, srcEl){ state.coins+=n; renderCoins(); if(srcEl) showCoinFly(srcEl,n); }
+        function showCoinFly(srcEl,n){
+            try{
+                var rect=srcEl.getBoundingClientRect();
+                var fly=document.createElement("div"); fly.className="coin-plus"; fly.textContent="+"+n+" 🪙";
+                fly.style.left=(rect.left+rect.width/2-30)+"px"; fly.style.top=(rect.top-10)+"px";
+                document.body.appendChild(fly);
+                setTimeout(function(){ if(fly.parentNode) fly.parentNode.removeChild(fly); },1200);
+            }catch(e){}
+        }
+
+        function startActivity(){
+            showScreen("activityScreen");
+            $("hdrStudent").textContent=state.studentId;
+            $("hdrExTotal").textContent=state.totalItems;
+            state.coins=0; renderCoins();
+            enableExitGuard(); startTimer();
+            renderExercise();
+        }
+
+        function renderExercise(){
+            if(state.currentIdx>=state.exercises.length){ showCrucigrama(); return; }
+            var ex=state.exercises[state.currentIdx];
+            var shuf=shuffleOptions(ex);
+            $("hdrRound").textContent="Ronda "+ex.r;
+            $("hdrExNum").textContent=(state.currentIdx+1);
+            $("hdrPoints").textContent=state.correct;
+            $("exRoundLabel").textContent="Ronda "+ex.r+" · "+RONDA_NOMBRES[ex.r];
+            $("exQuestion").textContent=ex.q;
+            $("exFeedback").style.display="none"; $("exFeedback").textContent="";
+            $("btnNext").style.display="none"; state.answered=false;
+
+            var body=$("exBody"); body.innerHTML="";
+            if(ex.svg) body.innerHTML += '<div class="exercise-svg-wrap">'+ex.svg+'</div>';
+            else if(ex.num){
+                var line='';
+                if(typeof ex.num.r!=='undefined') line='RADIO = <b>'+ex.num.r+' cm</b>';
+                else if(typeof ex.num.d!=='undefined') line='DIÁMETRO = <b>'+ex.num.d+' cm</b>';
+                body.innerHTML += '<div class="exercise-numeric">📏 '+line+'</div>';
+            }
+            body.innerHTML += '<div class="options-grid" id="optionsGrid"></div>';
+            var grid=$("optionsGrid");
+            for(var i=0;i<shuf.options.length;i++){
+                (function(idx){
+                    var btn=document.createElement("button"); btn.className="opt-btn"; btn.textContent=shuf.options[idx];
+                    btn.onclick=function(){ handleAnswer(idx, shuf.ok, btn, grid, ex); };
+                    grid.appendChild(btn);
+                })(i);
+            }
+            updateCar();
+        }
+
+        function handleAnswer(chosenIdx, correctIdx, btn, grid, ex){
+            if(state.answered) return; state.answered=true;
+            var buttons=grid.getElementsByTagName("button");
+            for(var i=0;i<buttons.length;i++) buttons[i].disabled=true;
+            var fb=$("exFeedback");
+            if(chosenIdx===correctIdx){
+                btn.classList.add("correct"); state.correct++;
+                fb.className="feedback ok";
+                fb.innerHTML="✅ ¡Correcto! <span class='hint-extra'>"+ex.expl+"</span>";
+                if(state.correct>0 && state.correct%5===0){ addCoins(1, btn); fb.innerHTML+=" · 🪙 +1 moneda por 5 aciertos"; }
+            } else {
+                btn.classList.add("wrong"); buttons[correctIdx].classList.add("correct"); state.wrong++;
+                fb.className="feedback err";
+                fb.innerHTML="❌ La respuesta correcta era: <b>"+buttons[correctIdx].textContent+"</b>.<span class='hint-extra'>"+ex.expl+"</span>";
+            }
+            fb.style.display=""; $("hdrPoints").textContent=state.correct; $("btnNext").style.display="";
+            try{ $("btnNext").focus(); }catch(e){}
+        }
+
+        $("btnNext").addEventListener("click", function(){
+            state.currentIdx++;
+            var justDone=state.exercises[state.currentIdx-1];
+            var next = state.currentIdx<state.exercises.length ? state.exercises[state.currentIdx] : null;
+            var finishedRound = (!next || next.r!==justDone.r) ? justDone.r : null;
+            if(finishedRound!==null && SOPAS[finishedRound]) showSopaForRound(finishedRound);
+            else if(state.currentIdx>=state.exercises.length) showCrucigrama();
+            else renderExercise();
+        });
+
+        function seededRng(seed){ var s=seed||1; return function(){ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+        function makeSopa(words, size, seed){
+            var grid=[]; for(var i=0;i<size;i++){ var row=[]; for(var j=0;j<size;j++) row.push(""); grid.push(row); }
+            var placements=[], rng=seededRng(seed), dirs=[{dr:0,dc:1},{dr:1,dc:0},{dr:1,dc:1},{dr:-1,dc:1}];
+            var sorted=words.slice().sort(function(a,b){return b.length-a.length;});
+            for(var w=0;w<sorted.length;w++){
+                var word=sorted[w], placed=false;
+                for(var att=0; att<800 && !placed; att++){
+                    var d=dirs[Math.floor(rng()*dirs.length)];
+                    var r=Math.floor(rng()*size), c=Math.floor(rng()*size);
+                    var eR=r+d.dr*(word.length-1), eC=c+d.dc*(word.length-1);
+                    if(eR<0||eR>=size||eC<0||eC>=size) continue;
+                    var can=true;
+                    for(var k=0;k<word.length;k++){ var cr=r+d.dr*k, cc=c+d.dc*k; if(grid[cr][cc]!=="" && grid[cr][cc]!==word[k]){ can=false; break; } }
+                    if(!can) continue;
+                    for(var k2=0;k2<word.length;k2++) grid[r+d.dr*k2][c+d.dc*k2]=word[k2];
+                    placements.push({word:word,r:r,c:c,dr:d.dr,dc:d.dc,endR:eR,endC:eC}); placed=true;
+                }
+            }
+            var L="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            for(var i2=0;i2<size;i2++) for(var j2=0;j2<size;j2++) if(grid[i2][j2]==="") grid[i2][j2]=L[Math.floor(rng()*L.length)];
+            return {grid:grid, placements:placements, size:size};
+        }
+
+        function showSopaForRound(round){
+            state.sopaRoundActive=round; state.sopaFirstCell=null; state.sopaFoundWords={};
+            var data=SOPAS[round];
+            state.sopa=makeSopa(data.words, data.size, data.seed);
+            $("sopaTitle").textContent="🔤 Mini-Sopa - Ronda "+round+" terminada";
+            $("sopaSubtitle").textContent="Palabras del tema: "+RONDA_NOMBRES[round];
+            $("sopaBonusMsg").textContent="";
+            $("sopaGrid").style.gridTemplateColumns="repeat("+data.size+", 30px)";
+            renderSopaGrid(); renderSopaWords();
+            showScreen("sopaScreen");
+        }
+        function renderSopaGrid(){
+            var g=$("sopaGrid"); g.innerHTML="";
+            for(var r=0;r<state.sopa.size;r++) for(var c=0;c<state.sopa.size;c++){
+                (function(r,c){
+                    var cell=document.createElement("div"); cell.className="sopa-cell"; cell.textContent=state.sopa.grid[r][c];
+                    cell.onclick=function(){ handleSopaCellClick(r,c,cell); };
+                    g.appendChild(cell);
+                })(r,c);
+            }
+        }
+        function renderSopaWords(){
+            var wc=$("sopaWords"); wc.innerHTML="";
+            var words=SOPAS[state.sopaRoundActive].words;
+            for(var i=0;i<words.length;i++){
+                var w=words[i]; var it=document.createElement("div");
+                it.className="sopa-word-item"+(state.sopaFoundWords[w]?" found":""); it.textContent=w; wc.appendChild(it);
+            }
+        }
+        function handleSopaCellClick(r,c,cell){
+            if(state.sopaFirstCell===null){ state.sopaFirstCell={r:r,c:c,el:cell}; cell.classList.add("selected"); return; }
+            var first=state.sopaFirstCell; state.sopaFirstCell=null; first.el.classList.remove("selected");
+            if(first.r===r && first.c===c) return;
+            var p=state.sopa.placements;
+            for(var i=0;i<p.length;i++){
+                var q=p[i]; if(state.sopaFoundWords[q.word]) continue;
+                var d = (q.r===first.r && q.c===first.c && q.endR===r && q.endC===c);
+                var rr = (q.endR===first.r && q.endC===first.c && q.r===r && q.c===c);
+                if(d||rr){ markSopaWordFound(q, cell); return; }
+            }
+        }
+        function markSopaWordFound(p, srcEl){
+            state.sopaFoundWords[p.word]=true; state.correct++; addCoins(1, srcEl);
+            for(var k=0;k<p.word.length;k++){
+                var cr=p.r+p.dr*k, cc=p.c+p.dc*k;
+                var sel=$("sopaGrid").children[cr*state.sopa.size+cc];
+                if(sel) sel.classList.add("found");
+            }
+            renderSopaWords();
+            var total=SOPAS[state.sopaRoundActive].words.length, f=0;
+            for(var w in state.sopaFoundWords) if(state.sopaFoundWords[w]) f++;
+            if(f>=total) $("sopaBonusMsg").textContent="🎉 ¡Todas las palabras encontradas!";
+            else $("sopaBonusMsg").textContent="Encontraste "+f+" de "+total+".";
+        }
+        $("btnSopaHint").addEventListener("click", function(){
+            if(state.coins<1){ $("sopaBonusMsg").textContent="⚠️ Necesitás al menos 1 moneda."; return; }
+            var pending=[]; for(var i=0;i<state.sopa.placements.length;i++) if(!state.sopaFoundWords[state.sopa.placements[i].word]) pending.push(state.sopa.placements[i]);
+            if(pending.length===0) return;
+            state.coins-=1; renderCoins();
+            var p=pending[Math.floor(Math.random()*pending.length)];
+            var g=$("sopaGrid");
+            var s=g.children[p.r*state.sopa.size+p.c], e=g.children[p.endR*state.sopa.size+p.endC];
+            if(s){ s.classList.add("hint"); setTimeout(function(){ s.classList.remove("hint"); },1500); }
+            if(e){ e.classList.add("hint"); setTimeout(function(){ e.classList.remove("hint"); },1500); }
+            $("sopaBonusMsg").textContent="💡 Pista: "+p.word;
+        });
+        $("btnSopaContinue").addEventListener("click", function(){
+            var total=SOPAS[state.sopaRoundActive].words.length, f=0;
+            for(var w in state.sopaFoundWords) if(state.sopaFoundWords[w]) f++;
+            state.wrong += (total-f);
+            if(state.currentIdx>=state.exercises.length) showCrucigrama();
+            else { showScreen("activityScreen"); renderExercise(); }
+        });
+
+        function buildCruciMatrix(){
+            var m=[]; for(var r=0;r<CRUCIGRAMA.rows;r++){ var row=[]; for(var c=0;c<CRUCIGRAMA.cols;c++) row.push(null); m.push(row); }
+            for(var w=0;w<CRUCIGRAMA.words.length;w++){
+                var wd=CRUCIGRAMA.words[w];
+                for(var k=0;k<wd.word.length;k++){
+                    var rr=wd.row+(wd.dir==='V'?k:0), cc=wd.col+(wd.dir==='H'?k:0);
+                    if(m[rr][cc]===null) m[rr][cc]={letter:wd.word[k], num:null, words:[]};
+                    m[rr][cc].words.push({wordIdx:w, pos:k});
+                }
+            }
+            for(var w2=0;w2<CRUCIGRAMA.words.length;w2++){
+                var wd2=CRUCIGRAMA.words[w2], cell=m[wd2.row][wd2.col];
+                if(cell && cell.num===null) cell.num=wd2.num;
+            }
+            return m;
+        }
+        function showCrucigrama(){
+            state.cruci=buildCruciMatrix(); state.cruciCells=[]; state.cruciWordCorrect={};
+            renderCrucigrama(); $("cruciBonusMsg").textContent=""; showScreen("cruciScreen");
+        }
+        function renderCrucigrama(){
+            var g=$("cruciGrid");
+            g.style.gridTemplateColumns="repeat("+CRUCIGRAMA.cols+", 34px)";
+            g.innerHTML=""; state.cruciCells=[];
+            for(var r=0;r<CRUCIGRAMA.rows;r++) for(var c=0;c<CRUCIGRAMA.cols;c++){
+                var cd=state.cruci[r][c]; var div=document.createElement("div");
+                if(cd===null){ div.className="cruci-cell blocked"; }
+                else {
+                    div.className="cruci-cell";
+                    var inp=document.createElement("input"); inp.type="text"; inp.maxLength=1;
+                    inp.setAttribute("data-r",r); inp.setAttribute("data-c",c);
+                    inp.addEventListener("input", function(e){
+                        var v=e.target.value.toUpperCase().replace(/[^A-ZÑ]/g,''); e.target.value=v;
+                        if(v.length===1){
+                            var rr=parseInt(e.target.getAttribute('data-r'),10), cc=parseInt(e.target.getAttribute('data-c'),10);
+                            var nxt=document.querySelector('.cruci-cell input[data-r="'+rr+'"][data-c="'+(cc+1)+'"]');
+                            if(!nxt) nxt=document.querySelector('.cruci-cell input[data-r="'+(rr+1)+'"][data-c="'+cc+'"]');
+                            if(nxt) nxt.focus();
+                        }
+                    });
+                    div.appendChild(inp);
+                    if(cd.num!==null){ var sp=document.createElement("span"); sp.className="num"; sp.textContent=cd.num; div.appendChild(sp); }
+                    state.cruciCells.push({r:r,c:c,input:inp,cellData:cd,div:div});
+                }
+                g.appendChild(div);
+            }
+            renderCruciClues();
+        }
+        function renderCruciClues(){
+            var cl=$("cruciClues"); cl.innerHTML="";
+            var hg=document.createElement("div"); hg.className="cruci-clue-group"; hg.innerHTML="<h4>➡️ Horizontales</h4>";
+            var vg=document.createElement("div"); vg.className="cruci-clue-group"; vg.innerHTML="<h4>⬇️ Verticales</h4>";
+            for(var w=0;w<CRUCIGRAMA.words.length;w++){
+                var wd=CRUCIGRAMA.words[w];
+                var p=document.createElement("p"); p.className="clue"+(state.cruciWordCorrect[w]?" done":"");
+                p.innerHTML="<b>"+wd.num+".</b> "+wd.clue;
+                if(wd.dir==='H') hg.appendChild(p); else vg.appendChild(p);
+            }
+            cl.appendChild(hg); cl.appendChild(vg);
+        }
+        $("btnCruciVerify").addEventListener("click", function(){
+            var newCorrect=0;
+            for(var w=0;w<CRUCIGRAMA.words.length;w++){
+                var wd=CRUCIGRAMA.words[w], typed="";
+                for(var k=0;k<wd.word.length;k++){
+                    var rr=wd.row+(wd.dir==='V'?k:0), cc=wd.col+(wd.dir==='H'?k:0);
+                    var inp=document.querySelector('.cruci-cell input[data-r="'+rr+'"][data-c="'+cc+'"]');
+                    typed += (inp?inp.value:'');
+                }
+                var was=state.cruciWordCorrect[w], is=(typed===wd.word);
+                if(is && !was){
+                    state.cruciWordCorrect[w]=true; state.correct++; addCoins(1, $("btnCruciVerify")); newCorrect++;
+                    for(var k2=0;k2<wd.word.length;k2++){
+                        var rr2=wd.row+(wd.dir==='V'?k2:0), cc2=wd.col+(wd.dir==='H'?k2:0);
+                        var inp2=document.querySelector('.cruci-cell input[data-r="'+rr2+'"][data-c="'+cc2+'"]');
+                        if(inp2 && inp2.parentNode) inp2.parentNode.classList.add("ok");
+                        if(inp2) inp2.disabled=true;
+                    }
+                } else if(!is && !was && typed.length>0){
+                    for(var k3=0;k3<wd.word.length;k3++){
+                        var rr3=wd.row+(wd.dir==='V'?k3:0), cc3=wd.col+(wd.dir==='H'?k3:0);
+                        var inp3=document.querySelector('.cruci-cell input[data-r="'+rr3+'"][data-c="'+cc3+'"]');
+                        if(inp3 && inp3.value!==wd.word[k3] && inp3.parentNode){
+                            inp3.parentNode.classList.add("err");
+                            (function(el){ setTimeout(function(){el.classList.remove("err");},1500); })(inp3.parentNode);
+                        }
+                    }
+                }
+            }
+            renderCruciClues();
+            var total=CRUCIGRAMA.words.length, ok=0;
+            for(var w2=0;w2<total;w2++) if(state.cruciWordCorrect[w2]) ok++;
+            if(ok>=total) $("cruciBonusMsg").textContent="🎉 ¡Crucigrama completo!";
+            else { var msg="Correctas: "+ok+" de "+total+"."; if(newCorrect>0) msg="✅ +"+newCorrect+" palabra(s) nueva(s). "+msg; $("cruciBonusMsg").textContent=msg; }
+        });
+        $("btnCruciHint").addEventListener("click", function(){
+            if(state.coins<2){ $("cruciBonusMsg").textContent="⚠️ Necesitás al menos 2 monedas."; return; }
+            var pending=[];
+            for(var i=0;i<state.cruciCells.length;i++){ var cc=state.cruciCells[i]; if(!cc.input.disabled && cc.input.value.toUpperCase()!==cc.cellData.letter) pending.push(cc); }
+            if(pending.length===0){ $("cruciBonusMsg").textContent="No quedan celdas vacías."; return; }
+            state.coins-=2; renderCoins();
+            var t=pending[Math.floor(Math.random()*pending.length)];
+            t.input.value=t.cellData.letter; t.div.classList.add("hint-cell");
+            (function(el){ setTimeout(function(){el.classList.remove("hint-cell");},1500); })(t.div);
+            $("cruciBonusMsg").textContent="💡 Se reveló una letra.";
+        });
+        $("btnCruciFinish").addEventListener("click", function(){
+            var total=CRUCIGRAMA.words.length, ok=0;
+            for(var w2=0;w2<total;w2++) if(state.cruciWordCorrect[w2]) ok++;
+            state.wrong += (total-ok);
+            finishActivity();
+        });
+
+        function finishActivity(){
+            stopTimer(); showScreen("summaryScreen");
+            var total=state.totalItems, mins=Math.max(1, Math.round(state.elapsedMs/60000));
+            var notaRaw = total>0 ? (state.correct/total)*10 : 0;
+            var nota = Number.isInteger(notaRaw) ? notaRaw : parseFloat(notaRaw.toFixed(2));
+            $("sumOk").textContent=state.correct; $("sumErr").textContent=state.wrong; $("sumTotal").textContent=total;
+            $("sumTime").textContent=mins; $("sumCoins").textContent=state.coins; $("sumGrade").textContent=nota;
+            var tituloFinal = TITULO_CANONICO + (state.titleExtra ? " "+state.titleExtra : "");
+            renderQR(JSON.stringify({id:state.studentId, tipo:state.tipo, tit:tituloFinal, pts:state.correct, err:state.wrong, ej:total, nota:nota, m:mins, mon:state.coins}));
+            state._dbPayload = {
+                id_alumno:state.studentId, tipo_actividad:state.tipo, titulo:tituloFinal,
+                puntaje:state.correct, correctas:state.correct, incorrectas:state.wrong,
+                cantidad_ejercicios:total, nota:nota, tiempo_minutos:mins, tiempoMinutos:mins, monedas:state.coins
+            };
+            $("btnSend").disabled=false;
+        }
+        function renderQR(text){
+            try{ var qr=qrcode(0,'M'); qr.addData(text); qr.make();
+                var svg=qr.createSvgTag({cellSize:6,margin:4,scalable:true}); $("qrBox").innerHTML=svg;
+            }catch(e){ $("qrBox").innerHTML="<div style='padding:12px; color:#B71C1C;'>No se pudo generar el QR.</div>"; }
+        }
+
+        $("btnSend").addEventListener("click", function(){
+            var msg=$("sendMsg");
+            if(!RESULT_ENDPOINT_URL){ msg.className="send-msg err"; msg.textContent=RESULT_ENDPOINT_EMPTY_MESSAGE; msg.style.display=""; return; }
+            $("btnSend").disabled=true; msg.className="send-msg"; msg.textContent="Enviando..."; msg.style.display="";
+            try{
+                var xhr=new XMLHttpRequest(); xhr.open(RESULT_ENDPOINT_METHOD, RESULT_ENDPOINT_URL, true);
+                for(var h in RESULT_ENDPOINT_HEADERS) if(RESULT_ENDPOINT_HEADERS.hasOwnProperty(h)) xhr.setRequestHeader(h, RESULT_ENDPOINT_HEADERS[h]);
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState===4){
+                        if(xhr.status>=200 && xhr.status<300){ msg.className="send-msg ok"; msg.textContent="✅ Enviado correctamente"; disableExitGuard(); }
+                        else{ msg.className="send-msg err"; msg.textContent="❌ Error al enviar ("+xhr.status+")."; $("btnSend").disabled=false; }
+                    }
+                };
+                xhr.send(JSON.stringify(state._dbPayload));
+            }catch(e){ msg.className="send-msg err"; msg.textContent="❌ Error de red."; $("btnSend").disabled=false; }
+        });
+
+        function fullReset(){
+            disableExitGuard();
+            state.currentIdx=0; state.correct=0; state.wrong=0; state.coins=0; state.elapsedMs=0;
+            state.sopa=null; state.sopaFoundWords={}; state.sopaFirstCell=null;
+            state.cruci=null; state.cruciWordCorrect={};
+            if(state.timerId){clearInterval(state.timerId); state.timerId=null;}
+            $("carEl").style.left="3%"; $("sendMsg").style.display="none"; $("btnSend").disabled=true;
+            showScreen("configScreen"); validateConfig();
+        }
+        $("btnRestart").addEventListener("click", fullReset);
+    </script>
+</body>
+</html>
