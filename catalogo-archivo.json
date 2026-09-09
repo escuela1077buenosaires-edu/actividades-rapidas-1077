@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-09T01:23:49.927Z",
+  "actualizadaEn": "2026-09-09T01:23:59.162Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -330,9 +330,9 @@
       "archivoOriginal": "Matematica-Multiplicacion-Parametrizable-Con-Sin-Decimales-AUTOCORREGIBLE-Submarino-Tesoro-Sopa-Letra.html",
       "archivoRepositorio": "mttf0dl0-889882-Matematica-Multiplicacion-Parametrizable-Con-Sin-Decimales-AUTOCORREGIBLE-Submarino-Tesoro-Sopa-Letr.html",
       "archivoPublico": "mttf0dl0-889882-Matematica-Multiplicacion-Parametrizable-Con-Sin-Decimales-AUTOCORREGIBLE-Submarino-Tesoro-Sopa-Letr.html",
-      "habilitada": true,
+      "habilitada": false,
       "creadaEn": "2026-09-09T01:23:48.804Z",
-      "actualizadaEn": "2026-09-09T01:23:48.804Z"
+      "actualizadaEn": "2026-09-09T01:23:59.162Z"
     }
   ]
 }
