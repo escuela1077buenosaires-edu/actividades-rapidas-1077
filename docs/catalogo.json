@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-09-09T01:25:43.717Z",
+  "actualizadaEn": "2026-09-09T16:59:56.213Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -73,6 +73,15 @@
       "tipo": "",
       "archivo": "mtkd4ui1-81a3c0-Lengua-Familia-de-Palabras-2-3.html",
       "actualizadaEn": "2026-09-09T01:20:18.678Z"
+    },
+    {
+      "id": "mtkd4ui7-4cb91e",
+      "titulo": "Matematica Mediciones Convencionales Y O Arbitrarias Por Compar 3Grado",
+      "area": "Matematica",
+      "grado": "3",
+      "tipo": "",
+      "archivo": "mtkd4ui7-4cb91e-Matematica-Mediciones-Convencionales-Y-O-Arbitrarias-Por-Compar-3Grado.html",
+      "actualizadaEn": "2026-09-09T16:59:56.213Z"
     },
     {
       "id": "mttef6sc-a1fa41",
