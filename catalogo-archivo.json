@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-09T01:25:26.110Z",
+  "actualizadaEn": "2026-09-09T01:25:35.730Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -38,9 +38,9 @@
       "archivoOriginal": "Lengua-Completar-LA-LE-LI-LO-LU-1.html",
       "archivoRepositorio": "mspgg3hm-9d9e9e-Lengua-Completar-LA-LE-LI-LO-LU-1.html",
       "archivoPublico": "mspgg3hm-9d9e9e-Lengua-Completar-LA-LE-LI-LO-LU-1.html",
-      "habilitada": false,
+      "habilitada": true,
       "creadaEn": "2026-08-12T02:13:14.794Z",
-      "actualizadaEn": "2026-08-26T14:41:38.753Z"
+      "actualizadaEn": "2026-09-09T01:25:35.730Z"
     },
     {
       "id": "mspgg3ho-0a274c",
