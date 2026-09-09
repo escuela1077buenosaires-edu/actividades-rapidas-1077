@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Suma con palitos (resultado máx. 100)</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            background: #f4f8ff;
+            color: #1f2d3d;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0b4b8a;
+            margin-top: 0;
+        }
+
+        .panel {
+            background: #fff;
+            border: 2px solid #cfe2ff;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .controls label {
+            display: inline-block;
+            margin: 0 8px 8px 0;
+            font-weight: bold;
+        }
+
+        select,
+        input[type="number"],
+        input[type="text"],
+        button {
+            font-size: 15px;
+            padding: 6px 8px;
+            border: 1px solid #99b9e8;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #2f74d0;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #8faeda;
+            cursor: default;
+        }
+
+        .submit-btn {
+            background: #7b1d2b;
+            border-color: #5f1320;
+        }
+
+        .carry-btn {
+            font-size: 14px;
+            padding: 4px 6px;
+            margin-bottom: 6px;
+        }
+
+        .exercise-layout {
+            white-space: nowrap;
+        }
+
+        .exercise-main,
+        .exercise-help {
+            display: inline-block;
+            vertical-align: top;
+            white-space: normal;
+        }
+
+        .exercise-main {
+            width: 52%;
+        }
+
+        .exercise-help {
+            width: 46%;
+            margin-left: 2%;
+            background: #f2fbf5;
+            border: 2px solid #c7eacf;
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            min-height: 260px;
+        }
+
+        .exercise-help p {
+            margin: 7px 0;
+            line-height: 1.35;
+        }
+
+        .sticks-box {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            background: #fff;
+            border: 2px solid #d7e6ff;
+            border-radius: 8px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .sticks-wrap {
+            min-height: 160px;
+            max-height: 280px;
+            border: 1px dashed #b8cff3;
+            border-radius: 6px;
+            padding: 6px;
+            background: #f9fcff;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        #sumBSticks {
+            min-height: 200px;
+        }
+
+        .sticks-box h4 {
+            margin: 0 0 6px;
+            font-size: 14px;
+            color: #184b85;
+        }
+
+        .stick-item {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            margin: 2px 4px;
+            vertical-align: bottom;
+        }
+
+        .stick-item.with-top .stick {
+            margin-top: 10px;
+        }
+
+        .stick-item.with-top.lower-row {
+            margin-top: 20px;
+        }
+
+        .stick {
+            display: inline-block;
+            width: 6px;
+            height: 30px;
+            background: #3f6db3;
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .stick.red {
+            background: #b84848;
+        }
+
+        .stick-num-top {
+            display: block;
+            margin-bottom: 2px;
+            font-size: 12px;
+            color: #35547b;
+        }
+
+        .stick-num {
+            display: block;
+            margin-top: 2px;
+            font-size: 12px;
+            color: #35547b;
+        }
+
+        .stick-num-top.red-tone {
+            color: #b84848;
+        }
+
+        .stick-num.blue-tone {
+            color: #2f74d0;
+        }
+
+        table.grid {
+            border-collapse: collapse;
+            margin: 8px 0 10px;
+        }
+
+        table.grid td {
+            width: 58px;
+            height: 54px;
+            text-align: center;
+            border: 2px solid #b8cff3;
+            font-size: 28px;
+            font-weight: bold;
+            background: #eef5ff;
+        }
+
+        table.grid td.sign {
+            width: 42px;
+            background: #d9e9ff;
+            color: #0b4b8a;
+        }
+
+        table.grid tr.result-row td {
+            border-top: 4px solid #4f78b8;
+            background: #fff;
+        }
+
+        table.grid tr.carry-row td {
+            background: #fff7dc;
+            border-color: #e6d39a;
+            color: #7a5a00;
+        }
+
+        .carry-row-hidden {
+            display: none;
+        }
+
+        .answer-input {
+            width: 42px;
+            height: 38px;
+            text-align: center;
+            font-size: 24px;
+            border: 2px solid #8db1ea;
+            border-radius: 4px;
+        }
+
+        .answer-input.ok {
+            border-color: #2aa84a;
+            background: #ecffef;
+        }
+
+        .answer-input.bad {
+            border-color: #d53a3a;
+            background: #fff0f0;
+        }
+
+        .feedback {
+            min-height: 48px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px dashed #9fbce8;
+            background: #f8fbff;
+            margin-bottom: 10px;
+        }
+
+        .score-badge {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: #ffe084;
+            color: #5b3d00;
+            font-weight: bold;
+            border: 1px solid #e8bf53;
+        }
+
+        .reward-stream {
+            min-height: 30px;
+            padding: 8px;
+            border: 1px dashed #9fbce8;
+            border-radius: 8px;
+            background: #f8fbff;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Suma con palitos (resultado máximo 100)</h1>
+
+        <div class="panel"><label><strong>Ingresa tu Id:</strong> <input id="studentIdInput" type="text" maxlength="4"
+                    style="width:80px;text-align:center;"></label></div>
+
+        <div class="panel controls">
+            <label>Resultado máximo:
+                <input id="resultMaxInput" type="number" min="0" max="100" value="100">
+            </label>
+            <label>Modo acarreo:
+                <select id="carryModeSelect">
+                    <option value="mix" selected>Mixto</option>
+                    <option value="with">Solo con acarreo</option>
+                    <option value="without">Solo sin acarreo</option>
+                </select>
+            </label>
+            <label>Orden de sumandos:
+                <select id="orderModeSelect">
+                    <option value="top_larger" selected>Mayor arriba</option>
+                    <option value="mixed">Indistinto</option>
+                </select>
+            </label>
+            <label>Ejercicios:
+                <input id="countInput" type="number" min="1" max="50" value="20">
+            </label>
+            <br>
+            <label>Primer sumando desde: <input id="minAInput" type="number" min="0" max="100" value="10"></label>
+            <label>Primer sumando hasta: <input id="maxAInput" type="number" min="0" max="100" value="80"></label>
+            <label>Segundo sumando desde: <input id="minBInput" type="number" min="0" max="100" value="0"></label>
+            <label>Segundo sumando hasta: <input id="maxBInput" type="number" min="0" max="100" value="60"></label>
+            <button id="startBtn" type="button">Iniciar / Reiniciar</button>
+        </div>
+
+        <div class="panel">
+            <div id="statusText"><strong>Presiona Iniciar para comenzar.</strong></div>
+
+            <div class="sticks-box">
+                <h4>Primer Sumando</h4>
+                <div id="sumASticks" class="sticks-wrap"></div>
+            </div>
+            <div class="sticks-box">
+                <h4>Segundo Sumando</h4>
+                <div id="sumBSticks" class="sticks-wrap"></div>
+            </div>
+
+            <div class="exercise-layout">
+                <div class="exercise-main">
+                    <button id="toggleCarryBtn" type="button" class="carry-btn">🖐 Ver Acarreo</button>
+                    <div class="grid-wrap">
+                        <table class="grid" id="operationGrid"></table>
+                    </div>
+                </div>
+                <div class="exercise-help">
+                    <strong>Ayuda para la suma con acarreo</strong>
+                    <p><strong>1)</strong> Suma de derecha a izquierda.</p>
+                    <p><strong>2)</strong> Si una columna da 10 o más, escribe la unidad y lleva 1.</p>
+                    <p><strong>3)</strong> Suma ese 1 en la columna siguiente.</p>
+                    <p><strong>4)</strong> Puedes usar el botón “Ver Acarreo” para ver cuánto se lleva.</p>
+                </div>
+            </div>
+
+            <div id="feedbackText" class="feedback"></div>
+            <button id="verifyBtn" type="button" disabled>Verificar</button>
+            <button id="nextBtn" type="button" disabled>Siguiente</button>
+        </div>
+
+        <div class="panel">
+            <strong>Premios acumulados</strong>
+            <div id="rewardStream" class="reward-stream"></div>
+            <div id="scoreLine">Correctas: 0 | Incorrectas: 0 <span class="score-badge">Puntaje: 0</span></div>
+            <div style="text-align:right;margin-top:8px;"><button id="sendBtn" class="submit-btn" type="button">Enviar
+                    Actividad</button></div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var app = { total: 20, index: 0, correct: 0, incorrect: 0, score: 0, current: null, verifiedCurrent: false, summaryShown: false, showCarry: false, seenExercises: {}, rangeA: { min: 10, max: 80 }, rangeB: { min: 0, max: 60 }, resultLimit: 100, rewards: [] };
+            var $ = function (id) { return document.getElementById(id); };
+            function randomInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+            function padLeft(str, len) { str = String(str); while (str.length < len) { str = '0' + str; } return str; }
+
+            function parseRanges() {
+                var minA = parseInt($("minAInput").value, 10), maxA = parseInt($("maxAInput").value, 10), minB = parseInt($("minBInput").value, 10), maxB = parseInt($("maxBInput").value, 10), maxR = parseInt($("resultMaxInput").value, 10);
+                if (isNaN(minA) || minA < 0) minA = 10; if (isNaN(maxA) || maxA < minA) maxA = minA + 20;
+                if (isNaN(minB) || minB < 0) minB = 0; if (isNaN(maxB) || maxB < minB) maxB = minB + 20;
+                if (isNaN(maxR) || maxR < 0) maxR = 100;
+                if (maxA > 100) maxA = 100; if (maxB > 100) maxB = 100; if (maxR > 100) maxR = 100;
+                $("minAInput").value = minA; $("maxAInput").value = maxA; $("minBInput").value = minB; $("maxBInput").value = maxB; $("resultMaxInput").value = maxR;
+                app.rangeA = { min: minA, max: maxA }; app.rangeB = { min: minB, max: maxB }; app.resultLimit = maxR;
+            }
+
+            function autoAdjustRangesByResultLimit() {
+                var r = parseInt($("resultMaxInput").value, 10); if (isNaN(r) || r < 0) r = 100; if (r > 100) r = 100; $("resultMaxInput").value = r;
+                var maxA = r, minA = Math.max(0, Math.floor(r * 0.2));
+                var maxB = Math.max(0, r - minA); if (maxB > 100) maxB = 100; var minB = 0;
+                $("minAInput").value = minA; $("maxAInput").value = maxA; $("minBInput").value = minB; $("maxBInput").value = maxB;
+            }
+
+            function hasCarry(a, b) {
+                var sa = String(a).split(''), sb = String(b).split(''); var len = Math.max(sa.length, sb.length); while (sa.length < len) sa.unshift('0'); while (sb.length < len) sb.unshift('0');
+                var carry = 0;
+                for (var i = len - 1; i >= 0; i--) { var s = parseInt(sa[i], 10) + parseInt(sb[i], 10) + carry; if (s >= 10) return true; carry = (s >= 10) ? 1 : 0; }
+                return false;
+            }
+
+            function carryModeOk(a, b) { var m = $("carryModeSelect").value, c = hasCarry(a, b); if (m === 'with') return c; if (m === 'without') return !c; return true; }
+            function orderModeApply(a, b) {
+                var m = $("orderModeSelect").value;
+                if (m === 'top_larger' && b > a) { var t = a; a = b; b = t; }
+                return { a: a, b: b };
+            }
+
+            function computeCarryPreview(a, b, digits) {
+                var sa = padLeft(String(a), digits).split(''), sb = padLeft(String(b), digits).split(''); var carryInto = [], carry = 0;
+                for (var i = digits - 1; i >= 0; i--) { carryInto[i] = carry; var s = parseInt(sa[i], 10) + parseInt(sb[i], 10) + carry; carry = (s >= 10) ? 1 : 0; }
+                return carryInto;
+            }
+
+            function generateExercise() {
+                var minA = app.rangeA.min, maxA = app.rangeA.max, minB = app.rangeB.min, maxB = app.rangeB.max, lim = app.resultLimit;
+                var a, b, key, tries = 0;
+                do {
+                    var feasibleAMax = Math.min(maxA, lim - minB);
+                    if (feasibleAMax < minA) {
+                        a = minA;
+                        b = minB;
+                        key = String(a) + '+' + String(b);
+                        break;
+                    }
+                    var useHigh = (tries % 3 === 0), split = Math.floor((minA + maxA) / 2);
+                    a = useHigh ? randomInt(Math.max(minA, split), feasibleAMax) : randomInt(minA, feasibleAMax);
+                    var bCap = Math.min(maxB, lim - a);
+                    if (bCap < minB) { tries++; continue; }
+                    b = randomInt(minB, bCap);
+                    var ordered = orderModeApply(a, b); a = ordered.a; b = ordered.b;
+                    key = String(a) + '+' + String(b); tries++;
+                    if (tries > 500) { a = Math.min(feasibleAMax, Math.floor(lim * 0.7)); b = Math.max(minB, Math.min(maxB, lim - a)); key = String(a) + '+' + String(b); break; }
+                } while ((a + b) > lim || !carryModeOk(a, b) || app.seenExercises[key]);
+                app.seenExercises[key] = true;
+                return { a: a, b: b, r: a + b };
+            }
+
+            function renderSticks(n, targetId, isRed, startAt, topStart) {
+                var t = $(targetId), html = '', rowSize = 10;
+                if (typeof startAt === 'undefined') startAt = 1;
+                for (var i = 0; i < n; i++) {
+                    var hasTop = (typeof topStart !== 'undefined');
+                    var rowIndex = Math.floor(i / rowSize);
+                    html += '<span class="stick-item' + (hasTop ? ' with-top' : '') + (hasTop && rowIndex > 0 ? ' lower-row' : '') + '">';
+                    if (hasTop) { html += '<span class="stick-num-top' + (isRed ? ' red-tone' : '') + '">' + (topStart + i) + '</span>'; }
+                    html += '<span class="stick' + (isRed ? ' red' : '') + '"></span><span class="stick-num' + (isRed ? ' blue-tone' : '') + '">' + (startAt + i) + '</span></span>';
+                }
+                t.innerHTML = html;
+            }
+
+            function renderGrid(ex) {
+                var g = $("operationGrid"); g.innerHTML = '';
+                var a = String(ex.a), b = String(ex.b), r = String(ex.r), d = Math.max(a.length, b.length, r.length);
+                a = padLeft(a, d); b = padLeft(b, d);
+                var rowC = document.createElement('tr'), rowA = document.createElement('tr'), rowB = document.createElement('tr'), rowR = document.createElement('tr');
+                rowC.className = app.showCarry ? 'carry-row' : 'carry-row carry-row-hidden'; rowR.className = 'result-row';
+                var sc = document.createElement('td'); sc.className = 'sign'; sc.innerHTML = '↺'; rowC.appendChild(sc);
+                var s0 = document.createElement('td'); s0.className = 'sign'; s0.innerHTML = '&nbsp;'; rowA.appendChild(s0);
+                var s1 = document.createElement('td'); s1.className = 'sign'; s1.innerHTML = '+'; rowB.appendChild(s1);
+                var s2 = document.createElement('td'); s2.className = 'sign'; s2.innerHTML = '='; rowR.appendChild(s2);
+                var carries = computeCarryPreview(ex.a, ex.b, d);
+                for (var i = 0; i < d; i++) {
+                    var cc = document.createElement('td'); cc.innerHTML = (carries[i] > 0 ? String(carries[i]) : '&nbsp;'); rowC.appendChild(cc);
+                    var c1 = document.createElement('td'); c1.innerHTML = a.charAt(i); rowA.appendChild(c1);
+                    var c2 = document.createElement('td'); c2.innerHTML = b.charAt(i); rowB.appendChild(c2);
+                    var c3 = document.createElement('td'); var inp = document.createElement('input'); inp.type = 'text'; inp.maxLength = 1; inp.className = 'answer-input'; c3.appendChild(inp); rowR.appendChild(c3);
+                }
+                g.appendChild(rowC); g.appendChild(rowA); g.appendChild(rowB); g.appendChild(rowR);
+                renderSticks(ex.a, 'sumASticks', false, 1); renderSticks(ex.b, 'sumBSticks', true, ex.a + 1, 1);
+            }
+
+            function readAnswer() { var inputs = document.getElementsByClassName('answer-input'), out = ''; for (var i = 0; i < inputs.length; i++) { var v = inputs[i].value.replace(/\D/g, ''); out += (v === '' ? '0' : v.charAt(0)); } return parseInt(out, 10); }
+            function markInputs(c) { var inp = document.getElementsByClassName('answer-input'); for (var i = 0; i < inp.length; i++) { var v = inp[i].value.replace(/\D/g, ''); inp[i].className = 'answer-input ' + (v === c.charAt(i) ? 'ok' : 'bad'); } }
+            function updateScore() { app.score = app.correct * 10; $("scoreLine").innerHTML = 'Correctas: ' + app.correct + ' | Incorrectas: ' + app.incorrect + ' <span class="score-badge">Puntaje: ' + app.score + '</span>'; }
+            function updateRewards() { $("rewardStream").innerHTML = app.rewards.join(' '); }
+
+            function loadExercise() { app.current = generateExercise(); app.verifiedCurrent = false; app.showCarry = false; $("statusText").innerHTML = 'Ejercicio ' + (app.index + 1) + ' de ' + app.total; renderGrid(app.current); $("toggleCarryBtn").innerHTML = '🖐 Ver Acarreo'; $("feedbackText").innerHTML = 'Resuelve la suma y presiona Verificar.'; $("verifyBtn").disabled = false; $("nextBtn").disabled = true; }
+            function toggleCarry() { app.showCarry = !app.showCarry; renderGrid(app.current); $("toggleCarryBtn").innerHTML = app.showCarry ? '🙈 Ocultar Acarreo' : '🖐 Ver Acarreo'; }
+
+            function verifyExercise() {
+                if (!app.current || app.verifiedCurrent) return;
+                var i = document.getElementsByClassName('answer-input'); var exp = padLeft(String(app.current.r), i.length); var got = readAnswer(); markInputs(exp);
+                if (got === app.current.r) { app.correct++; app.rewards.push(['🏆', '🏅', '🪙', '👑'][randomInt(0, 3)]); $("feedbackText").innerHTML = '✅ Correcto. Resultado correcto: <strong>' + app.current.r + '</strong>.'; }
+                else { app.incorrect++; $("feedbackText").innerHTML = '❌ Resultado incorrecto!!! el resultado correcto es: <strong>' + app.current.r + '</strong>.'; }
+                app.verifiedCurrent = true; $("verifyBtn").disabled = true; $("nextBtn").disabled = false; updateScore(); updateRewards();
+                if (!app.summaryShown && app.index === 9) { $("summaryContent").innerHTML = '<p>Correctas: <strong>' + app.correct + '</strong></p><p>Incorrectas: <strong>' + app.incorrect + '</strong></p>'; $("summaryModalBg").style.display = 'block'; app.summaryShown = true; }
+            }
+
+            function nextExercise() { if (!app.verifiedCurrent) { $("feedbackText").innerHTML = 'Primero presiona Verificar.'; return; } if (app.index >= app.total - 1) { $("statusText").innerHTML = '¡Completaste la sesión!'; $("feedbackText").innerHTML = 'Puedes reiniciar para otra sesión.'; $("verifyBtn").disabled = true; $("nextBtn").disabled = true; return; } app.index++; loadExercise(); }
+            function startOrRestart() { var n = parseInt($("countInput").value, 10); if (isNaN(n) || n < 1) n = 20; if (n > 50) n = 50; app.total = n; parseRanges(); app.index = 0; app.correct = 0; app.incorrect = 0; app.score = 0; app.summaryShown = false; app.seenExercises = {}; app.rewards = []; updateScore(); updateRewards(); loadExercise(); }
+            function sendActivity() { var id = $("studentIdInput").value.replace(/\D/g, '').substr(0, 4); if (id === '') { alert('Ingresa tu Id.'); return; } var payload = { id_alumno: id, tipo_actividad: 'suma_parametrizable_palitos', modo_acarreo: $("carryModeSelect").value, resultado_maximo: app.resultLimit, puntaje: app.score, correctas: app.correct, incorrectas: app.incorrect, total_ejercicios: app.total }; alert('Datos listos para enviar. Puntaje: ' + payload.puntaje); }
+
+            $("resultMaxInput").onchange = autoAdjustRangesByResultLimit; $("resultMaxInput").oninput = autoAdjustRangesByResultLimit;
+            $("startBtn").onclick = startOrRestart; $("verifyBtn").onclick = verifyExercise; $("nextBtn").onclick = nextExercise; $("toggleCarryBtn").onclick = toggleCarry; $("sendBtn").onclick = sendActivity;
+            $("closeSummary").onclick = function () { $("summaryModalBg").style.display = 'none'; };
+        })();
+    </script>
+</body>
+
+</html>
