@@ -1,7 +1,16 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-09-09T01:25:03.484Z",
+  "actualizadaEn": "2026-09-09T01:25:15.216Z",
   "actividades": [
+    {
+      "id": "mspgg3hh-264105",
+      "titulo": "Lengua Completar BA BE BI BO BU 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "B",
+      "archivo": "mspgg3hh-264105-Lengua-Completar-BA-BE-BI-BO-BU-1.html",
+      "actualizadaEn": "2026-09-09T01:25:15.216Z"
+    },
     {
       "id": "mspgg3hq-b0d6a7",
       "titulo": "Lengua Escribir Palabras Sonidos P y L 1",
