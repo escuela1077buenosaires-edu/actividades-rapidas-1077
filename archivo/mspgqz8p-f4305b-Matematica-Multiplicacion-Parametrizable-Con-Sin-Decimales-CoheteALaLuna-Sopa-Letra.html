@@ -965,7 +965,7 @@ table.sopa-grid td.revealed {
 
     <div id="cfg-id-row">
       <label for="cfg-id-alumno">ID <span class="req">*</span>:</label>
-      <input type="text" id="cfg-id-alumno" maxlength="2" placeholder="ID" autocomplete="off">
+      <input type="text" id="cfg-id-alumno" inputmode="numeric" maxlength="3" pattern="[0-9]{1,3}" placeholder="ID" autocomplete="off">
       <label for="cfg-tipo">Tipo:</label>
       <select id="cfg-tipo">
         <option value="A">A</option>
@@ -4841,7 +4841,7 @@ var TITULO = "Multiplicación con Cohete a la Luna";
     html += '<h3>Finalizar y enviar</h3>';
     html += '<div class="send-row" style="text-align:center">';
     html += '<label for="id-alumno">ID de alumno:</label>';
-    html += '<input type="text" id="id-alumno" maxlength="2" placeholder="Ingresa tu ID" autocomplete="off">';
+    html += '<input type="text" id="id-alumno" inputmode="numeric" maxlength="3" pattern="[0-9]{1,3}" placeholder="Ingresa tu ID" autocomplete="off">';
     html += '</div>';
     html += '<div id="qr-wrap"><div id="qr-frame"><div id="qr-container"></div><div id="qr-caption">Codigo QR del resumen</div></div></div>';
     html += '<div style="text-align:center;margin-top:10px">';

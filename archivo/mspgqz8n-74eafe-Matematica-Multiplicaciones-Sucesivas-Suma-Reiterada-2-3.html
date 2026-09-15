@@ -585,7 +585,7 @@ table.sopa-grid td.revealed { background: linear-gradient(#cce9ff, #99d2ff); col
 
     <div id="cfg-id-row">
       <label for="cfg-id-alumno">ID <span class="req">*</span>:</label>
-      <input type="text" id="cfg-id-alumno" maxlength="2" placeholder="ID" autocomplete="off" value="1">
+      <input type="text" id="cfg-id-alumno" inputmode="numeric" maxlength="3" pattern="[0-9]{1,3}" placeholder="ID" autocomplete="off" value="1">
       <label for="cfg-tipo">Tipo:</label>
       <select id="cfg-tipo">
         <option value="A">A</option>
