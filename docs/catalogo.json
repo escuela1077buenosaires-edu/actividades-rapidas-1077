@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-09-16T00:43:19.990Z",
+  "actualizadaEn": "2026-09-16T01:04:43.178Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -172,6 +172,15 @@
       "tipo": "B",
       "archivo": "mu3dn9ak-f7a55b-Matematica-Correspondencia-Numero-Cantidad-Series-Inicial-Jardin.html",
       "actualizadaEn": "2026-09-16T00:43:18.860Z"
+    },
+    {
+      "id": "mu3eerm0-ad42b3",
+      "titulo": "C Sociales Historia Sarmiento Analisis De Clases De Palabras Oracion Bimembre Parrafo Y Puntuacion 4",
+      "area": "General",
+      "grado": "4",
+      "tipo": "",
+      "archivo": "mu3eerm0-ad42b3-C-Sociales-Historia-Sarmiento-Analisis-De-Clases-De-Palabras-Oracion-Bimembre-Parrafo-Y-Puntuacion-4.html",
+      "actualizadaEn": "2026-09-16T01:04:42.312Z"
     }
   ]
 }
