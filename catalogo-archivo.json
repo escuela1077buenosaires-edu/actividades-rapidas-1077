@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-16T00:35:07.980Z",
+  "actualizadaEn": "2026-09-16T00:43:19.990Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -333,6 +333,90 @@
       "habilitada": false,
       "creadaEn": "2026-09-09T01:23:48.804Z",
       "actualizadaEn": "2026-09-09T01:23:59.162Z"
+    },
+    {
+      "id": "mu3dn9a4-5f4b41",
+      "solicitudSubida": "5e18803a1daa37bb0fee3726a5d450ad0d60b93b698528a9126e637d1882339e",
+      "titulo": "Ciencias Sociales Pueblos Originarios Nomades Sedentarios 4",
+      "area": "Ciencias Sociales",
+      "grado": "4",
+      "tipo": "A",
+      "archivoOriginal": "Ciencias-Sociales-Pueblos-Originarios-Nomades-Sedentarios-4.html",
+      "archivoRepositorio": "mu3dn9a4-5f4b41-Ciencias-Sociales-Pueblos-Originarios-Nomades-Sedentarios-4.html",
+      "archivoPublico": "mu3dn9a4-5f4b41-Ciencias-Sociales-Pueblos-Originarios-Nomades-Sedentarios-4.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-16T00:43:18.844Z",
+      "actualizadaEn": "2026-09-16T00:43:18.844Z"
+    },
+    {
+      "id": "mu3dn9ad-c5228c",
+      "solicitudSubida": "3819352f678efef67e72d7169c2ed569438586d15b012f7fdb201bf026574d74",
+      "titulo": "Ciencias Naturales Sistema Locomotor Articulaciones Musculos 4",
+      "area": "Ciencias Naturales",
+      "grado": "4",
+      "tipo": "A",
+      "archivoOriginal": "Ciencias-Naturales-Sistema-Locomotor-Articulaciones-Musculos-4.html",
+      "archivoRepositorio": "mu3dn9ad-c5228c-Ciencias-Naturales-Sistema-Locomotor-Articulaciones-Musculos-4.html",
+      "archivoPublico": "mu3dn9ad-c5228c-Ciencias-Naturales-Sistema-Locomotor-Articulaciones-Musculos-4.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-16T00:43:18.853Z",
+      "actualizadaEn": "2026-09-16T00:43:18.853Z"
+    },
+    {
+      "id": "mu3dn9af-ca4eda",
+      "solicitudSubida": "1a1209a9a7e783a5ea926a06772edc8ff6c420b38d68c66f29f9d1436b3b05d2",
+      "titulo": "Ciencias Naturales Nutricion Sistemas Digestivo Respiratorio Circulatorio Urinario 5",
+      "area": "Ciencias Naturales",
+      "grado": "5",
+      "tipo": "A",
+      "archivoOriginal": "Ciencias-Naturales-Nutricion-Sistemas-Digestivo-Respiratorio-Circulatorio-Urinario-5.html",
+      "archivoRepositorio": "mu3dn9af-ca4eda-Ciencias-Naturales-Nutricion-Sistemas-Digestivo-Respiratorio-Circulatorio-Urinario-5.html",
+      "archivoPublico": "mu3dn9af-ca4eda-Ciencias-Naturales-Nutricion-Sistemas-Digestivo-Respiratorio-Circulatorio-Urinario-5.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-16T00:43:18.855Z",
+      "actualizadaEn": "2026-09-16T00:43:18.855Z"
+    },
+    {
+      "id": "mu3dn9ah-f022b9",
+      "solicitudSubida": "93c13c1084ce0c06b30c95d9d06eecaaed13157960fffafbbeb65c3c430e0edd",
+      "titulo": "Ciencias Naturales Animales Alimentacion Reproduccion Cobertura 2",
+      "area": "Ciencias Naturales",
+      "grado": "2",
+      "tipo": "A",
+      "archivoOriginal": "Ciencias-Naturales-Animales-Alimentacion-Reproduccion-Cobertura-2.html",
+      "archivoRepositorio": "mu3dn9ah-f022b9-Ciencias-Naturales-Animales-Alimentacion-Reproduccion-Cobertura-2.html",
+      "archivoPublico": "mu3dn9ah-f022b9-Ciencias-Naturales-Animales-Alimentacion-Reproduccion-Cobertura-2.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-16T00:43:18.857Z",
+      "actualizadaEn": "2026-09-16T00:43:18.857Z"
+    },
+    {
+      "id": "mu3dn9aj-dabaf1",
+      "solicitudSubida": "0aafc975118e249c914810024c51493209efebace14cc88166f97e94d2d01da0",
+      "titulo": "Naturaleza Seres Vivos Diversidad Vertebrados Invertebrados 4",
+      "area": "Ciencias Naturales",
+      "grado": "4",
+      "tipo": "A",
+      "archivoOriginal": "Naturaleza-Seres-Vivos-Diversidad-Vertebrados-Invertebrados-4.html",
+      "archivoRepositorio": "mu3dn9aj-dabaf1-Naturaleza-Seres-Vivos-Diversidad-Vertebrados-Invertebrados-4.html",
+      "archivoPublico": "mu3dn9aj-dabaf1-Naturaleza-Seres-Vivos-Diversidad-Vertebrados-Invertebrados-4.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-16T00:43:18.859Z",
+      "actualizadaEn": "2026-09-16T00:43:18.859Z"
+    },
+    {
+      "id": "mu3dn9ak-f7a55b",
+      "solicitudSubida": "df3bad5fd30f8f482d846bd47f0ba410dab923ea5587c4fd428f5cab276a822a",
+      "titulo": "Matematica Correspondencia Numero Cantidad Series Inicial Jardin",
+      "area": "Matematica",
+      "grado": "1",
+      "tipo": "B",
+      "archivoOriginal": "Matematica-Correspondencia-Numero-Cantidad-Series-Inicial-Jardin.html",
+      "archivoRepositorio": "mu3dn9ak-f7a55b-Matematica-Correspondencia-Numero-Cantidad-Series-Inicial-Jardin.html",
+      "archivoPublico": "mu3dn9ak-f7a55b-Matematica-Correspondencia-Numero-Cantidad-Series-Inicial-Jardin.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-16T00:43:18.860Z",
+      "actualizadaEn": "2026-09-16T00:43:18.860Z"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-09-16T00:35:07.980Z",
+  "actualizadaEn": "2026-09-16T00:43:19.990Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -118,6 +118,60 @@
       "tipo": "",
       "archivo": "mttes324-7c608c-Matematica-Suma-Parametrizable-Maximo-100-Con-Palitos-Orden-De-Sumnados-1-2-3-4-5-6-7.html",
       "actualizadaEn": "2026-09-09T01:17:21.916Z"
+    },
+    {
+      "id": "mu3dn9a4-5f4b41",
+      "titulo": "Ciencias Sociales Pueblos Originarios Nomades Sedentarios 4",
+      "area": "Ciencias Sociales",
+      "grado": "4",
+      "tipo": "A",
+      "archivo": "mu3dn9a4-5f4b41-Ciencias-Sociales-Pueblos-Originarios-Nomades-Sedentarios-4.html",
+      "actualizadaEn": "2026-09-16T00:43:18.844Z"
+    },
+    {
+      "id": "mu3dn9ad-c5228c",
+      "titulo": "Ciencias Naturales Sistema Locomotor Articulaciones Musculos 4",
+      "area": "Ciencias Naturales",
+      "grado": "4",
+      "tipo": "A",
+      "archivo": "mu3dn9ad-c5228c-Ciencias-Naturales-Sistema-Locomotor-Articulaciones-Musculos-4.html",
+      "actualizadaEn": "2026-09-16T00:43:18.853Z"
+    },
+    {
+      "id": "mu3dn9af-ca4eda",
+      "titulo": "Ciencias Naturales Nutricion Sistemas Digestivo Respiratorio Circulatorio Urinario 5",
+      "area": "Ciencias Naturales",
+      "grado": "5",
+      "tipo": "A",
+      "archivo": "mu3dn9af-ca4eda-Ciencias-Naturales-Nutricion-Sistemas-Digestivo-Respiratorio-Circulatorio-Urinario-5.html",
+      "actualizadaEn": "2026-09-16T00:43:18.855Z"
+    },
+    {
+      "id": "mu3dn9ah-f022b9",
+      "titulo": "Ciencias Naturales Animales Alimentacion Reproduccion Cobertura 2",
+      "area": "Ciencias Naturales",
+      "grado": "2",
+      "tipo": "A",
+      "archivo": "mu3dn9ah-f022b9-Ciencias-Naturales-Animales-Alimentacion-Reproduccion-Cobertura-2.html",
+      "actualizadaEn": "2026-09-16T00:43:18.857Z"
+    },
+    {
+      "id": "mu3dn9aj-dabaf1",
+      "titulo": "Naturaleza Seres Vivos Diversidad Vertebrados Invertebrados 4",
+      "area": "Ciencias Naturales",
+      "grado": "4",
+      "tipo": "A",
+      "archivo": "mu3dn9aj-dabaf1-Naturaleza-Seres-Vivos-Diversidad-Vertebrados-Invertebrados-4.html",
+      "actualizadaEn": "2026-09-16T00:43:18.859Z"
+    },
+    {
+      "id": "mu3dn9ak-f7a55b",
+      "titulo": "Matematica Correspondencia Numero Cantidad Series Inicial Jardin",
+      "area": "Matematica",
+      "grado": "1",
+      "tipo": "B",
+      "archivo": "mu3dn9ak-f7a55b-Matematica-Correspondencia-Numero-Cantidad-Series-Inicial-Jardin.html",
+      "actualizadaEn": "2026-09-16T00:43:18.860Z"
     }
   ]
 }
