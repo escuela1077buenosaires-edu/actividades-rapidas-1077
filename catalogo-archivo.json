@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-16T00:33:00.115Z",
+  "actualizadaEn": "2026-09-16T00:34:41.712Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -288,9 +288,9 @@
       "archivoOriginal": "Matematica-Geometria-Circulos-Circunferencias-4.html",
       "archivoRepositorio": "mttef6se-20b96c-Matematica-Geometria-Circulos-Circunferencias-4.html",
       "archivoPublico": "mttef6se-20b96c-Matematica-Geometria-Circulos-Circunferencias-4.html",
-      "habilitada": true,
+      "habilitada": false,
       "creadaEn": "2026-09-09T01:07:20.222Z",
-      "actualizadaEn": "2026-09-09T01:07:20.222Z"
+      "actualizadaEn": "2026-09-16T00:34:41.712Z"
     },
     {
       "id": "mttef6se-a21a68",
