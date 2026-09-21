@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-21T12:18:06.983Z",
+  "actualizadaEn": "2026-09-21T12:19:55.294Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -445,6 +445,20 @@
       "habilitada": true,
       "creadaEn": "2026-09-21T12:18:05.951Z",
       "actualizadaEn": "2026-09-21T12:18:05.951Z"
+    },
+    {
+      "id": "mub7qc5y-b83197",
+      "solicitudSubida": "bd197910c12af774d69eabb6ca692790b33d6bb2febd09524deb52228cdb5657",
+      "titulo": "Matematica Multiplicacion Parametrizable Con Sin Decimales CoheteALaLuna Sopa Letra",
+      "area": "Matematica",
+      "grado": "",
+      "tipo": "",
+      "archivoOriginal": "Matematica-Multiplicacion-Parametrizable-Con-Sin-Decimales-CoheteALaLuna-Sopa-Letra.html",
+      "archivoRepositorio": "mub7qc5y-b83197-Matematica-Multiplicacion-Parametrizable-Con-Sin-Decimales-CoheteALaLuna-Sopa-Letra.html",
+      "archivoPublico": "mub7qc5y-b83197-Matematica-Multiplicacion-Parametrizable-Con-Sin-Decimales-CoheteALaLuna-Sopa-Letra.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-21T12:19:54.262Z",
+      "actualizadaEn": "2026-09-21T12:19:54.262Z"
     }
   ]
 }
