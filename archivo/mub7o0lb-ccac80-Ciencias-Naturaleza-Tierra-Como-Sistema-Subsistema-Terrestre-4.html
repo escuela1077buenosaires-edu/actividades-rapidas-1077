@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Tierra como sistema: geósfera, hidrósfera y atmósfera</title>
+<style>
+html, body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background: #eef5fb; color: #19324a; }
+body { line-height: 1.45; }
+* { box-sizing: border-box; }
+#topBar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: #ffffff; border-bottom: 1px solid #c6d7e6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 8px 10px 10px 10px;
+}
+.top-title { font-size: 22px; font-weight: bold; color: #17476d; text-align: center; margin: 0 0 6px 0; }
+.progress-timer-row { position: relative; padding-right: 92px; }
+.progress-wrap { height: 10px; background: #dce8f2; border-radius: 10px; overflow: hidden; }
+.progress-bar { height: 10px; width: 0%; background: #4aa3df; }
+.timer-box {
+  position: absolute; right: 0; top: -3px; width: 84px; text-align: center;
+  font-size: 13px; font-weight: bold; color: #17476d; background: #eef7ff;
+  border: 1px solid #b9d5ea; border-radius: 8px; padding: 2px 4px;
+}
+.status-row { margin-top: 6px; overflow: hidden; }
+.counter { float: left; margin-right: 12px; font-size: 14px; font-weight: bold; }
+.counter.correct { color: #218c48; }
+.counter.incorrect { color: #c4372a; }
+.screen-position { float: right; font-size: 12px; color: #4e6f88; margin-top: 2px; }
+.trophies-row { clear: both; text-align: center; margin-top: 6px; }
+.trophy {
+  display: inline-block; width: 26px; height: 26px; line-height: 26px; margin: 0 2px;
+  border-radius: 50%; background: #d1d5d9; color: #7c8085; font-size: 16px;
+  border: 1px solid #bcc3c9;
+}
+.trophy.on { background: #ffd84c; color: #8a6200; border-color: #efc11b; box-shadow: 0 0 5px rgba(255,216,76,0.8); }
+#app { padding-top: 128px; max-width: 980px; margin: 0 auto; }
+.screen { display: none; padding: 12px; }
+.screen.active { display: block; }
+.screen-card {
+  background: #ffffff; border: 1px solid #cad9e7; border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06); padding: 16px;
+}
+.screen-badge {
+  display: inline-block; font-size: 12px; color: #ffffff; background: #4aa3df;
+  padding: 4px 10px; border-radius: 999px; margin-bottom: 8px;
+}
+h2 { margin: 0 0 12px 0; color: #17476d; font-size: 22px; }
+.text-block p { margin: 0 0 12px 0; font-size: 18px; }
+.legend-keyword { font-size: 12px; color: #4e6f88; margin-bottom: 10px; }
+.keyword { background: #fff3a9; padding: 0 2px; border-radius: 4px; }
+.question-header { overflow: hidden; margin-bottom: 8px; }
+.question-number, .question-type {
+  display: inline-block; font-size: 13px; padding: 4px 9px; border-radius: 999px;
+  border: 1px solid #d3e1ec; background: #f4f9fc; color: #31556f;
+}
+.question-number { margin-right: 6px; }
+.options-list { margin-top: 10px; }
+.option-card {
+  display: block; margin-bottom: 9px; background: #f8fbfe; border: 1px solid #dbe6ef;
+  border-radius: 12px; padding: 10px 12px; font-size: 17px; cursor: pointer;
+}
+.option-card input { vertical-align: middle; }
+.option-card span { vertical-align: middle; }
+.word-bank, .sequence-bank, .drag-help, .order-help {
+  background: #f4f9fc; border: 1px solid #d7e7f2; border-radius: 12px; padding: 10px; margin-bottom: 12px;
+}
+.word-chip {
+  display: inline-block; margin: 4px 6px 0 0; padding: 5px 9px; border-radius: 999px;
+  background: #e7f3fb; border: 1px solid #bfdbee; font-size: 14px;
+}
+.inline-select, .match-row select, .order-row select {
+  font-size: 16px; padding: 6px 8px; border: 1px solid #b7cddd; border-radius: 8px; background: #fff;
+}
+.inline-select.wide { min-width: 130px; margin: 3px 2px; }
+.fill-line, .multi-fill { font-size: 18px; margin-bottom: 10px; }
+.order-grid { margin-bottom: 12px; }
+.order-row { margin-bottom: 8px; }
+.order-pos { display: inline-block; width: 28px; font-weight: bold; }
+.sequence-item {
+  background: #ffffff; border: 1px solid #dae5ee; border-radius: 10px; padding: 8px; margin-bottom: 6px; font-size: 15px;
+}
+.mini-badge { display: inline-block; min-width: 22px; text-align: center; background: #4aa3df; color: #fff; border-radius: 999px; font-size: 12px; padding: 2px 6px; margin-right: 5px; }
+.match-grid { margin-top: 6px; }
+.match-row {
+  overflow: hidden; background: #f9fbfd; border: 1px solid #dce8f0; border-radius: 12px;
+  padding: 10px; margin-bottom: 8px;
+}
+.match-left { float: left; width: 38%; font-weight: bold; font-size: 16px; }
+.match-right { float: right; width: 60%; }
+.match-right select { width: 100%; }
+.drag-layout { overflow: hidden; }
+.drag-bank { float: left; width: 32%; min-height: 220px; }
+.dropzones-wrap { float: right; width: 66%; }
+.dropzone {
+  background: #f9fcfe; border: 2px dashed #b8cfdf; border-radius: 12px; padding: 10px; min-height: 110px; margin-bottom: 10px;
+}
+.dropzone h3, .drag-bank h3 { margin: 0 0 8px 0; font-size: 16px; color: #31556f; }
+.drag-card {
+  background: #e9f5ff; border: 1px solid #b8d8ef; border-radius: 10px; padding: 8px 10px; margin: 6px 0; cursor: move; font-size: 16px;
+}
+.feedback {
+  min-height: 28px; margin-top: 10px; font-size: 17px; font-weight: bold; padding: 5px 0;
+}
+.feedback.ok { color: #218c48; }
+.feedback.bad { color: #c4372a; }
+.actions { margin-top: 8px; }
+.verify-btn, .nav-btn {
+  border: none; border-radius: 10px; padding: 10px 16px; font-size: 16px; cursor: pointer;
+  background: #2a84c5; color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+}
+.verify-btn[disabled] { background: #8aa6ba; cursor: default; }
+.nav-btn.secondary { background: #5f7e95; }
+.nav-row { margin-top: 16px; overflow: hidden; }
+.nav-row span { display: inline-block; }
+.nav-row .nav-btn:first-child { float: left; }
+.nav-row .nav-btn:last-child { float: right; }
+.summary-grid { overflow: hidden; margin: 14px 0 10px 0; }
+.summary-box {
+  float: left; width: 48%; margin: 0 1% 12px 1%; background: #f7fbfe; border: 1px solid #d7e6f1; border-radius: 14px; padding: 14px; text-align: center;
+}
+.summary-label { font-size: 14px; color: #4e6f88; margin-bottom: 6px; }
+.summary-value { font-size: 28px; font-weight: bold; color: #17476d; }
+.correct-box .summary-value { color: #218c48; }
+.incorrect-box .summary-value { color: #c4372a; }
+.summary-note { clear: both; font-size: 14px; color: #4e6f88; }
+.skills-list { margin: 0; padding-left: 22px; font-size: 17px; }
+.skills-list li { margin-bottom: 10px; }
+.text-screen .nav-row, .question-screen .nav-row, .summary-screen .nav-row, .skills-screen .nav-row { padding-top: 8px; }
+@media screen and (max-width: 760px) {
+  #app { padding-top: 148px; }
+  .top-title { font-size: 18px; }
+  .text-block p, .fill-line, .multi-fill, .option-card { font-size: 16px; }
+  .drag-bank, .dropzones-wrap, .match-left, .match-right, .summary-box { float: none; width: auto; }
+}
+</style>
+</head>
+<body>
+<div id="topBar">
+  <div class="top-title">La Tierra como sistema: geósfera, hidrósfera y atmósfera</div>
+  <div class="progress-timer-row">
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="timer-box" id="timerBox">00:00</div>
+  </div>
+  <div class="status-row">
+    <div class="counter correct"><strong>Correctos:</strong> <span id="correctCount">0</span></div>
+    <div class="counter incorrect"><strong>Incorrectos:</strong> <span id="incorrectCount">0</span></div>
+    <div class="screen-position" id="screenPosition">Pantalla 1 / 14</div>
+  </div>
+  <div class="trophies-row"><span class="trophy" id="trophy-1">🏆</span><span class="trophy" id="trophy-2">🏆</span><span class="trophy" id="trophy-3">🏆</span><span class="trophy" id="trophy-4">🏆</span><span class="trophy" id="trophy-5">🏆</span><span class="trophy" id="trophy-6">🏆</span><span class="trophy" id="trophy-7">🏆</span><span class="trophy" id="trophy-8">🏆</span><span class="trophy" id="trophy-9">🏆</span><span class="trophy" id="trophy-10">🏆</span></div>
+</div>
+<div id="app"><div class="screen active" id="screen-0">
+  <div class="screen-card text-screen">
+    <div class="screen-badge">Pantalla 1 de 14</div>
+    <h2>Texto teórico</h2>
+    <div class="text-block"><p>La Tierra funciona como un sistema. Esto significa que sus partes están relacionadas y que lo que ocurre en una puede influir en las otras. En esta actividad vamos a estudiar tres componentes importantes: la geósfera, la hidrósfera y la atmósfera.</p>
+<p>La geósfera es la parte sólida de la Tierra. Está formada por rocas, suelo, arena, montañas, cerros y las capas internas del planeta. En la geósfera pueden ocurrir fenómenos como los terremotos, la formación de montañas, las erupciones volcánicas y la erosión. La erosión sucede cuando el agua o el viento desgastan y trasladan materiales del suelo y de las rocas.</p>
+<p>La hidrósfera es el conjunto de todas las aguas de la Tierra. Incluye ríos, arroyos, lagos, océanos, glaciares, nieve, hielo y también el agua subterránea. El agua puede estar en estado líquido, sólido o gaseoso. Cuando el agua se calienta, parte de ella se evapora. Luego se forman nubes y más tarde puede volver a caer como lluvia, nieve o granizo.</p>
+<p>La atmósfera es la capa de aire que rodea la Tierra. Gracias a ella podemos respirar y el planeta mantiene una temperatura adecuada para la vida. En la atmósfera ocurren fenómenos como el viento, la formación de nubes, las tormentas y las precipitaciones. El aire en movimiento puede llevar polvo y también ayudar a modificar el relieve.</p>
+<p>Estos componentes no trabajan por separado. Por ejemplo, la lluvia que se forma en la atmósfera cae sobre la geósfera, moja el suelo y alimenta ríos y arroyos de la hidrósfera. A su vez, el agua de los ríos puede desgastar rocas y cambiar el paisaje. El viento de la atmósfera también puede mover arena o tierra de la geósfera.</p>
+<p>En Mendoza podemos ver estas relaciones con claridad. La Cordillera de los Andes forma parte de la geósfera. La nieve y el hielo de alta montaña integran la hidrósfera. El aire seco, las nubes, las tormentas y el viento Zonda pertenecen a la atmósfera. Cuando la nieve se derrite, alimenta ríos como el Río Mendoza, y esa agua es muy importante para la vida de las personas, las plantas y los animales.</p></div>
+<div class="nav-row"><span></span><button type="button" class="nav-btn" onclick="goToScreen(1)">Siguiente →</button></div>
+  </div>
+</div><div class="screen" id="screen-1">
+  <div class="screen-card text-screen">
+    <div class="screen-badge">Pantalla 2 de 14</div>
+    <h2>Texto base</h2>
+    <div class="legend-keyword">Palabras clave suavemente resaltadas</div>
+    <div class="text-block"><p>Un día de invierno, Sofía y Tomás viajaron con su escuela a una zona cercana a la <span class="keyword">Cordillera de los Andes</span>. Desde el micro observaron montañas altas, laderas de <span class="keyword">rocas</span> y sectores con <span class="keyword">suelo</span> seco. La maestra les explicó que todo eso forma parte de la <span class="keyword">geósfera</span>, es decir, de la parte sólida de la Tierra.</p>
+<p>Más arriba vieron <span class="keyword">nieve</span> acumulada y pequeños <span class="keyword">glaciares</span>. También escucharon que, cuando sube la temperatura, parte de esa <span class="keyword">nieve</span> se derrite y el agua baja hacia arroyos y ríos. Esa agua pertenece a la <span class="keyword">hidrósfera</span>. Los chicos recordaron que la <span class="keyword">hidrósfera</span> incluye el agua de ríos, lagos, hielo, <span class="keyword">nieve</span> y agua subterránea.</p>
+<p>Mientras caminaban, el cielo comenzó a llenarse de <span class="keyword">nubes</span> y el <span class="keyword">aire</span> cambió. La maestra señaló que el <span class="keyword">aire</span>, las <span class="keyword">nubes</span> y el viento forman parte de la <span class="keyword">atmósfera</span>. Poco después empezó una llovizna suave. El agua que cayó al <span class="keyword">suelo</span> humedeció el camino y se deslizó entre las piedras hasta un pequeño arroyo.</p>
+<p>Tomás notó que el agua corría con fuerza en una pendiente y arrastraba piedritas y tierra. Entonces la maestra explicó que allí se estaba produciendo <span class="keyword">erosión</span>, un fenómeno de la <span class="keyword">geósfera</span> que ocurre cuando el agua o el viento desgastan y trasladan materiales. Sofía agregó que, si llueve mucho, el paisaje puede cambiar lentamente con el paso del tiempo.</p>
+<p>Más tarde conversaron sobre otros fenómenos de la <span class="keyword">geósfera</span>. Recordaron que en Mendoza a veces se sienten <span class="keyword">terremotos</span>, que son movimientos de la corteza terrestre. También hablaron de los <span class="keyword">volcanes</span>, que expulsan materiales desde el interior de la Tierra. Aunque no todos los días vemos estos fenómenos, forman parte de la dinámica del planeta.</p>
+<p>Al final de la salida, los estudiantes escribieron una conclusión: la Tierra es un sistema porque la <span class="keyword">geósfera</span>, la <span class="keyword">hidrósfera</span> y la <span class="keyword">atmósfera</span> están conectadas. La <span class="keyword">nieve</span> de la montaña se derrite, el agua alimenta ríos, el <span class="keyword">aire</span> transporta <span class="keyword">nubes</span>, la <span class="keyword">lluvia</span> cae sobre el <span class="keyword">suelo</span> y el agua puede desgastar <span class="keyword">rocas</span>. Todo está relacionado.</p></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(0)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(2)">Siguiente →</button></div>
+  </div>
+</div><div class="screen" id="screen-2">
+<div class="screen-card question-screen">
+<div class="screen-badge">Pantalla 3 de 14</div>
+<div class="question-header"><span class="question-number">Pregunta 1</span><span class="question-type">Selección única</span></div>
+<h2>¿Cuál de estas opciones nombra correctamente a la parte sólida de la Tierra, donde se encuentran las rocas, el suelo y las montañas?</h2>
+<!-- CORRECTA: 3 -->
+<div class="question-body">
+<div class="options-list">
+<label class="option-card"><input type="radio" name="q1" value="1"> <span>La atmósfera</span></label>
+<label class="option-card"><input type="radio" name="q1" value="2"> <span>La hidrósfera</span></label>
+<label class="option-card"><input type="radio" name="q1" value="3"> <span>La geósfera</span></label>
+<label class="option-card"><input type="radio" name="q1" value="4"> <span>La biosfera</span></label>
+<label class="option-card"><input type="radio" name="q1" value="5"> <span>La órbita</span></label>
+</div>
+</div>
+<div class="feedback" id="feedback-q1"></div>
+<div class="actions"><button type="button" class="verify-btn" id="verify-q1" onclick="verifyQuestion(1)">Verificar</button></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(1)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(3)">Siguiente →</button></div>
+</div></div><div class="screen" id="screen-3">
+<div class="screen-card question-screen">
+<div class="screen-badge">Pantalla 4 de 14</div>
+<div class="question-header"><span class="question-number">Pregunta 2</span><span class="question-type">Selección múltiple</span></div>
+<h2>Marca todas las opciones que pertenecen a la hidrósfera según los textos.</h2>
+<!-- CORRECTA: 1,2,3,5 -->
+<div class="question-body">
+<div class="options-list">
+<label class="option-card"><input type="checkbox" name="q2" value="1"> <span>Ríos</span></label>
+<label class="option-card"><input type="checkbox" name="q2" value="2"> <span>Glaciares</span></label>
+<label class="option-card"><input type="checkbox" name="q2" value="3"> <span>Nieve</span></label>
+<label class="option-card"><input type="checkbox" name="q2" value="4"> <span>Montañas</span></label>
+<label class="option-card"><input type="checkbox" name="q2" value="5"> <span>Agua subterránea</span></label>
+<label class="option-card"><input type="checkbox" name="q2" value="6"> <span>Suelo seco</span></label>
+</div>
+</div>
+<div class="feedback" id="feedback-q2"></div>
+<div class="actions"><button type="button" class="verify-btn" id="verify-q2" onclick="verifyQuestion(2)">Verificar</button></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(2)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(4)">Siguiente →</button></div>
+</div></div><div class="screen" id="screen-4">
+<div class="screen-card question-screen">
+<div class="screen-badge">Pantalla 5 de 14</div>
+<div class="question-header"><span class="question-number">Pregunta 3</span><span class="question-type">Completar texto</span></div>
+<h2>Completa el siguiente texto usando las palabras correctas del banco: &#x27;La ______ está formada por el aire. La ______ reúne las aguas. La ______ incluye rocas y suelo.&#x27;</h2>
+<!-- CORRECTA: atmosfera-hidrosfera-geosfera -->
+<div class="question-body">
+<div class="word-bank"><strong>Banco de palabras:</strong>
+<span class="word-chip">atmósfera</span>
+<span class="word-chip">hidrósfera</span>
+<span class="word-chip">geósfera</span>
+<span class="word-chip">biosfera</span>
+<span class="word-chip">galaxia</span>
+</div>
+<div class="fill-lines">
+<div class="fill-line">La <select class="inline-select" id="q3_blank_0"><option value="">Seleccionar</option><option value="atmósfera">atmósfera</option><option value="hidrósfera">hidrósfera</option><option value="geósfera">geósfera</option><option value="biosfera">biosfera</option><option value="galaxia">galaxia</option></select> está formada por el aire.</div>
+<div class="fill-line">La <select class="inline-select" id="q3_blank_1"><option value="">Seleccionar</option><option value="atmósfera">atmósfera</option><option value="hidrósfera">hidrósfera</option><option value="geósfera">geósfera</option><option value="biosfera">biosfera</option><option value="galaxia">galaxia</option></select> reúne las aguas.</div>
+<div class="fill-line">La <select class="inline-select" id="q3_blank_2"><option value="">Seleccionar</option><option value="atmósfera">atmósfera</option><option value="hidrósfera">hidrósfera</option><option value="geósfera">geósfera</option><option value="biosfera">biosfera</option><option value="galaxia">galaxia</option></select> incluye rocas y suelo.</div>
+</div>
+</div>
+<div class="feedback" id="feedback-q3"></div>
+<div class="actions"><button type="button" class="verify-btn" id="verify-q3" onclick="verifyQuestion(3)">Verificar</button></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(3)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(5)">Siguiente →</button></div>
+</div></div><div class="screen" id="screen-5">
+<div class="screen-card question-screen">
+<div class="screen-badge">Pantalla 6 de 14</div>
+<div class="question-header"><span class="question-number">Pregunta 4</span><span class="question-type">Ordenar cronológicamente</span></div>
+<h2>Ordena esta secuencia para mostrar cómo se relacionan atmósfera, hidrósfera y geósfera.</h2>
+<!-- CORRECTA: 1-2-3-4-5 -->
+<div class="question-body">
+<div class="order-help">Observa los pasos desordenados y selecciona cuál corresponde en cada posición.</div>
+<div class="order-grid">
+<div class="order-row"><span class="order-pos">1.</span><select id="q4_order_0"><option value="">Seleccionar</option><option value="4">El suelo se humedece.</option><option value="2">Se forman nubes.</option><option value="5">El agua corre hacia arroyos y ríos.</option><option value="1">El agua se evapora.</option><option value="3">Cae la lluvia.</option></select></div>
+<div class="order-row"><span class="order-pos">2.</span><select id="q4_order_1"><option value="">Seleccionar</option><option value="4">El suelo se humedece.</option><option value="2">Se forman nubes.</option><option value="5">El agua corre hacia arroyos y ríos.</option><option value="1">El agua se evapora.</option><option value="3">Cae la lluvia.</option></select></div>
+<div class="order-row"><span class="order-pos">3.</span><select id="q4_order_2"><option value="">Seleccionar</option><option value="4">El suelo se humedece.</option><option value="2">Se forman nubes.</option><option value="5">El agua corre hacia arroyos y ríos.</option><option value="1">El agua se evapora.</option><option value="3">Cae la lluvia.</option></select></div>
+<div class="order-row"><span class="order-pos">4.</span><select id="q4_order_3"><option value="">Seleccionar</option><option value="4">El suelo se humedece.</option><option value="2">Se forman nubes.</option><option value="5">El agua corre hacia arroyos y ríos.</option><option value="1">El agua se evapora.</option><option value="3">Cae la lluvia.</option></select></div>
+<div class="order-row"><span class="order-pos">5.</span><select id="q4_order_4"><option value="">Seleccionar</option><option value="4">El suelo se humedece.</option><option value="2">Se forman nubes.</option><option value="5">El agua corre hacia arroyos y ríos.</option><option value="1">El agua se evapora.</option><option value="3">Cae la lluvia.</option></select></div>
+</div>
+<div class="sequence-bank">
+<div class="sequence-item">Se forman nubes.</div>
+<div class="sequence-item">El agua corre hacia arroyos y ríos.</div>
+<div class="sequence-item">El suelo se humedece.</div>
+<div class="sequence-item">Cae la lluvia.</div>
+<div class="sequence-item">El agua se evapora.</div>
+</div>
+</div>
+<div class="feedback" id="feedback-q4"></div>
+<div class="actions"><button type="button" class="verify-btn" id="verify-q4" onclick="verifyQuestion(4)">Verificar</button></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(4)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(6)">Siguiente →</button></div>
+</div></div><div class="screen" id="screen-6">
+<div class="screen-card question-screen">
+<div class="screen-badge">Pantalla 7 de 14</div>
+<div class="question-header"><span class="question-number">Pregunta 5</span><span class="question-type">Emparejar conceptos</span></div>
+<h2>Empareja cada concepto con su definición correcta.</h2>
+<!-- CORRECTA: geosfera-def1, hidrosfera-def2, atmosfera-def3, erosion-def4, terremoto-def5 -->
+<div class="question-body">
+<div class="match-grid">
+<div class="match-row"><div class="match-left">Geósfera</div><div class="match-right"><select id="q5_match_0"><option value="">Seleccionar definición</option><option value="Desgaste y traslado de materiales por el agua o el viento.">Desgaste y traslado de materiales por el agua o el viento.</option><option value="Conjunto de todas las aguas del planeta.">Conjunto de todas las aguas del planeta.</option><option value="Capa de aire que rodea la Tierra.">Capa de aire que rodea la Tierra.</option><option value="Movimiento de la corteza terrestre.">Movimiento de la corteza terrestre.</option><option value="Parte sólida de la Tierra con rocas, suelo y montañas.">Parte sólida de la Tierra con rocas, suelo y montañas.</option></select></div></div>
+<div class="match-row"><div class="match-left">Hidrósfera</div><div class="match-right"><select id="q5_match_1"><option value="">Seleccionar definición</option><option value="Desgaste y traslado de materiales por el agua o el viento.">Desgaste y traslado de materiales por el agua o el viento.</option><option value="Conjunto de todas las aguas del planeta.">Conjunto de todas las aguas del planeta.</option><option value="Capa de aire que rodea la Tierra.">Capa de aire que rodea la Tierra.</option><option value="Movimiento de la corteza terrestre.">Movimiento de la corteza terrestre.</option><option value="Parte sólida de la Tierra con rocas, suelo y montañas.">Parte sólida de la Tierra con rocas, suelo y montañas.</option></select></div></div>
+<div class="match-row"><div class="match-left">Atmósfera</div><div class="match-right"><select id="q5_match_2"><option value="">Seleccionar definición</option><option value="Desgaste y traslado de materiales por el agua o el viento.">Desgaste y traslado de materiales por el agua o el viento.</option><option value="Conjunto de todas las aguas del planeta.">Conjunto de todas las aguas del planeta.</option><option value="Capa de aire que rodea la Tierra.">Capa de aire que rodea la Tierra.</option><option value="Movimiento de la corteza terrestre.">Movimiento de la corteza terrestre.</option><option value="Parte sólida de la Tierra con rocas, suelo y montañas.">Parte sólida de la Tierra con rocas, suelo y montañas.</option></select></div></div>
+<div class="match-row"><div class="match-left">Erosión</div><div class="match-right"><select id="q5_match_3"><option value="">Seleccionar definición</option><option value="Desgaste y traslado de materiales por el agua o el viento.">Desgaste y traslado de materiales por el agua o el viento.</option><option value="Conjunto de todas las aguas del planeta.">Conjunto de todas las aguas del planeta.</option><option value="Capa de aire que rodea la Tierra.">Capa de aire que rodea la Tierra.</option><option value="Movimiento de la corteza terrestre.">Movimiento de la corteza terrestre.</option><option value="Parte sólida de la Tierra con rocas, suelo y montañas.">Parte sólida de la Tierra con rocas, suelo y montañas.</option></select></div></div>
+<div class="match-row"><div class="match-left">Terremoto</div><div class="match-right"><select id="q5_match_4"><option value="">Seleccionar definición</option><option value="Desgaste y traslado de materiales por el agua o el viento.">Desgaste y traslado de materiales por el agua o el viento.</option><option value="Conjunto de todas las aguas del planeta.">Conjunto de todas las aguas del planeta.</option><option value="Capa de aire que rodea la Tierra.">Capa de aire que rodea la Tierra.</option><option value="Movimiento de la corteza terrestre.">Movimiento de la corteza terrestre.</option><option value="Parte sólida de la Tierra con rocas, suelo y montañas.">Parte sólida de la Tierra con rocas, suelo y montañas.</option></select></div></div>
+</div>
+</div>
+<div class="feedback" id="feedback-q5"></div>
+<div class="actions"><button type="button" class="verify-btn" id="verify-q5" onclick="verifyQuestion(5)">Verificar</button></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(5)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(7)">Siguiente →</button></div>
+</div></div><div class="screen" id="screen-7">
+<div class="screen-card question-screen">
+<div class="screen-badge">Pantalla 8 de 14</div>
+<div class="question-header"><span class="question-number">Pregunta 6</span><span class="question-type">Relacionar columnas</span></div>
+<h2>Relaciona cada ejemplo con el componente de la Tierra al que pertenece.</h2>
+<!-- CORRECTA: 1-Geosfera, 2-Hidrosfera, 3-Atmosfera, 4-Hidrosfera, 5-Atmosfera -->
+<div class="question-body">
+<div class="match-grid">
+<div class="match-row"><div class="match-left">Cordillera de los Andes</div><div class="match-right"><select id="q6_rel_0"><option value="">Seleccionar</option><option value="Geósfera">Geósfera</option><option value="Hidrósfera">Hidrósfera</option><option value="Atmósfera">Atmósfera</option></select></div></div>
+<div class="match-row"><div class="match-left">Río Mendoza</div><div class="match-right"><select id="q6_rel_1"><option value="">Seleccionar</option><option value="Geósfera">Geósfera</option><option value="Hidrósfera">Hidrósfera</option><option value="Atmósfera">Atmósfera</option></select></div></div>
+<div class="match-row"><div class="match-left">Nubes</div><div class="match-right"><select id="q6_rel_2"><option value="">Seleccionar</option><option value="Geósfera">Geósfera</option><option value="Hidrósfera">Hidrósfera</option><option value="Atmósfera">Atmósfera</option></select></div></div>
+<div class="match-row"><div class="match-left">Glaciares</div><div class="match-right"><select id="q6_rel_3"><option value="">Seleccionar</option><option value="Geósfera">Geósfera</option><option value="Hidrósfera">Hidrósfera</option><option value="Atmósfera">Atmósfera</option></select></div></div>
+<div class="match-row"><div class="match-left">Viento Zonda</div><div class="match-right"><select id="q6_rel_4"><option value="">Seleccionar</option><option value="Geósfera">Geósfera</option><option value="Hidrósfera">Hidrósfera</option><option value="Atmósfera">Atmósfera</option></select></div></div>
+</div>
+</div>
+<div class="feedback" id="feedback-q6"></div>
+<div class="actions"><button type="button" class="verify-btn" id="verify-q6" onclick="verifyQuestion(6)">Verificar</button></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(6)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(8)">Siguiente →</button></div>
+</div></div><div class="screen" id="screen-8">
+<div class="screen-card question-screen">
+<div class="screen-badge">Pantalla 9 de 14</div>
+<div class="question-header"><span class="question-number">Pregunta 7</span><span class="question-type">Arrastrar y soltar</span></div>
+<h2>Arrastra cada tarjeta al componente correcto: geósfera, hidrósfera o atmósfera.</h2>
+<!-- CORRECTA: Montana-Geosfera, Arroyo-Hidrosfera, Aire-Atmosfera, Suelo-Geosfera, Lluvia-Hidrosfera -->
+<div class="question-body">
+<div class="drag-help">Arrastra cada tarjeta hasta la zona que corresponda. También puedes volver a arrastrarla si cambias de idea antes de verificar.</div>
+<div class="drag-layout">
+<div class="drag-bank dropzone" data-zone="Banco"><h3>Tarjetas</h3>
+<div class="drag-card" draggable="true" data-item="Montaña" id="drag_q7_1">Montaña</div>
+<div class="drag-card" draggable="true" data-item="Arroyo" id="drag_q7_2">Arroyo</div>
+<div class="drag-card" draggable="true" data-item="Aire" id="drag_q7_3">Aire</div>
+<div class="drag-card" draggable="true" data-item="Suelo" id="drag_q7_4">Suelo</div>
+<div class="drag-card" draggable="true" data-item="Lluvia" id="drag_q7_5">Lluvia</div>
+</div>
+<div class="dropzones-wrap">
+<div class="dropzone" data-zone="Geósfera"><h3>Geósfera</h3></div>
+<div class="dropzone" data-zone="Hidrósfera"><h3>Hidrósfera</h3></div>
+<div class="dropzone" data-zone="Atmósfera"><h3>Atmósfera</h3></div>
+</div></div>
+</div>
+<div class="feedback" id="feedback-q7"></div>
+<div class="actions"><button type="button" class="verify-btn" id="verify-q7" onclick="verifyQuestion(7)">Verificar</button></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(7)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(9)">Siguiente →</button></div>
+</div></div><div class="screen" id="screen-9">
+<div class="screen-card question-screen">
+<div class="screen-badge">Pantalla 10 de 14</div>
+<div class="question-header"><span class="question-number">Pregunta 8</span><span class="question-type">Selección única</span></div>
+<h2>¿Qué opción explica mejor una relación entre geósfera, hidrósfera y atmósfera?</h2>
+<!-- CORRECTA: 2 -->
+<div class="question-body">
+<div class="options-list">
+<label class="option-card"><input type="radio" name="q8" value="1"> <span>La geósfera produce aire y la atmósfera forma montañas.</span></label>
+<label class="option-card"><input type="radio" name="q8" value="2"> <span>La lluvia de la atmósfera cae sobre la geósfera y alimenta la hidrósfera.</span></label>
+<label class="option-card"><input type="radio" name="q8" value="3"> <span>Los ríos de la hidrósfera fabrican nubes sin ayuda del aire.</span></label>
+<label class="option-card"><input type="radio" name="q8" value="4"> <span>La atmósfera solo se relaciona con el espacio y no con la Tierra.</span></label>
+<label class="option-card"><input type="radio" name="q8" value="5"> <span>La geósfera y la hidrósfera nunca cambian por acción del viento.</span></label>
+</div>
+</div>
+<div class="feedback" id="feedback-q8"></div>
+<div class="actions"><button type="button" class="verify-btn" id="verify-q8" onclick="verifyQuestion(8)">Verificar</button></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(8)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(10)">Siguiente →</button></div>
+</div></div><div class="screen" id="screen-10">
+<div class="screen-card question-screen">
+<div class="screen-badge">Pantalla 11 de 14</div>
+<div class="question-header"><span class="question-number">Pregunta 9</span><span class="question-type">Completar múltiples espacios</span></div>
+<h2>Completa la conclusión con palabras del banco.</h2>
+<!-- CORRECTA: geosfera-hidrosfera-atmosfera-suelo-erosion -->
+<div class="question-body">
+<div class="word-bank"><strong>Banco de palabras:</strong>
+<span class="word-chip">geósfera</span>
+<span class="word-chip">hidrósfera</span>
+<span class="word-chip">atmósfera</span>
+<span class="word-chip">erosión</span>
+<span class="word-chip">suelo</span>
+<span class="word-chip">satélite</span>
+</div>
+<div class="multi-fill">La Tierra es un sistema porque la <select class="inline-select wide" id="q9_multi_0"><option value="">Seleccionar</option><option value="geósfera">geósfera</option><option value="hidrósfera">hidrósfera</option><option value="atmósfera">atmósfera</option><option value="erosión">erosión</option><option value="suelo">suelo</option><option value="satélite">satélite</option></select>, la <select class="inline-select wide" id="q9_multi_1"><option value="">Seleccionar</option><option value="geósfera">geósfera</option><option value="hidrósfera">hidrósfera</option><option value="atmósfera">atmósfera</option><option value="erosión">erosión</option><option value="suelo">suelo</option><option value="satélite">satélite</option></select> y la <select class="inline-select wide" id="q9_multi_2"><option value="">Seleccionar</option><option value="geósfera">geósfera</option><option value="hidrósfera">hidrósfera</option><option value="atmósfera">atmósfera</option><option value="erosión">erosión</option><option value="suelo">suelo</option><option value="satélite">satélite</option></select> están conectadas. La lluvia cae sobre el <select class="inline-select wide" id="q9_multi_3"><option value="">Seleccionar</option><option value="geósfera">geósfera</option><option value="hidrósfera">hidrósfera</option><option value="atmósfera">atmósfera</option><option value="erosión">erosión</option><option value="suelo">suelo</option><option value="satélite">satélite</option></select> y puede producir <select class="inline-select wide" id="q9_multi_4"><option value="">Seleccionar</option><option value="geósfera">geósfera</option><option value="hidrósfera">hidrósfera</option><option value="atmósfera">atmósfera</option><option value="erosión">erosión</option><option value="suelo">suelo</option><option value="satélite">satélite</option></select>.</div>
+</div>
+<div class="feedback" id="feedback-q9"></div>
+<div class="actions"><button type="button" class="verify-btn" id="verify-q9" onclick="verifyQuestion(9)">Verificar</button></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(9)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(11)">Siguiente →</button></div>
+</div></div><div class="screen" id="screen-11">
+<div class="screen-card question-screen">
+<div class="screen-badge">Pantalla 12 de 14</div>
+<div class="question-header"><span class="question-number">Pregunta 10</span><span class="question-type">Selección múltiple</span></div>
+<h2>Selecciona los fenómenos que, según los textos, pertenecen a la geósfera.</h2>
+<!-- CORRECTA: 1,2,3,4 -->
+<div class="question-body">
+<div class="options-list">
+<label class="option-card"><input type="checkbox" name="q10" value="1"> <span>Terremotos</span></label>
+<label class="option-card"><input type="checkbox" name="q10" value="2"> <span>Volcanes</span></label>
+<label class="option-card"><input type="checkbox" name="q10" value="3"> <span>Erosión</span></label>
+<label class="option-card"><input type="checkbox" name="q10" value="4"> <span>Formación de montañas</span></label>
+<label class="option-card"><input type="checkbox" name="q10" value="5"> <span>Formación de nubes</span></label>
+<label class="option-card"><input type="checkbox" name="q10" value="6"> <span>Viento</span></label>
+</div>
+</div>
+<div class="feedback" id="feedback-q10"></div>
+<div class="actions"><button type="button" class="verify-btn" id="verify-q10" onclick="verifyQuestion(10)">Verificar</button></div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(10)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(12)">Siguiente →</button></div>
+</div></div><div class="screen" id="screen-12">
+  <div class="screen-card summary-screen">
+    <div class="screen-badge">Pantalla 13 de 14</div>
+    <h2>Resumen final</h2>
+    <div class="summary-grid">
+      <div class="summary-box correct-box"><div class="summary-label">Correctas</div><div class="summary-value" id="summary-correct">0</div></div>
+      <div class="summary-box incorrect-box"><div class="summary-label">Incorrectas</div><div class="summary-value" id="summary-incorrect">0</div></div>
+      <div class="summary-box"><div class="summary-label">% de aciertos</div><div class="summary-value" id="summary-correct-pct">0%</div></div>
+      <div class="summary-box"><div class="summary-label">% de errores</div><div class="summary-value" id="summary-incorrect-pct">0%</div></div>
+    </div>
+    <div class="summary-note">Recuerda: puedes volver a las pantallas anteriores para releer los textos.</div>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(11)">← Anterior</button><button type="button" class="nav-btn" onclick="goToScreen(13)">Siguiente →</button></div>
+  </div>
+</div><div class="screen" id="screen-13">
+  <div class="screen-card skills-screen">
+    <div class="screen-badge">Pantalla 14 de 14</div>
+    <h2>Habilidades trabajadas</h2>
+    <ul class="skills-list"><li>Reconocimiento de la Tierra como un sistema dinámico con componentes relacionados.</li><li>Identificación y clasificación de elementos de la geósfera, la hidrósfera y la atmósfera.</li><li>Comprensión de relaciones de interdependencia entre ambiente, transformaciones y cambios.</li><li>Comunicación de aprendizajes con vocabulario específico del área.</li><li>Organización de información en relaciones, secuencias y clasificaciones simples.</li><li>Lectura comprensiva de textos expositivos adecuados al ciclo.</li><li>Resolución de problemas a partir de información presente en el texto.</li><li>Compromiso y responsabilidad en el cuidado del ambiente.</li></ul>
+<div class="nav-row"><button type="button" class="nav-btn secondary" onclick="goToScreen(12)">← Anterior</button><span></span></div>
+  </div>
+</div></div>
+<script>
+var activityData = {"title": "La Tierra como sistema: geósfera, hidrósfera y atmósfera", "totalScreens": 14, "questionCount": 10, "questions": [{"id": 1, "type": "Selección única", "correct": 3}, {"id": 2, "type": "Selección múltiple", "correct": [1, 2, 3, 5]}, {"id": 3, "type": "Completar texto", "correct": ["atmósfera", "hidrósfera", "geósfera"]}, {"id": 4, "type": "Ordenar cronológicamente", "correct": [1, 2, 3, 4, 5], "count": 5}, {"id": 5, "type": "Emparejar conceptos", "correct": {"Geósfera": "Parte sólida de la Tierra con rocas, suelo y montañas.", "Hidrósfera": "Conjunto de todas las aguas del planeta.", "Atmósfera": "Capa de aire que rodea la Tierra.", "Erosión": "Desgaste y traslado de materiales por el agua o el viento.", "Terremoto": "Movimiento de la corteza terrestre."}, "pairs": ["Geósfera", "Hidrósfera", "Atmósfera", "Erosión", "Terremoto"]}, {"id": 6, "type": "Relacionar columnas", "correct": {"Cordillera de los Andes": "Geósfera", "Río Mendoza": "Hidrósfera", "Nubes": "Atmósfera", "Glaciares": "Hidrósfera", "Viento Zonda": "Atmósfera"}, "items": ["Cordillera de los Andes", "Río Mendoza", "Nubes", "Glaciares", "Viento Zonda"]}, {"id": 7, "type": "Arrastrar y soltar", "correct": {"Montaña": "Geósfera", "Arroyo": "Hidrósfera", "Aire": "Atmósfera", "Suelo": "Geósfera", "Lluvia": "Hidrósfera"}}, {"id": 8, "type": "Selección única", "correct": 2}, {"id": 9, "type": "Completar múltiples espacios", "correct": ["geósfera", "hidrósfera", "atmósfera", "suelo", "erosión"]}, {"id": 10, "type": "Selección múltiple", "correct": [1, 2, 3, 4]}]};
+var currentScreen = 0;
+var correctCount = 0;
+var incorrectCount = 0;
+var secondsElapsed = 0;
+var answerState = {};
+function byId(id) { return document.getElementById(id); }
+function hasClass(el, cls) { return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1; }
+function addClass(el, cls) { if (!hasClass(el, cls)) { el.className += (el.className ? ' ' : '') + cls; } }
+function removeClass(el, cls) { el.className = (' ' + el.className + ' ').replace(' ' + cls + ' ', ' '); el.className = el.className.replace(/^\s+|\s+$/g, ''); }
+function formatTime(totalSeconds) {
+  var m = Math.floor(totalSeconds / 60);
+  var s = totalSeconds % 60;
+  return (m < 10 ? '0' + m : '' + m) + ':' + (s < 10 ? '0' + s : '' + s);
+}
+function startTimer() {
+  setInterval(function() {
+    secondsElapsed += 1;
+    byId('timerBox').innerHTML = formatTime(secondsElapsed);
+  }, 1000);
+}
+function updateTopBar() {
+  var pct = ((currentScreen + 1) / activityData.totalScreens) * 100;
+  byId('progressBar').style.width = pct + '%';
+  byId('screenPosition').innerHTML = 'Pantalla ' + (currentScreen + 1) + ' / ' + activityData.totalScreens;
+  byId('correctCount').innerHTML = correctCount;
+  byId('incorrectCount').innerHTML = incorrectCount;
+}
+function updateSummary() {
+  var total = activityData.questionCount;
+  var correctPct = Math.round((correctCount / total) * 100);
+  var incorrectPct = Math.round((incorrectCount / total) * 100);
+  byId('summary-correct').innerHTML = correctCount;
+  byId('summary-incorrect').innerHTML = incorrectCount;
+  byId('summary-correct-pct').innerHTML = correctPct + '%';
+  byId('summary-incorrect-pct').innerHTML = incorrectPct + '%';
+}
+function goToScreen(index) {
+  if (index < 0 || index >= activityData.totalScreens) { return; }
+  var i, screens = document.getElementsByClassName('screen');
+  for (i = 0; i < screens.length; i++) { removeClass(screens[i], 'active'); }
+  addClass(byId('screen-' + index), 'active');
+  currentScreen = index;
+  updateTopBar();
+  if (index === 12) { updateSummary(); }
+  window.scrollTo(0, 0);
+}
+function setFeedback(qid, ok, text) {
+  var fb = byId('feedback-q' + qid);
+  fb.className = 'feedback ' + (ok ? 'ok' : 'bad');
+  fb.innerHTML = text;
+}
+function lockQuestion(qid) {
+  var btn = byId('verify-q' + qid);
+  if (btn) { btn.disabled = true; }
+}
+function markTrophy(qid, ok) {
+  if (ok) { addClass(byId('trophy-' + qid), 'on'); }
+}
+function arraysEqualNumbers(a, b) {
+  if (a.length !== b.length) { return false; }
+  var i;
+  for (i = 0; i < a.length; i++) { if (parseInt(a[i], 10) !== parseInt(b[i], 10)) { return false; } }
+  return true;
+}
+function arraysEqualStrings(a, b) {
+  if (a.length !== b.length) { return false; }
+  var i;
+  for (i = 0; i < a.length; i++) { if (String(a[i]) !== String(b[i])) { return false; } }
+  return true;
+}
+function sortedCopy(arr) {
+  var c = arr.slice(0);
+  c.sort(function(x, y) { return parseInt(x, 10) - parseInt(y, 10); });
+  return c;
+}
+function getQuestionData(qid) {
+  var i;
+  for (i = 0; i < activityData.questions.length; i++) {
+    if (activityData.questions[i].id === qid) { return activityData.questions[i]; }
+  }
+  return null;
+}
+function registerResult(qid, ok) {
+  answerState[qid] = ok ? 'correct' : 'incorrect';
+  if (ok) { correctCount += 1; } else { incorrectCount += 1; }
+  markTrophy(qid, ok);
+  updateTopBar();
+  updateSummary();
+}
+function verifyQuestion(qid) {
+  if (answerState[qid]) { return; }
+  var q = getQuestionData(qid);
+  if (!q) { return; }
+  var ok = false;
+  var i, nodeList, arr, value, cards, parentZone;
+  if (q.type === 'Selección única') {
+    nodeList = document.getElementsByName('q' + qid);
+    value = null;
+    for (i = 0; i < nodeList.length; i++) { if (nodeList[i].checked) { value = parseInt(nodeList[i].value, 10); } }
+    ok = value === q.correct;
+  }
+  else if (q.type === 'Selección múltiple') {
+    nodeList = document.getElementsByName('q' + qid);
+    arr = [];
+    for (i = 0; i < nodeList.length; i++) { if (nodeList[i].checked) { arr.push(parseInt(nodeList[i].value, 10)); } }
+    ok = arraysEqualNumbers(sortedCopy(arr), sortedCopy(q.correct));
+  }
+  else if (q.type === 'Completar texto') {
+    arr = [];
+    for (i = 0; i < q.correct.length; i++) { arr.push(byId('q' + qid + '_blank_' + i).value); }
+    ok = arraysEqualStrings(arr, q.correct);
+  }
+  else if (q.type === 'Ordenar cronológicamente') {
+    arr = [];
+    for (i = 0; i < q.count; i++) { arr.push(byId('q' + qid + '_order_' + i).value); }
+    ok = arraysEqualNumbers(arr, q.correct);
+  }
+  else if (q.type === 'Emparejar conceptos') {
+    ok = true;
+    for (i = 0; i < q.pairs.length; i++) {
+      if (byId('q' + qid + '_match_' + i).value !== q.correct[q.pairs[i]]) { ok = false; }
+    }
+  }
+  else if (q.type === 'Relacionar columnas') {
+    ok = true;
+    for (i = 0; i < q.items.length; i++) {
+      if (byId('q' + qid + '_rel_' + i).value !== q.correct[q.items[i]]) { ok = false; }
+    }
+  }
+  else if (q.type === 'Arrastrar y soltar') {
+    ok = true;
+    var screen = byId('screen-' + (qid + 1));
+    cards = screen.getElementsByClassName('drag-card');
+    for (i = 0; i < cards.length; i++) {
+      parentZone = cards[i].parentNode.getAttribute('data-zone');
+      if (q.correct[cards[i].getAttribute('data-item')] !== parentZone) { ok = false; }
+    }
+  }
+  else if (q.type === 'Completar múltiples espacios') {
+    arr = [];
+    for (i = 0; i < q.correct.length; i++) { arr.push(byId('q' + qid + '_multi_' + i).value); }
+    ok = arraysEqualStrings(arr, q.correct);
+  }
+  if (ok) {
+    setFeedback(qid, true, '¡Correcto!');
+  } else {
+    setFeedback(qid, false, 'Incorrecto, lee el texto');
+  }
+  lockQuestion(qid);
+  registerResult(qid, ok);
+}
+function initDragAndDrop() {
+  var cards = document.getElementsByClassName('drag-card');
+  var zones = document.getElementsByClassName('dropzone');
+  var i;
+  for (i = 0; i < cards.length; i++) {
+    cards[i].ondragstart = function(ev) { ev.dataTransfer.setData('text', this.id); };
+  }
+  for (i = 0; i < zones.length; i++) {
+    zones[i].ondragover = function(ev) { ev.preventDefault(); };
+    zones[i].ondrop = function(ev) {
+      ev.preventDefault();
+      var id = ev.dataTransfer.getData('text');
+      var card = byId(id);
+      if (card) { this.appendChild(card); }
+    };
+  }
+}
+window.onload = function() {
+  startTimer();
+  initDragAndDrop();
+  updateTopBar();
+  updateSummary();
+};
+</script>
+</body>
+</html>

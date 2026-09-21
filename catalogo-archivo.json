@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-16T01:31:32.424Z",
+  "actualizadaEn": "2026-09-21T12:18:06.983Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -431,6 +431,20 @@
       "habilitada": true,
       "creadaEn": "2026-09-16T01:04:42.312Z",
       "actualizadaEn": "2026-09-16T01:04:42.312Z"
+    },
+    {
+      "id": "mub7o0lb-ccac80",
+      "solicitudSubida": "dc4771cf8f2dec4d5da044686d5655aa0b8a0d0c4ea09903d4d225d1a50bb25c",
+      "titulo": "Ciencias Naturaleza Tierra Como Sistema Subsistema Terrestre 4",
+      "area": "General",
+      "grado": "4",
+      "tipo": "",
+      "archivoOriginal": "Ciencias-Naturaleza-Tierra-Como-Sistema-Subsistema -Terrestre-4.html",
+      "archivoRepositorio": "mub7o0lb-ccac80-Ciencias-Naturaleza-Tierra-Como-Sistema-Subsistema-Terrestre-4.html",
+      "archivoPublico": "mub7o0lb-ccac80-Ciencias-Naturaleza-Tierra-Como-Sistema-Subsistema-Terrestre-4.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-21T12:18:05.951Z",
+      "actualizadaEn": "2026-09-21T12:18:05.951Z"
     }
   ]
 }

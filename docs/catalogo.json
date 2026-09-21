@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-09-16T01:31:32.424Z",
+  "actualizadaEn": "2026-09-21T12:18:06.983Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -190,6 +190,15 @@
       "tipo": "",
       "archivo": "mu3eerm0-ad42b3-C-Sociales-Historia-Sarmiento-Analisis-De-Clases-De-Palabras-Oracion-Bimembre-Parrafo-Y-Puntuacion-4.html",
       "actualizadaEn": "2026-09-16T01:04:42.312Z"
+    },
+    {
+      "id": "mub7o0lb-ccac80",
+      "titulo": "Ciencias Naturaleza Tierra Como Sistema Subsistema Terrestre 4",
+      "area": "General",
+      "grado": "4",
+      "tipo": "",
+      "archivo": "mub7o0lb-ccac80-Ciencias-Naturaleza-Tierra-Como-Sistema-Subsistema-Terrestre-4.html",
+      "actualizadaEn": "2026-09-21T12:18:05.951Z"
     }
   ]
 }
