@@ -1,0 +1,3689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tras las huellas del pastorcito - 2.º grado</title>
+  <style>
+    :root {
+      --azul: #1d4ed8;
+      --azul-oscuro: #17346f;
+      --celeste: #dbeafe;
+      --verde: #15803d;
+      --verde-claro: #dcfce7;
+      --amarillo: #facc15;
+      --naranja: #f97316;
+      --rojo: #b91c1c;
+      --rojo-claro: #fee2e2;
+      --tinta: #172033;
+      --gris: #64748b;
+      --fondo: #f5f7fb;
+      --blanco: #ffffff;
+      --borde: #dbe3ef;
+      --sombra: 0 10px 30px rgba(23, 52, 111, .12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--tinta);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(219,234,254,.9), transparent 28%),
+        radial-gradient(circle at 90% 90%, rgba(220,252,231,.8), transparent 28%),
+        var(--fondo);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
+    [tabindex="0"]:focus-visible { outline: 4px solid rgba(29,78,216,.25); outline-offset: 3px; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--borde);
+      backdrop-filter: blur(8px);
+    }
+    .topbar-inner {
+      max-width: 1080px;
+      margin: auto;
+      padding: 10px 20px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+    .brand { font-weight: 800; color: var(--azul-oscuro); white-space: nowrap; }
+    .progress-wrap { min-width: 120px; }
+    .progress-info { display: flex; justify-content: space-between; font-size: 13px; color: var(--gris); margin-bottom: 4px; }
+    .progress-track { height: 10px; background: #e8edf5; border-radius: 999px; overflow: hidden; }
+    .progress-bar { width: 0; height: 100%; background: linear-gradient(90deg, var(--azul), #38bdf8); transition: width .35s ease; }
+    .timer { padding: 7px 12px; border-radius: 999px; color: var(--azul-oscuro); background: var(--celeste); font-weight: 800; min-width: 92px; text-align: center; }
+
+    .rocket-bar { max-width: 1080px; margin: 10px auto 0; padding: 0 20px; }
+    .rocket-bar-inner { display: flex; align-items: center; gap: 12px; background: var(--blanco); border: 1px solid var(--borde); border-radius: 999px; padding: 8px 18px; box-shadow: var(--sombra); }
+    .rocket-label { font-size: 13px; font-weight: 800; color: var(--azul-oscuro); white-space: nowrap; }
+    .rocket-track { position: relative; flex: 1; height: 30px; }
+    .rocket-track-line { position: absolute; top: 50%; left: 15px; right: 15px; height: 4px; background: #e8edf5; border-radius: 2px; transform: translateY(-50%); }
+    .rocket-icon { position: absolute; top: 50%; left: 0; font-size: 22px; line-height: 1; transform: translate(-50%, -50%) rotate(45deg); transition: left .6s cubic-bezier(.3,.7,.4,1); }
+    .rocket-icon.wiggle { animation: rocketWiggle .5s ease; }
+    @keyframes rocketWiggle { 0%, 100% { transform: translate(-50%, -50%) rotate(45deg); } 50% { transform: translate(-50%, -50%) rotate(55deg) scale(1.18); } }
+    .rocket-moon { position: absolute; top: 50%; right: 0; font-size: 24px; line-height: 1; transform: translate(50%, -50%); }
+    .rocket-moon.glow { animation: moonGlow 1.4s ease-in-out infinite; }
+    @keyframes moonGlow { 0%, 100% { filter: drop-shadow(0 0 2px #facc15); } 50% { filter: drop-shadow(0 0 9px #facc15); } }
+
+    main { max-width: 980px; margin: 28px auto 80px; padding: 0 20px; }
+    .panel {
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: 24px;
+      box-shadow: var(--sombra);
+      padding: clamp(22px, 4vw, 42px);
+      animation: aparecer .35s ease;
+    }
+    @keyframes aparecer { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .section { display: none; }
+    .section.active { display: block; }
+    .eyebrow { margin: 0 0 6px; color: var(--azul); font-size: 15px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    h1 { margin: 0 0 12px; color: var(--azul-oscuro); font-size: clamp(34px, 6vw, 58px); line-height: 1.05; }
+    h2 { margin: 0 0 10px; color: var(--azul-oscuro); font-size: clamp(28px, 4vw, 40px); line-height: 1.15; }
+    h3 { color: var(--azul-oscuro); }
+    .lead { max-width: 760px; color: #475569; font-size: 20px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .hero-art {
+      min-height: 250px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(160deg, #dbeafe, #dcfce7);
+      border-radius: 26px;
+      overflow: hidden;
+    }
+    .hero-art svg { width: 100%; height: auto; display: block; }
+
+    .goal-grid, .cards-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; margin: 22px 0; }
+    .goal { display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-radius: 16px; background: #f8fafc; border: 1px solid var(--borde); }
+    .goal .icon { width: 40px; height: 40px; flex: 0 0 40px; display: grid; place-items: center; border-radius: 12px; background: var(--celeste); font-size: 22px; }
+
+    .student-data { margin-top: 26px; padding: 20px; border: 2px dashed #bfd0ea; border-radius: 18px; background: #f8fbff; }
+    .cfg-row { display: grid; grid-template-columns: 110px 110px 1fr; gap: 14px; align-items: end; }
+    .cfg-row.cfg-row-single { grid-template-columns: 1fr; margin-top: 14px; }
+    #cfgIdAlumno { text-align: center; font-weight: 800; font-size: 22px; font-family: "Courier New", monospace; }
+    label { font-weight: 700; color: #334155; }
+    input[type="text"], select, textarea {
+      width: 100%;
+      margin-top: 6px;
+      padding: 12px 14px;
+      color: var(--tinta);
+      background: white;
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    input[type="text"]:focus, select:focus, textarea:focus { border-color: var(--azul); }
+    .optional { color: var(--gris); font-size: 14px; font-weight: 500; }
+
+    .callout { margin: 20px 0; padding: 16px 18px; border-left: 6px solid var(--azul); border-radius: 12px; background: #eff6ff; }
+    .callout.teacher { border-color: var(--naranja); background: #fff7ed; }
+    .callout.success { border-color: var(--verde); background: var(--verde-claro); }
+    .callout strong { color: var(--azul-oscuro); }
+    details { margin-top: 18px; border: 1px solid var(--borde); border-radius: 14px; background: #fafcff; }
+    summary { padding: 14px 16px; cursor: pointer; font-weight: 800; color: var(--azul-oscuro); }
+    details > div { padding: 0 18px 16px; color: #475569; }
+
+    .question { margin: 20px 0; padding: 20px; border: 2px solid var(--borde); border-radius: 18px; background: white; }
+    .question.correct { border-color: #4ade80; background: #f0fdf4; }
+    .question.incorrect { border-color: #fca5a5; background: #fff7f7; }
+    .question-title { margin: 0 0 14px; font-weight: 800; }
+    .options { display: grid; gap: 10px; }
+    .option { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 13px; background: white; cursor: pointer; }
+    .option:hover { border-color: #93c5fd; background: #f8fbff; }
+    .option input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--azul); flex: 0 0 auto; }
+    .feedback { min-height: 28px; margin-top: 10px; font-weight: 750; }
+    .feedback.ok { color: var(--verde); }
+    .feedback.no { color: var(--rojo); }
+
+    .cover-card { max-width: 620px; margin: 20px auto; padding: 28px; border-radius: 24px; color: white; text-align: center; background: linear-gradient(145deg, var(--azul-oscuro), var(--azul)); box-shadow: var(--sombra); }
+    .cover-card .big-icon { font-size: 72px; line-height: 1; }
+    .prediction { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 20px 0; }
+    .prediction label { min-height: 100px; display: grid; place-items: center; padding: 14px; border: 2px solid var(--borde); border-radius: 16px; text-align: center; cursor: pointer; background: white; }
+    .prediction label:has(input:checked) { border-color: var(--azul); background: var(--celeste); }
+    .prediction input { width: 22px; height: 22px; accent-color: var(--azul); }
+
+    .story-scene { margin: 22px 0; padding: 22px; border-radius: 20px; background: #fffef7; border: 2px solid #fde68a; }
+    .story-scene h3 { display: flex; gap: 10px; align-items: center; margin-top: 0; }
+    .story-scene p { font-family: Georgia, "Times New Roman", serif; font-size: 21px; line-height: 1.75; }
+    .dialogue { margin: 12px 0; padding: 10px 16px; border-left: 5px solid var(--naranja); background: white; font-weight: 700; }
+    .word {
+      display: inline-block;
+      padding: 0 5px;
+      border-bottom: 3px dotted var(--azul);
+      color: var(--azul-oscuro);
+      font-weight: 800;
+      cursor: help;
+    }
+    .glossary { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin: 16px 0; }
+    .glossary button { padding: 11px; border: 1px solid #bfdbfe; border-radius: 12px; background: #eff6ff; color: var(--azul-oscuro); font-weight: 800; }
+    .meaning { min-height: 58px; padding: 12px 16px; border-radius: 12px; background: var(--celeste); }
+    .scene-check { display: flex; gap: 10px; align-items: center; margin-top: 14px; font-family: "Segoe UI", Arial, sans-serif; font-size: 17px; font-weight: 700; }
+    .scene-check input { width: 22px; height: 22px; accent-color: var(--verde); }
+
+    .order-list { display: grid; gap: 10px; margin: 18px 0; }
+    .order-item { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: center; padding: 13px; border: 2px solid var(--borde); border-radius: 14px; background: white; }
+    .order-number { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; background: var(--celeste); color: var(--azul-oscuro); font-weight: 900; }
+    .order-controls { display: flex; gap: 6px; }
+    .mini-btn { width: 38px; height: 38px; border: 0; border-radius: 10px; color: var(--azul-oscuro); background: #e8eef8; font-weight: 900; }
+    .mini-btn:disabled { opacity: .35; cursor: not-allowed; }
+
+    .matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; }
+    .cause { padding: 14px; border-radius: 12px; background: #fff7ed; border: 1px solid #fed7aa; font-weight: 750; }
+
+    .story-map { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 18px 0; }
+    .map-card { padding: 16px; border-radius: 16px; border: 2px solid var(--borde); background: #fafcff; }
+    .map-card h3 { margin-top: 0; font-size: 20px; }
+
+    /* ===== SOPA DE LETRAS ===== */
+    .sopa-card { text-align: center; }
+    .sopa-intro { font-size: 14px; color: var(--gris); font-style: italic; margin-bottom: 12px; }
+    .sopa-words { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 16px; }
+    .sopa-word-item { background: #eff6ff; border: 2px solid var(--azul); border-radius: 999px; padding: 7px 16px; font-weight: 800; color: var(--azul-oscuro); }
+    .sopa-word-item.found { background: var(--azul); color: white; text-decoration: line-through; }
+    .sopa-grid-wrap { display: flex; justify-content: center; overflow-x: auto; margin-bottom: 16px; }
+    table.sopa-grid { border-collapse: collapse; user-select: none; -webkit-user-select: none; }
+    table.sopa-grid td { width: 34px; height: 34px; text-align: center; vertical-align: middle; font-family: "Courier New", monospace; font-weight: 800; font-size: 16px; border: 1px solid #e2e8f0; background: white; color: var(--azul-oscuro); cursor: pointer; }
+    table.sopa-grid td.selecting { background: #FFE9B0; }
+    table.sopa-grid td.found { background: var(--azul); color: white; }
+    table.sopa-grid td.hint { background: #FFEB3B; animation: hintPulse 1s ease-in-out infinite; }
+    @keyframes hintPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,193,7,.7); } 50% { box-shadow: 0 0 0 5px rgba(255,193,7,0); } }
+    .sopa-status { font-weight: 800; color: var(--azul-oscuro); min-height: 26px; margin-bottom: 10px; }
+    .sopa-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .sopa-continue-btn { display: none; }
+    .sopa-continue-btn.show { display: inline-block; }
+
+    .nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--borde); }
+    .btn { min-height: 48px; padding: 12px 20px; border: 0; border-radius: 13px; font-weight: 850; transition: transform .12s ease, box-shadow .12s ease; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 7px 18px rgba(23,52,111,.15); }
+    .btn-primary { color: white; background: var(--azul); }
+    .btn-secondary { color: var(--azul-oscuro); background: #e8eef8; }
+    .btn-success { color: white; background: var(--verde); }
+    .btn-warning { color: #552b00; background: var(--amarillo); }
+    .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .results-header { text-align: center; }
+    .score-ring { width: 170px; height: 170px; margin: 22px auto; display: grid; place-items: center; border-radius: 50%; background: conic-gradient(var(--verde) 0deg, var(--verde) 0deg, #e8eef8 0deg); position: relative; }
+    .score-ring::after { content: ""; position: absolute; inset: 15px; background: white; border-radius: 50%; }
+    .score-text { position: relative; z-index: 1; text-align: center; font-weight: 900; color: var(--azul-oscuro); font-size: 34px; line-height: 1.1; }
+    .score-text small { display: block; color: var(--gris); font-size: 14px; }
+    .skill-row { display: grid; grid-template-columns: 170px 1fr 70px; gap: 12px; align-items: center; margin: 12px 0; }
+    .skill-track { height: 14px; background: #e8eef5; border-radius: 999px; overflow: hidden; }
+    .skill-fill { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--azul), #38bdf8); }
+    .final-message { margin: 24px 0; padding: 20px; border-radius: 18px; background: var(--verde-claro); border: 2px solid #86efac; text-align: center; }
+    .dcp-note { max-width: 640px; margin: 16px auto; font-size: 13px; color: #475569; font-style: italic; background: #eff2f7; border-radius: 12px; padding: 10px 14px; text-align: left; }
+    .qr-wrap { text-align: center; margin: 26px 0 10px; }
+    #qrBox { display: inline-block; padding: 10px; background: white; border: 2px solid var(--borde); border-radius: 14px; }
+    #sendStatus { min-height: 22px; margin-top: 10px; font-weight: 700; }
+    .no-print { display: block; }
+    .print-only { display: none; }
+
+    @media (max-width: 720px) {
+      body { font-size: 17px; }
+      .topbar-inner { grid-template-columns: 1fr auto; }
+      .brand { display: none; }
+      .hero, .goal-grid, .cards-2, .cfg-row, .prediction, .glossary, .matching-grid, .story-map { grid-template-columns: 1fr; }
+      .hero-art { min-height: 180px; }
+      .order-item { grid-template-columns: 42px 1fr; }
+      .order-controls { grid-column: 2; }
+      .skill-row { grid-template-columns: 1fr 55px; }
+      .skill-track { grid-row: 2; grid-column: 1 / -1; }
+      .nav { flex-wrap: wrap; }
+      .nav .btn { flex: 1 1 180px; }
+      table.sopa-grid td { width: 28px; height: 28px; font-size: 14px; }
+      .rocket-label { display: none; }
+      .rocket-bar-inner { padding: 8px 14px; }
+    }
+
+    @media print {
+      body { background: white; font-size: 13px; }
+      .topbar, .no-print, .section:not(#final) { display: none !important; }
+      main { margin: 0; max-width: none; }
+      .panel { box-shadow: none; border: 0; padding: 0; }
+      #final { display: block !important; }
+      .print-only { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">📚 Comprensión lectora</div>
+      <div class="progress-wrap" aria-label="Progreso de la actividad">
+        <div class="progress-info"><span id="stageLabel">Inicio</span><span id="progressText">0%</span></div>
+        <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+      </div>
+      <div class="timer" aria-label="Tiempo transcurrido">⏱ <span id="timer">00:00</span></div>
+    </div>
+  </header>
+
+  <div class="rocket-bar" id="rocketBar" aria-label="Progreso del cohete a la luna">
+    <div class="rocket-bar-inner">
+      <span class="rocket-label">🚀 Cohete a la luna</span>
+      <div class="rocket-track">
+        <div class="rocket-track-line"></div>
+        <span class="rocket-icon" id="rocketIcon">🚀</span>
+        <span class="rocket-moon" id="rocketMoon">🌕</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="panel">
+      <section class="section active" id="inicio" data-label="Inicio">
+        <div class="hero">
+          <div>
+            <p class="eyebrow">Lengua · 2.º grado</p>
+            <h1>Tras las huellas del pastorcito</h1>
+            <p class="lead">Una aventura de lectura para descubrir personajes, ordenar hechos, encontrar pistas y pensar por qué la confianza es tan importante.</p>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <svg viewBox="0 0 420 310" role="img">
+              <rect width="420" height="310" fill="#dbeafe"/>
+              <circle cx="350" cy="58" r="34" fill="#facc15"/>
+              <path d="M0 185 Q95 115 195 185 T420 165 V310 H0Z" fill="#86efac"/>
+              <path d="M0 220 Q120 145 250 225 T420 205 V310 H0Z" fill="#4ade80"/>
+              <circle cx="128" cy="135" r="28" fill="#f3c7a5"/>
+              <path d="M98 126 Q128 83 158 126" fill="#854d0e"/>
+              <rect x="105" y="161" width="46" height="76" rx="16" fill="#2563eb"/>
+              <line x1="111" y1="230" x2="99" y2="279" stroke="#713f12" stroke-width="12" stroke-linecap="round"/>
+              <line x1="145" y1="230" x2="154" y2="279" stroke="#713f12" stroke-width="12" stroke-linecap="round"/>
+              <line x1="154" y1="177" x2="190" y2="238" stroke="#713f12" stroke-width="7" stroke-linecap="round"/>
+              <g fill="#fff" stroke="#94a3b8" stroke-width="3">
+                <ellipse cx="265" cy="233" rx="43" ry="28"/><circle cx="305" cy="226" r="19"/>
+                <ellipse cx="348" cy="261" rx="38" ry="25"/><circle cx="382" cy="254" r="17"/>
+              </g>
+              <g fill="#334155"><circle cx="310" cy="222" r="3"/><circle cx="387" cy="250" r="3"/></g>
+            </svg>
+          </div>
+        </div>
+
+        <h2 style="font-size:26px;margin-top:26px">¿Qué aprenderemos hoy?</h2>
+        <div class="goal-grid">
+          <div class="goal"><div class="icon">🔎</div><div><strong>Encontrar información</strong><br><span class="optional">Personajes, lugares y acciones.</span></div></div>
+          <div class="goal"><div class="icon">💭</div><div><strong>Descubrir pistas</strong><br><span class="optional">Pensar lo que el texto no dice directamente.</span></div></div>
+          <div class="goal"><div class="icon">🔢</div><div><strong>Ordenar la historia</strong><br><span class="optional">Inicio, problema y desenlace.</span></div></div>
+          <div class="goal"><div class="icon">🗣️</div><div><strong>Volver a contar</strong><br><span class="optional">Explicar lo sucedido con nuestras palabras.</span></div></div>
+        </div>
+
+        <div class="student-data">
+          <h2 style="font-size:24px;margin-top:0">Antes de comenzar</h2>
+          <div class="cfg-row">
+            <label>ID del alumno
+              <input id="cfgIdAlumno" type="text" autocomplete="off" maxlength="3" value="1">
+            </label>
+            <label>Tipo
+              <select id="cfgTipo">
+                <option value="A" selected>A</option>
+                <option value="B">B</option>
+              </select>
+            </label>
+            <label>Detalle adicional del título <span class="optional">(opcional)</span>
+              <input id="cfgTituloExtra" type="text" autocomplete="off" maxlength="40" placeholder='Ej: "grupo tarde"'>
+            </label>
+          </div>
+          <div class="cfg-row cfg-row-single">
+            <label>¿Con pista en las sopas de letras?
+              <select id="cfgPistas">
+                <option value="no" selected>No</option>
+                <option value="si">Sí</option>
+              </select>
+            </label>
+          </div>
+          <p class="optional" style="margin-top:10px">Si trabajan de a dos, un solo ID identifica a la pareja.</p>
+        </div>
+
+        <div class="callout">
+          <strong>De qué se trata:</strong> vas a leer (o escuchar mientras la docente lee) el cuento «El pastorcito mentiroso», conversar sobre cada escena, buscar pistas, ordenar los hechos y resolver dos sopas de letras de repaso. Al final vas a ver tu resultado y va a aparecer un código QR para que la docente envíe la actividad.
+        </div>
+
+        <details>
+          <summary>Información para la docente</summary>
+          <div>
+            <p><strong>Duración estimada:</strong> 40 a 45 minutos. La propuesta trabaja anticipación, lectura dialógica, vocabulario, lectura autónoma de títulos y diálogos, información explícita e implícita, relaciones causales, secuencia y renarración, con dos sopas de letras de repaso léxico intercaladas.</p>
+            <p><strong>Conducción:</strong> la docente presenta el propósito, modela la lectura en voz alta, formula y repregunta durante las escenas, organiza los intercambios orales y evalúa junto con el resultado automático.</p>
+            <p><strong>Sugerencia:</strong> la etapa "Leo solo" (títulos y diálogos) está pensada para que el alumno vuelva a mirar el texto ya leído y responda de forma autónoma, sin que se lo vuelvan a leer en voz alta.</p>
+          </div>
+        </details>
+
+        <div class="nav">
+          <span></span>
+          <button class="btn btn-primary" id="startBtn" disabled>Comenzar la aventura →</button>
+        </div>
+      </section>
+
+      <section class="section" id="anticipacion" data-label="Anticipación">
+        <p class="eyebrow">Etapa 1 · 5 minutos</p>
+        <h2>Antes de leer: hagamos una predicción</h2>
+        <p>Mira la tapa, lee el título y conversa con tu compañero/a o con el grupo.</p>
+        <div class="cover-card">
+          <div class="big-icon">🐑 👦 🐺</div>
+          <h3 style="color:white;font-size:32px;margin-bottom:4px">El pastorcito mentiroso</h3>
+          <div>Fábula tradicional atribuida a Esopo</div>
+        </div>
+        <div class="question" id="predictionQuestion">
+          <p class="question-title">¿Qué crees que será lo más importante en esta historia?</p>
+          <div class="prediction">
+            <label><input type="radio" name="prediction" value="ovejas"> Cuidar a las ovejas</label>
+            <label><input type="radio" name="prediction" value="mentira"> Decir una mentira</label>
+            <label><input type="radio" name="prediction" value="lobo"> Escapar de un lobo</label>
+          </div>
+          <label>¿Por qué lo crees? <span class="optional">Escribe una idea breve.</span>
+            <textarea id="predictionWhy" maxlength="180" placeholder="YO CREO QUE... PORQUE..."></textarea>
+          </label>
+          <p class="feedback" id="predictionFeedback"></p>
+        </div>
+        <div class="callout teacher"><strong>Momento de conversar:</strong> escuchen distintas predicciones. No importa si después no coinciden con el cuento.</div>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Anterior</button>
+          <button class="btn btn-primary" id="predictionNext">Leer el cuento →</button>
+        </div>
+      </section>
+
+      <section class="section" id="lectura" data-label="Lectura">
+        <p class="eyebrow">Etapa 2 · 8 minutos</p>
+        <h2>Leemos y conversamos</h2>
+        <div class="callout teacher"><strong>Lectura dialogada:</strong> la docente lee en voz alta. Sigan el texto y deténganse en las preguntas de cada escena.</div>
+
+        <h3>Palabras que nos ayudarán</h3>
+        <div class="glossary" aria-label="Glosario interactivo">
+          <button type="button" data-word="pastorcito">PASTORCITO</button>
+          <button type="button" data-word="rebaño">REBAÑO</button>
+          <button type="button" data-word="aldeanos">ALDEANOS</button>
+          <button type="button" data-word="auxilio">AUXILIO</button>
+        </div>
+        <div class="meaning" id="meaning">Presiona una palabra para conocer su significado.</div>
+
+        <article class="story-scene">
+          <h3><span>🌄</span> Escena 1: Un trabajo solitario</h3>
+          <p>Hace mucho tiempo, un joven <span class="word" data-word="pastorcito">pastorcito</span> llevaba cada mañana su <span class="word" data-word="rebaño">rebaño</span> a pastar cerca de una montaña. Mientras las ovejas comían, él las vigilaba. Pasaban las horas y el muchacho comenzó a aburrirse.</p>
+          <div class="dialogue">💬 Para pensar: ¿Dónde estaba el pastorcito? ¿Qué debía hacer?</div>
+          <label class="scene-check"><input type="checkbox" class="readCheck"> Leímos y conversamos sobre esta escena.</label>
+        </article>
+
+        <article class="story-scene">
+          <h3><span>📣</span> Escena 2: Una broma peligrosa</h3>
+          <p>Para divertirse, tuvo una idea. Corrió hacia el pueblo gritando:</p>
+          <div class="dialogue">—¡<span class="word" data-word="auxilio">Auxilio</span>! ¡El lobo viene a comerse las ovejas!</div>
+          <p>Los <span class="word" data-word="aldeanos">aldeanos</span> dejaron sus tareas y subieron rápidamente para ayudarlo. Pero no había ningún lobo. El pastorcito se reía de la broma. Días después repitió el engaño y los vecinos volvieron a correr inútilmente.</p>
+          <div class="dialogue">💬 Para pensar: ¿Por qué los aldeanos subieron a la montaña?</div>
+          <label class="scene-check"><input type="checkbox" class="readCheck"> Leímos y conversamos sobre esta escena.</label>
+        </article>
+
+        <article class="story-scene">
+          <h3><span>🐺</span> Escena 3: Esta vez era verdad</h3>
+          <p>Una tarde apareció un lobo de verdad. El animal se acercó al rebaño y las ovejas comenzaron a correr asustadas. El pastorcito gritó con todas sus fuerzas:</p>
+          <div class="dialogue">—¡Auxilio! ¡El lobo! ¡Esta vez es verdad!</div>
+          <p>En el pueblo escucharon sus gritos, pero pensaron que era otra broma. Nadie fue a ayudarlo.</p>
+          <div class="dialogue">💬 Para pensar: el texto no lo dice directamente, ¿cómo creen que se sintió el pastorcito?</div>
+          <label class="scene-check"><input type="checkbox" class="readCheck"> Leímos y conversamos sobre esta escena.</label>
+        </article>
+
+        <article class="story-scene">
+          <h3><span>🤝</span> Escena 4: Una enseñanza</h3>
+          <p>El pastorcito comprendió que sus mentiras habían hecho que los demás dejaran de confiar en él. Desde ese día decidió decir la verdad y esforzarse para recuperar la confianza de los vecinos.</p>
+          <div class="dialogue">💬 Para pensar: ¿qué relación hay entre sus bromas y lo que sucedió al final?</div>
+          <label class="scene-check"><input type="checkbox" class="readCheck"> Leímos y conversamos sobre esta escena.</label>
+        </article>
+
+        <p class="feedback" id="readingFeedback"></p>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Anterior</button>
+          <button class="btn btn-primary" id="readingNext">Leer por mi cuenta →</button>
+        </div>
+      </section>
+
+      <section class="section" id="dialogos" data-label="Lectura autónoma">
+        <p class="eyebrow">Etapa 3 · 5 minutos</p>
+        <h2>Leo solo: títulos y diálogos</h2>
+        <p>Ahora te toca a vos. Volvé a mirar el cuento de arriba (podés desplazarte hacia atrás) y respondé sin que te lo lean en voz alta.</p>
+
+        <div class="question auto-question" data-group="dialogos" data-answer="pastorcito">
+          <p class="question-title">1. ¿Quién dice esta frase: «¡Auxilio! ¡El lobo viene a comerse las ovejas!»?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="d1" value="pastorcito"> El pastorcito.</label>
+            <label class="option"><input type="radio" name="d1" value="aldeano"> Un aldeano.</label>
+            <label class="option"><input type="radio" name="d1" value="lobo"> El lobo.</label>
+          </div><p class="feedback"></p>
+        </div>
+        <div class="question auto-question" data-group="dialogos" data-answer="escena3">
+          <p class="question-title">2. Buscá el título de la Escena 3. ¿A qué diálogo corresponde?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="d2" value="escena3"> «¡Esta vez es verdad!»</label>
+            <label class="option"><input type="radio" name="d2" value="escena2"> «¡El lobo viene a comerse las ovejas!»</label>
+            <label class="option"><input type="radio" name="d2" value="escena4"> «Desde ese día decidió decir la verdad.»</label>
+          </div><p class="feedback"></p>
+        </div>
+        <div class="question auto-question" data-group="dialogos" data-answer="escena1">
+          <p class="question-title">3. El título "Un trabajo solitario" corresponde a...</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="d3" value="escena1"> La Escena 1.</label>
+            <label class="option"><input type="radio" name="d3" value="escena4"> La Escena 4.</label>
+            <label class="option"><input type="radio" name="d3" value="escena2"> La Escena 2.</label>
+          </div><p class="feedback"></p>
+        </div>
+        <p class="feedback" id="dialogosSummary"></p>
+        <div class="callout teacher"><strong>Lectura autónoma:</strong> a diferencia de las escenas anteriores, esta parte la resuelven leyendo por su cuenta los títulos y diálogos ya vistos, sin que se los vuelvan a leer en voz alta.</div>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Anterior</button>
+          <button class="btn btn-warning verifyBtn" data-group="dialogos">✓ Verificar</button>
+          <button class="btn btn-primary nextBtn">Sopa de letras →</button>
+        </div>
+      </section>
+
+      <section class="section" id="sopa1" data-label="Sopa de letras">
+        <p class="eyebrow">Repaso léxico</p>
+        <h2>🧩 Sopa de letras: palabras del cuento</h2>
+        <div class="sopa-card">
+          <p class="sopa-intro">Tocá la primera letra de la palabra y después la última. Si elegiste bien, se resalta sola.</p>
+          <div class="sopa-words" id="sopaWords1"></div>
+          <div class="sopa-grid-wrap"><table class="sopa-grid" id="sopaTable1" aria-label="Sopa de letras 1"></table></div>
+          <div class="sopa-status" id="sopaStatus1"></div>
+          <div class="sopa-btns">
+            <button class="btn btn-warning" id="sopaHintBtn1" type="button">💡 Pista</button>
+            <button class="btn btn-success sopa-continue-btn" id="sopaContinue1" type="button">➡️ Continuar</button>
+          </div>
+        </div>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Anterior</button>
+          <span></span>
+        </div>
+      </section>
+
+      <section class="section" id="explicita" data-label="Información del texto">
+        <p class="eyebrow">Etapa 4 · 7 minutos</p>
+        <h2>Detectives de la información</h2>
+        <p>Estas respuestas aparecen claramente en el cuento. Si dudas, vuelve a buscar la pista en el texto.</p>
+
+        <div class="question auto-question" data-group="explicita" data-answer="montaña">
+          <p class="question-title">1. ¿Dónde llevaba el pastorcito a las ovejas?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="e1" value="bosque"> Al interior de un bosque.</label>
+            <label class="option"><input type="radio" name="e1" value="montaña"> Cerca de una montaña.</label>
+            <label class="option"><input type="radio" name="e1" value="pueblo"> A la plaza del pueblo.</label>
+          </div><p class="feedback"></p>
+        </div>
+        <div class="question auto-question" data-group="explicita" data-answer="aburria">
+          <p class="question-title">2. ¿Por qué inventó la llegada del lobo?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="e2" value="hambre"> Porque tenía hambre.</label>
+            <label class="option"><input type="radio" name="e2" value="aburria"> Porque se aburría y quiso divertirse.</label>
+            <label class="option"><input type="radio" name="e2" value="perdio"> Porque había perdido una oveja.</label>
+          </div><p class="feedback"></p>
+        </div>
+        <div class="question auto-question" data-group="explicita" data-answer="ayudar">
+          <p class="question-title">3. ¿Qué hicieron los aldeanos las primeras veces?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="e3" value="ayudar"> Subieron rápidamente para ayudarlo.</label>
+            <label class="option"><input type="radio" name="e3" value="esconderse"> Se escondieron en sus casas.</label>
+            <label class="option"><input type="radio" name="e3" value="reir"> Se rieron del pastorcito.</label>
+          </div><p class="feedback"></p>
+        </div>
+        <div class="question auto-question" data-group="explicita" data-answer="verdad">
+          <p class="question-title">4. ¿Qué decidió hacer al final?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="e4" value="irse"> Irse a vivir a otro pueblo.</label>
+            <label class="option"><input type="radio" name="e4" value="ovejas"> Vender todas las ovejas.</label>
+            <label class="option"><input type="radio" name="e4" value="verdad"> Decir la verdad y recuperar la confianza.</label>
+          </div><p class="feedback"></p>
+        </div>
+        <p class="feedback" id="explicitaSummary"></p>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Volver al cuento</button>
+          <button class="btn btn-warning verifyBtn" data-group="explicita">✓ Verificar</button>
+          <button class="btn btn-primary nextBtn">Buscar pistas →</button>
+        </div>
+      </section>
+
+      <section class="section" id="inferencias" data-label="Inferencias">
+        <p class="eyebrow">Etapa 5 · 8 minutos</p>
+        <h2>Lo que el cuento nos permite pensar</h2>
+        <p>Ahora las respuestas no siempre están escritas de manera directa. Hay que unir pistas y explicar causas.</p>
+
+        <div class="question auto-question" data-group="inferencias" data-answer="miedo">
+          <p class="question-title">1. Cuando apareció el lobo, ¿cómo se sintió probablemente el pastorcito?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="i1" value="miedo"> Asustado y preocupado.</label>
+            <label class="option"><input type="radio" name="i1" value="alegre"> Alegre y divertido.</label>
+            <label class="option"><input type="radio" name="i1" value="tranquilo"> Tranquilo y con sueño.</label>
+          </div><p class="feedback"></p>
+        </div>
+        <div class="question auto-question" data-group="inferencias" data-answer="bromas">
+          <p class="question-title">2. ¿Por qué los aldeanos no subieron la última vez?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="i2" value="lejos"> Porque estaban demasiado lejos.</label>
+            <label class="option"><input type="radio" name="i2" value="bromas"> Porque los engaños anteriores les hicieron pensar que era otra broma.</label>
+            <label class="option"><input type="radio" name="i2" value="lobo"> Porque querían que el lobo se quedara.</label>
+          </div><p class="feedback"></p>
+        </div>
+        <div class="question auto-question" data-group="inferencias" data-answer="confianza">
+          <p class="question-title">3. ¿Qué fue perdiendo el pastorcito cada vez que mentía?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="i3" value="camino"> El camino hacia la montaña.</label>
+            <label class="option"><input type="radio" name="i3" value="confianza"> La confianza de los aldeanos.</label>
+            <label class="option"><input type="radio" name="i3" value="voz"> La fuerza de su voz.</label>
+          </div><p class="feedback"></p>
+        </div>
+        <div class="question auto-question" data-group="inferencias" data-answer="causa">
+          <p class="question-title">4. ¿Cuál explica mejor la relación entre el inicio y el final?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="i4" value="suerte"> Todo sucedió por mala suerte.</label>
+            <label class="option"><input type="radio" name="i4" value="causa"> Sus mentiras provocaron que no le creyeran cuando dijo la verdad.</label>
+            <label class="option"><input type="radio" name="i4" value="ovejas"> Las ovejas decidieron escapar solas.</label>
+          </div><p class="feedback"></p>
+        </div>
+        <p class="feedback" id="inferenciasSummary"></p>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Anterior</button>
+          <button class="btn btn-warning verifyBtn" data-group="inferencias">✓ Verificar</button>
+          <button class="btn btn-primary nextBtn">Ordenar la historia →</button>
+        </div>
+      </section>
+
+      <section class="section" id="secuencia" data-label="Secuencia narrativa">
+        <p class="eyebrow">Etapa 6 · 6 minutos</p>
+        <h2>¿Qué ocurrió primero y qué ocurrió después?</h2>
+        <p>Usa las flechas para ordenar los hechos desde el primero hasta el último.</p>
+        <div class="order-list" id="orderList">
+          <div class="order-item" data-order="3"><div class="order-number">1</div><div>Apareció un lobo de verdad y el pastorcito pidió ayuda.</div><div class="order-controls"><button class="mini-btn up" aria-label="Subir">↑</button><button class="mini-btn down" aria-label="Bajar">↓</button></div></div>
+          <div class="order-item" data-order="1"><div class="order-number">2</div><div>El pastorcito llevaba el rebaño a pastar y se aburría.</div><div class="order-controls"><button class="mini-btn up" aria-label="Subir">↑</button><button class="mini-btn down" aria-label="Bajar">↓</button></div></div>
+          <div class="order-item" data-order="4"><div class="order-number">3</div><div>Comprendió el daño de sus mentiras y decidió cambiar.</div><div class="order-controls"><button class="mini-btn up" aria-label="Subir">↑</button><button class="mini-btn down" aria-label="Bajar">↓</button></div></div>
+          <div class="order-item" data-order="2"><div class="order-number">4</div><div>Engañó a los aldeanos diciendo que venía el lobo.</div><div class="order-controls"><button class="mini-btn up" aria-label="Subir">↑</button><button class="mini-btn down" aria-label="Bajar">↓</button></div></div>
+        </div>
+        <p class="feedback" id="orderFeedback"></p>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Anterior</button>
+          <button class="btn btn-warning" id="checkOrder">✓ Verificar orden</button>
+          <button class="btn btn-primary nextBtn">Unir causas →</button>
+        </div>
+      </section>
+
+      <section class="section" id="causas" data-label="Causas y consecuencias">
+        <p class="eyebrow">Etapa 7 · 5 minutos</p>
+        <h2>Cada acción tiene una consecuencia</h2>
+        <p>Elige qué sucedió como consecuencia de cada acción.</p>
+        <div class="matching-grid">
+          <div class="cause">1. El pastorcito gritó que venía el lobo.</div>
+          <select class="match" data-answer="subieron" aria-label="Consecuencia 1"><option value="">Elige una consecuencia…</option><option value="subieron">Los aldeanos subieron a ayudarlo.</option><option value="nadie">Nadie fue a ayudarlo.</option><option value="cambio">Decidió cambiar su conducta.</option></select>
+
+          <div class="cause">2. Los aldeanos descubrieron que era una broma.</div>
+          <select class="match" data-answer="molestos" aria-label="Consecuencia 2"><option value="">Elige una consecuencia…</option><option value="molestos">Se sintieron engañados y molestos.</option><option value="ovejas">Las ovejas comieron más pasto.</option><option value="premio">Le dieron un premio.</option></select>
+
+          <div class="cause">3. El pastorcito repitió sus mentiras.</div>
+          <select class="match" data-answer="nadie" aria-label="Consecuencia 3"><option value="">Elige una consecuencia…</option><option value="fiesta">Los vecinos hicieron una fiesta.</option><option value="nadie">Cuando dijo la verdad, nadie le creyó.</option><option value="lobo">El lobo se fue del bosque.</option></select>
+
+          <div class="cause">4. Comprendió que había perdido la confianza.</div>
+          <select class="match" data-answer="cambio" aria-label="Consecuencia 4"><option value="">Elige una consecuencia…</option><option value="reir">Volvió a reírse.</option><option value="cambio">Decidió decir la verdad y cambiar.</option><option value="dormir">Se quedó dormido.</option></select>
+        </div>
+        <p class="feedback" id="matchFeedback"></p>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Anterior</button>
+          <button class="btn btn-warning" id="checkMatches">✓ Verificar</button>
+          <button class="btn btn-primary nextBtn">Sopa de letras →</button>
+        </div>
+      </section>
+
+      <section class="section" id="sopa2" data-label="Sopa de letras">
+        <p class="eyebrow">Repaso léxico</p>
+        <h2>🧩 Sopa de letras: la enseñanza del cuento</h2>
+        <div class="sopa-card">
+          <p class="sopa-intro">Tocá la primera letra de la palabra y después la última. Si elegiste bien, se resalta sola.</p>
+          <div class="sopa-words" id="sopaWords2"></div>
+          <div class="sopa-grid-wrap"><table class="sopa-grid" id="sopaTable2" aria-label="Sopa de letras 2"></table></div>
+          <div class="sopa-status" id="sopaStatus2"></div>
+          <div class="sopa-btns">
+            <button class="btn btn-warning" id="sopaHintBtn2" type="button">💡 Pista</button>
+            <button class="btn btn-success sopa-continue-btn" id="sopaContinue2" type="button">➡️ Continuar</button>
+          </div>
+        </div>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Anterior</button>
+          <span></span>
+        </div>
+      </section>
+
+      <section class="section" id="renarracion" data-label="Renarración">
+        <p class="eyebrow">Etapa 8 · 4 minutos</p>
+        <h2>Volvemos a contar la historia</h2>
+        <p>Completa este mapa. Después úsalo para contar el cuento oralmente con tus propias palabras.</p>
+        <div class="story-map">
+          <div class="map-card">
+            <h3>🌄 Al principio…</h3>
+            <select class="retell" data-answer="cuidaba"><option value="">Completa…</option><option value="buscaba">buscaba un lobo en el pueblo.</option><option value="cuidaba">cuidaba ovejas y se aburría.</option><option value="dormia">dormía junto a los aldeanos.</option></select>
+          </div>
+          <div class="map-card">
+            <h3>📣 El problema…</h3>
+            <select class="retell" data-answer="mintio"><option value="">Completa…</option><option value="mintio">mintió varias veces y perdió la confianza.</option><option value="lluvia">fue una lluvia muy fuerte.</option><option value="aldeanos">los aldeanos escondieron las ovejas.</option></select>
+          </div>
+          <div class="map-card">
+            <h3>🤝 Al final…</h3>
+            <select class="retell" data-answer="comprendio"><option value="">Completa…</option><option value="viajo">viajó a otra montaña.</option><option value="broma">inventó una nueva broma.</option><option value="comprendio">comprendió su error y decidió cambiar.</option></select>
+          </div>
+        </div>
+        <div class="callout teacher"><strong>Renarración oral:</strong> cuenta la historia siguiendo el mapa. Incluye dónde ocurrió, cuál fue el problema, por qué nadie lo ayudó y cómo terminó.</div>
+        <p class="feedback" id="retellFeedback"></p>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Anterior</button>
+          <button class="btn btn-warning" id="checkRetell">✓ Verificar mapa</button>
+          <button class="btn btn-primary nextBtn">Reflexión final →</button>
+        </div>
+      </section>
+
+      <section class="section" id="reflexion" data-label="Reflexión final">
+        <p class="eyebrow">Etapa 9 · 3 minutos</p>
+        <h2>¿Qué nos deja esta historia?</h2>
+        <div class="question" id="moralQuestion">
+          <p class="question-title">Elige la idea que mejor se relaciona con el cuento.</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="moral" value="montaña"> Es mejor vivir cerca de una montaña.</label>
+            <label class="option"><input type="radio" name="moral" value="confianza"> Mentir puede hacer que los demás pierdan la confianza en nosotros.</label>
+            <label class="option"><input type="radio" name="moral" value="ovejas"> Las ovejas nunca deben comer solas.</label>
+          </div>
+          <p class="feedback" id="moralFeedback"></p>
+        </div>
+        <label>Escribe un ejemplo de cómo podemos cuidar la confianza de los demás.
+          <textarea id="trustExample" maxlength="240" placeholder="PODEMOS CUIDAR LA CONFIANZA CUANDO..."></textarea>
+        </label>
+        <div class="callout teacher"><strong>Puesta en común:</strong> algunas respuestas pueden ser diferentes y estar bien fundamentadas. Escuchen los ejemplos y conversen sobre ellos.</div>
+        <div class="nav">
+          <button class="btn btn-secondary prevBtn">← Anterior</button>
+          <button class="btn btn-success" id="finishBtn">Finalizar actividad ✓</button>
+        </div>
+      </section>
+
+      <section class="section" id="final" data-label="Resultados">
+        <div class="results-header">
+          <p class="eyebrow">Actividad terminada</p>
+          <h2>¡Llegaste al final de la aventura!</h2>
+          <p id="studentResult" class="lead" style="margin-left:auto;margin-right:auto"></p>
+          <div class="score-ring" id="scoreRing">
+            <div class="score-text"><span id="scoreNumber">0/23</span><small>PUNTAJE</small></div>
+          </div>
+        </div>
+        <div class="final-message" id="finalMessage"></div>
+        <h3>Resumen de habilidades</h3>
+        <div class="skill-row"><strong>Lectura autónoma</strong><div class="skill-track"><div class="skill-fill" id="barDialogos"></div></div><span id="txtDialogos">0/3</span></div>
+        <div class="skill-row"><strong>Información explícita</strong><div class="skill-track"><div class="skill-fill" id="barExplicita"></div></div><span id="txtExplicita">0/4</span></div>
+        <div class="skill-row"><strong>Inferencias</strong><div class="skill-track"><div class="skill-fill" id="barInferencias"></div></div><span id="txtInferencias">0/4</span></div>
+        <div class="skill-row"><strong>Secuencia</strong><div class="skill-track"><div class="skill-fill" id="barSecuencia"></div></div><span id="txtSecuencia">0/4</span></div>
+        <div class="skill-row"><strong>Causas</strong><div class="skill-track"><div class="skill-fill" id="barCausas"></div></div><span id="txtCausas">0/4</span></div>
+        <div class="skill-row"><strong>Renarración</strong><div class="skill-track"><div class="skill-fill" id="barRenarracion"></div></div><span id="txtRenarracion">0/3</span></div>
+        <div class="skill-row"><strong>Reflexión</strong><div class="skill-track"><div class="skill-fill" id="barReflexion"></div></div><span id="txtReflexion">0/1</span></div>
+        <div class="callout"><strong>Importante:</strong> este resultado es una orientación. La docente también tendrá en cuenta la participación oral, las explicaciones y la renarración.</div>
+        <div class="dcp-note" id="dcpNote"></div>
+
+        <div class="qr-wrap no-print">
+          <strong>Código QR del resumen</strong>
+          <div><div id="qrBox" aria-label="Código QR de resultados"></div></div>
+          <button class="btn btn-success" id="sendBtn" type="button" disabled>📨 Enviar Actividad</button>
+          <div id="sendStatus"></div>
+        </div>
+
+        <div class="print-only">
+          <p><strong>Tiempo empleado:</strong> <span id="printTime"></span></p>
+          <p><strong>Predicción inicial:</strong> <span id="printPrediction"></span></p>
+          <p><strong>Ejemplo sobre la confianza:</strong> <span id="printReflection"></span></p>
+        </div>
+        <div class="nav no-print">
+          <button class="btn btn-secondary" id="reviewBtn">← Revisar respuestas</button>
+          <button class="btn btn-primary" id="printBtn">🖨 Imprimir resultado</button>
+          <button class="btn btn-warning" id="resetBtn">↻ Comenzar de nuevo</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // ============ CONFIG DEL ENDPOINT DE RESULTADOS (editable) ============
+      var RESULT_ENDPOINT_URL = "";
+      var RESULT_ENDPOINT_METHOD = "POST";
+      var RESULT_ENDPOINT_HEADERS = { "Content-Type": "application/json; charset=utf-8" };
+      var RESULT_ENDPOINT_EMPTY_MESSAGE = "No estás autorizado, consulta con el profe José.";
+
+      // ============ METADATOS DE LA ACTIVIDAD ============
+      var TITULO_CANONICO = "Comprensión Lectora: El Pastorcito Mentiroso";
+      var studentIdValue = "";
+      var tipoActividadValue = "A";
+      var tituloExtraValue = "";
+      var pistaEnabled = false;
+
+      var sections = Array.prototype.slice.call(document.querySelectorAll(".section"));
+      var current = 0;
+      var elapsed = 0;
+      var timerId = null;
+      var started = false;
+      var scores = { dialogos: 0, explicita: 0, inferencias: 0, secuencia: 0, causas: 0, renarracion: 0, reflexion: 0 };
+      var MAXIMA = { dialogos: 3, explicita: 4, inferencias: 4, secuencia: 4, causas: 4, renarracion: 3, reflexion: 1 };
+      var TOTAL_EJERCICIOS = Object.keys(MAXIMA).reduce(function (s, k) { return s + MAXIMA[k]; }, 0);
+
+      function byId(id) { return document.getElementById(id); }
+      function upperInput(el) { el.value = el.value.toLocaleUpperCase("es-AR"); }
+      byId("predictionWhy").addEventListener("input", function () { upperInput(this); });
+      byId("trustExample").addEventListener("input", function () { upperInput(this); });
+
+      // ============ COHETE A LA LUNA (motivación visual, aciertos totales) ============
+      function totalCorrectSoFar() {
+        var sum = 0;
+        Object.keys(MAXIMA).forEach(function (k) { sum += Math.min(scores[k] || 0, MAXIMA[k]); });
+        return sum;
+      }
+      function updateRocket() {
+        var icon = byId("rocketIcon");
+        var moon = byId("rocketMoon");
+        if (!icon) return;
+        var frac = TOTAL_EJERCICIOS ? (totalCorrectSoFar() / TOTAL_EJERCICIOS) : 0;
+        icon.style.left = Math.round(frac * 90) + "%";
+        icon.classList.remove("wiggle");
+        void icon.offsetWidth;
+        icon.classList.add("wiggle");
+        if (moon) moon.classList.toggle("glow", frac >= 1);
+      }
+
+      // ============ GUARDA CONTRA CIERRE ACCIDENTAL ============
+      function enableExitGuard() {
+        window.onbeforeunload = function (e) {
+          var msg = "Si cerrás ahora vas a perder tu progreso.";
+          (e || window.event).returnValue = msg;
+          return msg;
+        };
+      }
+      function disableExitGuard() {
+        window.onbeforeunload = null;
+      }
+
+      function formatTime(total) {
+        var min = Math.floor(total / 60).toString().padStart(2, "0");
+        var sec = (total % 60).toString().padStart(2, "0");
+        return min + ":" + sec;
+      }
+
+      function startTimer() {
+        if (started) return;
+        started = true;
+        timerId = window.setInterval(function () {
+          elapsed += 1;
+          byId("timer").textContent = formatTime(elapsed);
+        }, 1000);
+      }
+
+      function showSection(index) {
+        if (index < 0 || index >= sections.length) return;
+        sections.forEach(function (section, i) { section.classList.toggle("active", i === index); });
+        current = index;
+        var progress = Math.round((index / (sections.length - 1)) * 100);
+        byId("progressBar").style.width = progress + "%";
+        byId("progressText").textContent = progress + "%";
+        byId("stageLabel").textContent = sections[index].getAttribute("data-label") || "Actividad";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        maybeRenderSopa();
+      }
+
+      function setFeedback(el, text, ok) {
+        el.textContent = text;
+        el.className = "feedback " + (ok ? "ok" : "no");
+      }
+
+      function refreshStartGate() {
+        var idIn = byId("cfgIdAlumno");
+        var btn = byId("startBtn");
+        btn.disabled = idIn.value.replace(/^\s+|\s+$/g, "").length === 0;
+      }
+      var idInputStart = byId("cfgIdAlumno");
+      idInputStart.addEventListener("keyup", refreshStartGate);
+      idInputStart.addEventListener("change", refreshStartGate);
+      idInputStart.addEventListener("blur", refreshStartGate);
+      refreshStartGate();
+      updateRocket();
+
+      byId("startBtn").addEventListener("click", function () {
+        var idVal = byId("cfgIdAlumno").value.replace(/^\s+|\s+$/g, "");
+        if (!idVal) { byId("cfgIdAlumno").focus(); return; }
+        studentIdValue = idVal;
+        tipoActividadValue = byId("cfgTipo").value === "B" ? "B" : "A";
+        tituloExtraValue = byId("cfgTituloExtra").value.replace(/^\s+|\s+$/g, "");
+        pistaEnabled = byId("cfgPistas").value === "si";
+        byId("sopaHintBtn1").style.display = pistaEnabled ? "" : "none";
+        byId("sopaHintBtn2").style.display = pistaEnabled ? "" : "none";
+        startTimer();
+        enableExitGuard();
+        showSection(1);
+      });
+
+      document.querySelectorAll(".prevBtn").forEach(function (btn) {
+        btn.addEventListener("click", function () { showSection(current - 1); });
+      });
+      document.querySelectorAll(".nextBtn").forEach(function (btn) {
+        btn.addEventListener("click", function () { showSection(current + 1); });
+      });
+
+      byId("predictionNext").addEventListener("click", function () {
+        var selected = document.querySelector('input[name="prediction"]:checked');
+        var why = byId("predictionWhy").value.trim();
+        if (!selected || why.length < 5) {
+          setFeedback(byId("predictionFeedback"), "Elige una opción y completa tu idea antes de continuar.", false);
+          return;
+        }
+        setFeedback(byId("predictionFeedback"), "¡Buena predicción! Después veremos si coincide con el cuento.", true);
+        showSection(2);
+      });
+
+      var meanings = {
+        pastorcito: "PASTORCITO: persona joven que cuida y guía ovejas u otros animales.",
+        "rebaño": "REBAÑO: grupo de ovejas que se crían y avanzan juntas.",
+        aldeanos: "ALDEANOS: personas que viven en una aldea o pueblo pequeño.",
+        auxilio: "AUXILIO: pedido urgente de ayuda ante un peligro o problema."
+      };
+      document.querySelectorAll("[data-word]").forEach(function (el) {
+        el.addEventListener("click", function () {
+          byId("meaning").textContent = meanings[this.getAttribute("data-word")];
+        });
+      });
+
+      byId("readingNext").addEventListener("click", function () {
+        var checks = Array.prototype.slice.call(document.querySelectorAll(".readCheck"));
+        var done = checks.every(function (c) { return c.checked; });
+        if (!done) {
+          setFeedback(byId("readingFeedback"), "Marca cada escena después de leerla y conversar sobre ella.", false);
+          return;
+        }
+        setFeedback(byId("readingFeedback"), "¡Lectura completa! Ahora vas a leer por tu cuenta.", true);
+        showSection(3);
+      });
+
+      function checkAutoGroup(group) {
+        var questions = Array.prototype.slice.call(document.querySelectorAll('.auto-question[data-group="' + group + '"]'));
+        var total = 0;
+        var answered = 0;
+        questions.forEach(function (q) {
+          var chosen = q.querySelector("input:checked");
+          var feedback = q.querySelector(".feedback");
+          q.classList.remove("correct", "incorrect");
+          if (!chosen) {
+            setFeedback(feedback, "Elige una respuesta.", false);
+            return;
+          }
+          answered += 1;
+          if (chosen.value === q.getAttribute("data-answer")) {
+            total += 1;
+            q.classList.add("correct");
+            setFeedback(feedback, "¡Muy bien! Encontraste la pista.", true);
+          } else {
+            q.classList.add("incorrect");
+            setFeedback(feedback, "Todavía no. Relee la parte relacionada y vuelve a intentarlo.", false);
+          }
+        });
+        scores[group] = total;
+        updateRocket();
+        var target = byId(group + "Summary");
+        if (!target) return;
+        if (answered < questions.length) setFeedback(target, "Faltan " + (questions.length - answered) + " preguntas por responder.", false);
+        else if (total === questions.length) setFeedback(target, "¡Excelente! Respondiste correctamente las " + questions.length + " preguntas.", true);
+        else setFeedback(target, "Tienes " + total + " de " + questions.length + " correctas. Puedes revisar y verificar nuevamente.", false);
+      }
+      document.querySelectorAll(".verifyBtn").forEach(function (btn) {
+        btn.addEventListener("click", function () { checkAutoGroup(this.getAttribute("data-group")); });
+      });
+
+      function updateOrderNumbers() {
+        Array.prototype.slice.call(byId("orderList").children).forEach(function (item, i, items) {
+          item.querySelector(".order-number").textContent = i + 1;
+          item.querySelector(".up").disabled = i === 0;
+          item.querySelector(".down").disabled = i === items.length - 1;
+        });
+      }
+      byId("orderList").addEventListener("click", function (event) {
+        var btn = event.target.closest("button");
+        if (!btn) return;
+        var item = btn.closest(".order-item");
+        if (btn.classList.contains("up") && item.previousElementSibling) this.insertBefore(item, item.previousElementSibling);
+        if (btn.classList.contains("down") && item.nextElementSibling) this.insertBefore(item.nextElementSibling, item);
+        updateOrderNumbers();
+      });
+      updateOrderNumbers();
+
+      byId("checkOrder").addEventListener("click", function () {
+        var items = Array.prototype.slice.call(byId("orderList").children);
+        var correctPositions = items.filter(function (item, i) { return Number(item.getAttribute("data-order")) === i + 1; }).length;
+        scores.secuencia = correctPositions;
+        updateRocket();
+        if (correctPositions === 4) setFeedback(byId("orderFeedback"), "¡Perfecto! Reconstruiste toda la secuencia.", true);
+        else setFeedback(byId("orderFeedback"), "Hay " + correctPositions + " de 4 hechos bien ubicados. Piensa qué provocó cada suceso e inténtalo otra vez.", false);
+      });
+
+      byId("checkMatches").addEventListener("click", function () {
+        var selects = Array.prototype.slice.call(document.querySelectorAll(".match"));
+        var selected = selects.filter(function (s) { return s.value; }).length;
+        var total = selects.filter(function (s) { return s.value === s.getAttribute("data-answer"); }).length;
+        scores.causas = total;
+        updateRocket();
+        if (selected < 4) setFeedback(byId("matchFeedback"), "Completa todas las relaciones antes de verificar.", false);
+        else if (total === 4) setFeedback(byId("matchFeedback"), "¡Muy bien! Relacionaste correctamente acciones y consecuencias.", true);
+        else setFeedback(byId("matchFeedback"), "Tienes " + total + " de 4 correctas. Revisa qué hecho provocó cada consecuencia.", false);
+      });
+
+      byId("checkRetell").addEventListener("click", function () {
+        var selects = Array.prototype.slice.call(document.querySelectorAll(".retell"));
+        var selected = selects.filter(function (s) { return s.value; }).length;
+        var total = selects.filter(function (s) { return s.value === s.getAttribute("data-answer"); }).length;
+        scores.renarracion = total;
+        updateRocket();
+        if (selected < 3) setFeedback(byId("retellFeedback"), "Completa las tres partes del mapa.", false);
+        else if (total === 3) setFeedback(byId("retellFeedback"), "¡Mapa completo! Ya puedes volver a contar la historia.", true);
+        else setFeedback(byId("retellFeedback"), "Hay " + total + " de 3 partes correctas. Revisa el inicio, el problema y el final.", false);
+      });
+
+      function recalculateAll() {
+        ["dialogos", "explicita", "inferencias"].forEach(function (group) {
+          var total = 0;
+          document.querySelectorAll('.auto-question[data-group="' + group + '"]').forEach(function (q) {
+            var chosen = q.querySelector("input:checked");
+            if (chosen && chosen.value === q.getAttribute("data-answer")) total += 1;
+          });
+          scores[group] = total;
+        });
+        var orderItems = Array.prototype.slice.call(byId("orderList").children);
+        scores.secuencia = orderItems.filter(function (item, i) { return Number(item.getAttribute("data-order")) === i + 1; }).length;
+        scores.causas = Array.prototype.slice.call(document.querySelectorAll(".match")).filter(function (s) { return s.value === s.getAttribute("data-answer"); }).length;
+        scores.renarracion = Array.prototype.slice.call(document.querySelectorAll(".retell")).filter(function (s) { return s.value === s.getAttribute("data-answer"); }).length;
+        var moral = document.querySelector('input[name="moral"]:checked');
+        scores.reflexion = moral && moral.value === "confianza" ? 1 : 0;
+      }
+
+      // ============ SOPAS DE LETRAS (clic primera letra + clic última letra) ============
+      var SOPA_DEFS = {
+        1: ["PASTORCITO", "REBAÑO", "ALDEANOS", "AUXILIO", "MONTAÑA"],
+        2: ["MENTIRA", "VERDAD", "CONFIANZA", "LOBO", "OVEJAS"]
+      };
+      var SOPA_STATES = {};
+
+      function buildSopaState(id) {
+        var words = SOPA_DEFS[id].map(function (w) { return { text: w, found: false, cells: null }; });
+        var maxLen = 0;
+        words.forEach(function (w) { if (w.text.length > maxLen) maxLen = w.text.length; });
+        var size = Math.max(9, maxLen + 2);
+        var state = { size: size, grid: [], words: words, startCell: null };
+        SOPA_STATES[id] = state;
+        placeSopaWords(state);
+        return state;
+      }
+      function placeSopaWords(state) {
+        var N = state.size;
+        var grid = [];
+        for (var r = 0; r < N; r++) { var row = []; for (var c = 0; c < N; c++) row.push(""); grid.push(row); }
+        var dirs = [[0, 1], [1, 0], [1, 1], [-1, 1]];
+        var sorted = state.words.slice().sort(function (a, b) { return b.text.length - a.text.length; });
+        sorted.forEach(function (w) {
+          var placed = false, tries = 0;
+          while (!placed && tries < 500) {
+            tries++;
+            var d = dirs[Math.floor(Math.random() * dirs.length)];
+            var dr = d[0], dc = d[1];
+            var sr = Math.floor(Math.random() * N), sc = Math.floor(Math.random() * N);
+            var endR = sr + dr * (w.text.length - 1), endC = sc + dc * (w.text.length - 1);
+            if (endR < 0 || endR >= N || endC < 0 || endC >= N) continue;
+            var conflict = false;
+            for (var k = 0; k < w.text.length; k++) {
+              var rr = sr + dr * k, cc = sc + dc * k;
+              if (grid[rr][cc] !== "" && grid[rr][cc] !== w.text.charAt(k)) { conflict = true; break; }
+            }
+            if (conflict) continue;
+            var cells = [];
+            for (var k2 = 0; k2 < w.text.length; k2++) {
+              var rr2 = sr + dr * k2, cc2 = sc + dc * k2;
+              grid[rr2][cc2] = w.text.charAt(k2);
+              cells.push([rr2, cc2]);
+            }
+            w.cells = cells;
+            placed = true;
+          }
+        });
+        var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (var r2 = 0; r2 < N; r2++) {
+          for (var c2 = 0; c2 < N; c2++) {
+            if (grid[r2][c2] === "") grid[r2][c2] = letters.charAt(Math.floor(Math.random() * letters.length));
+          }
+        }
+        state.grid = grid;
+      }
+      function renderSopa(id) {
+        var state = buildSopaState(id);
+        var wl = byId("sopaWords" + id);
+        wl.innerHTML = "";
+        state.words.forEach(function (w, idx) {
+          var span = document.createElement("span");
+          span.className = "sopa-word-item";
+          span.setAttribute("data-w", idx);
+          span.textContent = w.text;
+          wl.appendChild(span);
+        });
+        var table = byId("sopaTable" + id);
+        table.innerHTML = "";
+        for (var r = 0; r < state.size; r++) {
+          var tr = document.createElement("tr");
+          for (var c = 0; c < state.size; c++) {
+            var td = document.createElement("td");
+            td.setAttribute("data-r", r);
+            td.setAttribute("data-c", c);
+            td.textContent = state.grid[r][c];
+            tr.appendChild(td);
+          }
+          table.appendChild(tr);
+        }
+        byId("sopaContinue" + id).classList.remove("show");
+        byId("sopaHintBtn" + id).style.display = pistaEnabled ? "" : "none";
+        updateSopaStatus(id);
+        wireSopaSelection(id);
+      }
+      function wireSopaSelection(id) {
+        var state = SOPA_STATES[id];
+        var table = byId("sopaTable" + id);
+        function clearSelecting() { table.querySelectorAll("td.selecting").forEach(function (td) { td.classList.remove("selecting"); }); }
+        function getLinePath(r1, c1, r2, c2) {
+          var dr = r2 - r1, dc = c2 - c1, len;
+          if (dr === 0 && dc === 0) return null;
+          else if (dr === 0) len = Math.abs(dc) + 1;
+          else if (dc === 0) len = Math.abs(dr) + 1;
+          else if (Math.abs(dr) === Math.abs(dc)) len = Math.abs(dr) + 1;
+          else return null;
+          var sr = dr === 0 ? 0 : (dr > 0 ? 1 : -1);
+          var sc = dc === 0 ? 0 : (dc > 0 ? 1 : -1);
+          var cells = [];
+          for (var i = 0; i < len; i++) cells.push([r1 + sr * i, c1 + sc * i]);
+          return cells;
+        }
+        table.querySelectorAll("td").forEach(function (td) {
+          td.onclick = function () {
+            var r = parseInt(td.getAttribute("data-r"), 10);
+            var c = parseInt(td.getAttribute("data-c"), 10);
+            if (td.classList.contains("found")) return;
+            if (!state.startCell) {
+              state.startCell = [r, c];
+              clearSelecting();
+              td.classList.add("selecting");
+              return;
+            }
+            var sr = state.startCell[0], sc = state.startCell[1];
+            if (sr === r && sc === c) {
+              state.startCell = null;
+              clearSelecting();
+              return;
+            }
+            var path = getLinePath(sr, sc, r, c);
+            state.startCell = null;
+            if (path) checkSopaWord(id, path);
+            else clearSelecting();
+          };
+        });
+      }
+      function checkSopaWord(id, path) {
+        var state = SOPA_STATES[id];
+        var s = "";
+        for (var i = 0; i < path.length; i++) s += state.grid[path[i][0]][path[i][1]];
+        var rev = s.split("").reverse().join("");
+        var table = byId("sopaTable" + id);
+        var matched = false;
+        for (var i2 = 0; i2 < state.words.length; i2++) {
+          var w = state.words[i2];
+          if (w.found) continue;
+          if (w.text === s || w.text === rev) {
+            w.found = true;
+            matched = true;
+            path.forEach(function (cell) {
+              var td = table.rows[cell[0]].cells[cell[1]];
+              td.classList.remove("selecting", "hint");
+              td.classList.add("found");
+            });
+            var span = document.querySelector('#sopaWords' + id + ' .sopa-word-item[data-w="' + i2 + '"]');
+            if (span) span.classList.add("found");
+            break;
+          }
+        }
+        if (!matched) table.querySelectorAll("td.selecting").forEach(function (td) { td.classList.remove("selecting"); });
+        updateSopaStatus(id);
+      }
+      function updateSopaStatus(id) {
+        var state = SOPA_STATES[id];
+        var found = state.words.filter(function (w) { return w.found; }).length;
+        var st = byId("sopaStatus" + id);
+        var btn = byId("sopaContinue" + id);
+        if (found === state.words.length) {
+          st.textContent = "🎉 ¡Encontraste todas las palabras!";
+          btn.classList.add("show");
+        } else {
+          st.textContent = "Encontradas: " + found + " de " + state.words.length;
+          btn.classList.remove("show");
+        }
+      }
+      function showSopaHint(id) {
+        if (!pistaEnabled) return;
+        var state = SOPA_STATES[id];
+        var table = byId("sopaTable" + id);
+        var flash = [];
+        state.words.forEach(function (w) {
+          if (w.found || !w.cells) return;
+          var first = w.cells[0], last = w.cells[w.cells.length - 1];
+          [first, last].forEach(function (cell) {
+            var td = table.rows[cell[0]].cells[cell[1]];
+            td.classList.add("hint");
+            flash.push(td);
+          });
+        });
+        if (!flash.length) return;
+        window.setTimeout(function () { flash.forEach(function (td) { td.classList.remove("hint"); }); }, 900);
+      }
+      window.showSopaHint = showSopaHint;
+
+      // renderizar cada sopa la primera vez que se entra a su sección
+      var sopaRendered = { 1: false, 2: false };
+      function maybeRenderSopa() {
+        var sec = sections[current];
+        if (sec && sec.id === "sopa1" && !sopaRendered[1]) { renderSopa(1); sopaRendered[1] = true; }
+        if (sec && sec.id === "sopa2" && !sopaRendered[2]) { renderSopa(2); sopaRendered[2] = true; }
+      }
+      byId("sopaHintBtn1").addEventListener("click", function () { showSopaHint(1); });
+      byId("sopaHintBtn2").addEventListener("click", function () { showSopaHint(2); });
+      byId("sopaContinue1").addEventListener("click", function () { showSection(current + 1); });
+      byId("sopaContinue2").addEventListener("click", function () { showSection(current + 1); });
+
+      // ============ HELPERS RESULTADO + QR ============
+      function compactTitle(value) {
+        var text = String(value || "").replace(/\s+/g, " ").trim();
+        return text.length > 60 ? text.slice(0, 57) + "..." : text;
+      }
+      function formatNotaDisplay(nota) {
+        return nota === Math.floor(nota) ? String(nota) : nota.toFixed(2);
+      }
+      function notaPayloadValue(nota) {
+        return Number(nota.toFixed(2));
+      }
+      function elapsedMinutesValue() {
+        return Math.max(0, Math.ceil(elapsed / 60));
+      }
+      function fullTitleString() {
+        var extra = (tituloExtraValue || "").trim();
+        return extra ? (TITULO_CANONICO + " " + extra) : TITULO_CANONICO;
+      }
+      function calculateStats() {
+        recalculateAll();
+        var correctas = 0;
+        Object.keys(MAXIMA).forEach(function (k) { correctas += Math.min(scores[k] || 0, MAXIMA[k]); });
+        var incorrectas = TOTAL_EJERCICIOS - correctas;
+        var nota = TOTAL_EJERCICIOS ? (correctas / TOTAL_EJERCICIOS) * 10 : 0;
+        return { total: TOTAL_EJERCICIOS, correctas: correctas, incorrectas: incorrectas, nota: notaPayloadValue(nota) };
+      }
+      function buildQrPayload() {
+        var st = calculateStats();
+        return {
+          id: studentIdValue,
+          tipo: tipoActividadValue,
+          tit: compactTitle(fullTitleString()),
+          pts: st.correctas,
+          err: st.incorrectas,
+          ej: st.total,
+          nota: st.nota,
+          m: elapsedMinutesValue()
+        };
+      }
+      function buildSendPayload() {
+        var st = calculateStats();
+        var minutes = elapsedMinutesValue();
+        return {
+          id_alumno: studentIdValue,
+          tipo_actividad: tipoActividadValue,
+          titulo: fullTitleString(),
+          puntaje: st.correctas,
+          correctas: st.correctas,
+          incorrectas: st.incorrectas,
+          cantidad_ejercicios: st.total,
+          nota: st.nota,
+          tiempo_minutos: minutes,
+          tiempoMinutos: minutes
+        };
+      }
+      function renderQRCode(payload) {
+        var container = byId("qrBox");
+        if (!container) return;
+        var qr;
+        try {
+          qr = qrcode(0, "M");
+          qr.addData(JSON.stringify(payload));
+          qr.make();
+        } catch (e) {
+          try {
+            var compact = {};
+            for (var k in payload) { if (k !== "tit") compact[k] = payload[k]; }
+            qr = qrcode(0, "M");
+            qr.addData(JSON.stringify(compact));
+            qr.make();
+          } catch (e2) {
+            container.innerHTML = '<div style="padding:20px;color:#c0392b;font-size:12px;width:160px;">QR no disponible<br>(payload muy largo)</div>';
+            return;
+          }
+        }
+        var n = qr.getModuleCount();
+        var cellSize = 6;
+        var margin = 4;
+        var total = (n + 2 * margin) * cellSize;
+        var path = "";
+        for (var y = 0; y < n; y++) {
+          for (var x = 0; x < n; x++) {
+            if (qr.isDark(y, x)) {
+              var px = (x + margin) * cellSize;
+              var py = (y + margin) * cellSize;
+              path += "M" + px + " " + py + "h" + cellSize + "v" + cellSize + "h-" + cellSize + "z";
+            }
+          }
+        }
+        container.innerHTML =
+          '<svg width="' + total + '" height="' + total + '" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" style="display:block;">' +
+          '<rect width="' + total + '" height="' + total + '" fill="#ffffff"/>' +
+          '<path d="' + path + '" fill="#000000"/>' +
+          '</svg>';
+      }
+      function mapResultRow(payload) { return payload; }
+      function sendResults() {
+        var status = byId("sendStatus");
+        var btn = byId("sendBtn");
+        if (!RESULT_ENDPOINT_URL) {
+          if (status) { status.textContent = RESULT_ENDPOINT_EMPTY_MESSAGE; status.style.color = "#c0392b"; }
+          return;
+        }
+        if (btn) btn.disabled = true;
+        if (status) { status.textContent = "Enviando..."; status.style.color = "#555"; }
+        try {
+          var xhr = new XMLHttpRequest();
+          xhr.open(RESULT_ENDPOINT_METHOD, RESULT_ENDPOINT_URL, true);
+          Object.keys(RESULT_ENDPOINT_HEADERS || {}).forEach(function (key) {
+            xhr.setRequestHeader(key, RESULT_ENDPOINT_HEADERS[key]);
+          });
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState !== 4) return;
+            if (xhr.status >= 200 && xhr.status < 300) {
+              if (status) { status.textContent = "✅ Actividad enviada."; status.style.color = "#155724"; }
+              disableExitGuard();
+            } else {
+              if (status) { status.textContent = "❌ No se pudo enviar la actividad."; status.style.color = "#c0392b"; }
+              if (btn) btn.disabled = false;
+            }
+          };
+          xhr.send(JSON.stringify(mapResultRow(buildSendPayload())));
+        } catch (e) {
+          if (status) { status.textContent = "❌ No se pudo enviar la actividad."; status.style.color = "#c0392b"; }
+          if (btn) btn.disabled = false;
+        }
+      }
+
+      function renderResults() {
+        var st = calculateStats();
+        updateRocket();
+        byId("studentResult").textContent = "ID " + studentIdValue + " · Tiempo: " + formatTime(elapsed);
+        byId("scoreNumber").textContent = st.correctas + "/" + st.total;
+        var percentage = st.total ? Math.round((st.correctas / st.total) * 100) : 0;
+        byId("scoreRing").style.background = "conic-gradient(var(--verde) 0deg " + (percentage * 3.6) + "deg, #e8eef8 " + (percentage * 3.6) + "deg 360deg)";
+
+        Object.keys(MAXIMA).forEach(function (key) {
+          var cap = key.charAt(0).toUpperCase() + key.slice(1);
+          var val = Math.min(scores[key] || 0, MAXIMA[key]);
+          byId("txt" + cap).textContent = val + "/" + MAXIMA[key];
+          byId("bar" + cap).style.width = Math.round((val / MAXIMA[key]) * 100) + "%";
+        });
+
+        var message;
+        if (st.correctas >= 21) message = "🌟 ¡Excelente trabajo! Comprendiste la historia y relacionaste muy bien sus causas y consecuencias.";
+        else if (st.correctas >= 16) message = "👏 ¡Muy buen trabajo! Comprendiste las ideas principales. Revisa las secciones con menor puntaje para seguir aprendiendo.";
+        else if (st.correctas >= 11) message = "💪 Vas por buen camino. Vuelve al cuento y busca con calma las pistas que te faltaron.";
+        else message = "📖 Esta historia merece otra lectura. Pide ayuda a la docente, vuelve a leer y conversa sobre cada escena.";
+        byId("finalMessage").textContent = message;
+
+        byId("dcpNote").textContent = "📘 Contenido DCP 2° grado — Lengua, Comprensión Lectora: lectura y disfrute de una fábula tradicional, anticipación antes de leer, lectura dialógica con preguntas y comentarios, explicación de palabras desconocidas, lectura autónoma de títulos y diálogos, recuperación de información explícita e implícita con mediación docente, y formulación de inferencias.";
+
+        byId("sendBtn").disabled = !studentIdValue;
+
+        var prediction = document.querySelector('input[name="prediction"]:checked');
+        byId("printTime").textContent = formatTime(elapsed);
+        byId("printPrediction").textContent = prediction ? prediction.parentElement.textContent.trim() + ". " + byId("predictionWhy").value : "Sin completar";
+        byId("printReflection").textContent = byId("trustExample").value || "Sin completar";
+
+        renderQRCode(buildQrPayload());
+      }
+
+      byId("finishBtn").addEventListener("click", function () {
+        var moral = document.querySelector('input[name="moral"]:checked');
+        var example = byId("trustExample").value.trim();
+        if (!moral || example.length < 8) {
+          setFeedback(byId("moralFeedback"), "Elige una idea y escribe un ejemplo antes de finalizar.", false);
+          return;
+        }
+        if (moral.value === "confianza") setFeedback(byId("moralFeedback"), "¡Muy bien! Esa idea se relaciona con lo ocurrido en el cuento.", true);
+        else setFeedback(byId("moralFeedback"), "Relee el final: piensa qué perdió el pastorcito por sus mentiras.", false);
+        window.clearInterval(timerId);
+        renderResults();
+        showSection(sections.length - 1);
+      });
+
+      byId("sendBtn").addEventListener("click", sendResults);
+
+      byId("reviewBtn").addEventListener("click", function () {
+        if (!started) startTimer();
+        else timerId = window.setInterval(function () { elapsed += 1; byId("timer").textContent = formatTime(elapsed); }, 1000);
+        showSection(5);
+      });
+      byId("printBtn").addEventListener("click", function () { window.print(); });
+      byId("resetBtn").addEventListener("click", function () {
+        if (confirm("¿Quieres borrar las respuestas y comenzar nuevamente?")) {
+          disableExitGuard();
+          window.location.reload();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && event.target.tagName === "INPUT" && event.target.type === "text") event.preventDefault();
+      });
+    })();
+  </script>
+
+  <script>
+  /* =====================================================================
+     QR Code Generator (inline, sin CDN)
+     Kazuhiko Arase qrcode-generator v1.4.4, MIT licensed
+     https://github.com/kazuhikoarase/qrcode-generator
+     ===================================================================== */
+var qrcode = function() {
+
+  //---------------------------------------------------------------------
+  // qrcode
+  //---------------------------------------------------------------------
+
+  /**
+   * qrcode
+   * @param typeNumber 1 to 40
+   * @param errorCorrectionLevel 'L','M','Q','H'
+   */
+  var qrcode = function(typeNumber, errorCorrectionLevel) {
+
+    var PAD0 = 0xEC;
+    var PAD1 = 0x11;
+
+    var _typeNumber = typeNumber;
+    var _errorCorrectionLevel = QRErrorCorrectionLevel[errorCorrectionLevel];
+    var _modules = null;
+    var _moduleCount = 0;
+    var _dataCache = null;
+    var _dataList = [];
+
+    var _this = {};
+
+    var makeImpl = function(test, maskPattern) {
+
+      _moduleCount = _typeNumber * 4 + 17;
+      _modules = function(moduleCount) {
+        var modules = new Array(moduleCount);
+        for (var row = 0; row < moduleCount; row += 1) {
+          modules[row] = new Array(moduleCount);
+          for (var col = 0; col < moduleCount; col += 1) {
+            modules[row][col] = null;
+          }
+        }
+        return modules;
+      }(_moduleCount);
+
+      setupPositionProbePattern(0, 0);
+      setupPositionProbePattern(_moduleCount - 7, 0);
+      setupPositionProbePattern(0, _moduleCount - 7);
+      setupPositionAdjustPattern();
+      setupTimingPattern();
+      setupTypeInfo(test, maskPattern);
+
+      if (_typeNumber >= 7) {
+        setupTypeNumber(test);
+      }
+
+      if (_dataCache == null) {
+        _dataCache = createData(_typeNumber, _errorCorrectionLevel, _dataList);
+      }
+
+      mapData(_dataCache, maskPattern);
+    };
+
+    var setupPositionProbePattern = function(row, col) {
+
+      for (var r = -1; r <= 7; r += 1) {
+
+        if (row + r <= -1 || _moduleCount <= row + r) continue;
+
+        for (var c = -1; c <= 7; c += 1) {
+
+          if (col + c <= -1 || _moduleCount <= col + c) continue;
+
+          if ( (0 <= r && r <= 6 && (c == 0 || c == 6) )
+              || (0 <= c && c <= 6 && (r == 0 || r == 6) )
+              || (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+            _modules[row + r][col + c] = true;
+          } else {
+            _modules[row + r][col + c] = false;
+          }
+        }
+      }
+    };
+
+    var getBestMaskPattern = function() {
+
+      var minLostPoint = 0;
+      var pattern = 0;
+
+      for (var i = 0; i < 8; i += 1) {
+
+        makeImpl(true, i);
+
+        var lostPoint = QRUtil.getLostPoint(_this);
+
+        if (i == 0 || minLostPoint > lostPoint) {
+          minLostPoint = lostPoint;
+          pattern = i;
+        }
+      }
+
+      return pattern;
+    };
+
+    var setupTimingPattern = function() {
+
+      for (var r = 8; r < _moduleCount - 8; r += 1) {
+        if (_modules[r][6] != null) {
+          continue;
+        }
+        _modules[r][6] = (r % 2 == 0);
+      }
+
+      for (var c = 8; c < _moduleCount - 8; c += 1) {
+        if (_modules[6][c] != null) {
+          continue;
+        }
+        _modules[6][c] = (c % 2 == 0);
+      }
+    };
+
+    var setupPositionAdjustPattern = function() {
+
+      var pos = QRUtil.getPatternPosition(_typeNumber);
+
+      for (var i = 0; i < pos.length; i += 1) {
+
+        for (var j = 0; j < pos.length; j += 1) {
+
+          var row = pos[i];
+          var col = pos[j];
+
+          if (_modules[row][col] != null) {
+            continue;
+          }
+
+          for (var r = -2; r <= 2; r += 1) {
+
+            for (var c = -2; c <= 2; c += 1) {
+
+              if (r == -2 || r == 2 || c == -2 || c == 2
+                  || (r == 0 && c == 0) ) {
+                _modules[row + r][col + c] = true;
+              } else {
+                _modules[row + r][col + c] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+
+    var setupTypeNumber = function(test) {
+
+      var bits = QRUtil.getBCHTypeNumber(_typeNumber);
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[Math.floor(i / 3)][i % 3 + _moduleCount - 8 - 3] = mod;
+      }
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[i % 3 + _moduleCount - 8 - 3][Math.floor(i / 3)] = mod;
+      }
+    };
+
+    var setupTypeInfo = function(test, maskPattern) {
+
+      var data = (_errorCorrectionLevel << 3) | maskPattern;
+      var bits = QRUtil.getBCHTypeInfo(data);
+
+      // vertical
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 6) {
+          _modules[i][8] = mod;
+        } else if (i < 8) {
+          _modules[i + 1][8] = mod;
+        } else {
+          _modules[_moduleCount - 15 + i][8] = mod;
+        }
+      }
+
+      // horizontal
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 8) {
+          _modules[8][_moduleCount - i - 1] = mod;
+        } else if (i < 9) {
+          _modules[8][15 - i - 1 + 1] = mod;
+        } else {
+          _modules[8][15 - i - 1] = mod;
+        }
+      }
+
+      // fixed module
+      _modules[_moduleCount - 8][8] = (!test);
+    };
+
+    var mapData = function(data, maskPattern) {
+
+      var inc = -1;
+      var row = _moduleCount - 1;
+      var bitIndex = 7;
+      var byteIndex = 0;
+      var maskFunc = QRUtil.getMaskFunction(maskPattern);
+
+      for (var col = _moduleCount - 1; col > 0; col -= 2) {
+
+        if (col == 6) col -= 1;
+
+        while (true) {
+
+          for (var c = 0; c < 2; c += 1) {
+
+            if (_modules[row][col - c] == null) {
+
+              var dark = false;
+
+              if (byteIndex < data.length) {
+                dark = ( ( (data[byteIndex] >>> bitIndex) & 1) == 1);
+              }
+
+              var mask = maskFunc(row, col - c);
+
+              if (mask) {
+                dark = !dark;
+              }
+
+              _modules[row][col - c] = dark;
+              bitIndex -= 1;
+
+              if (bitIndex == -1) {
+                byteIndex += 1;
+                bitIndex = 7;
+              }
+            }
+          }
+
+          row += inc;
+
+          if (row < 0 || _moduleCount <= row) {
+            row -= inc;
+            inc = -inc;
+            break;
+          }
+        }
+      }
+    };
+
+    var createBytes = function(buffer, rsBlocks) {
+
+      var offset = 0;
+
+      var maxDcCount = 0;
+      var maxEcCount = 0;
+
+      var dcdata = new Array(rsBlocks.length);
+      var ecdata = new Array(rsBlocks.length);
+
+      for (var r = 0; r < rsBlocks.length; r += 1) {
+
+        var dcCount = rsBlocks[r].dataCount;
+        var ecCount = rsBlocks[r].totalCount - dcCount;
+
+        maxDcCount = Math.max(maxDcCount, dcCount);
+        maxEcCount = Math.max(maxEcCount, ecCount);
+
+        dcdata[r] = new Array(dcCount);
+
+        for (var i = 0; i < dcdata[r].length; i += 1) {
+          dcdata[r][i] = 0xff & buffer.getBuffer()[i + offset];
+        }
+        offset += dcCount;
+
+        var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+        var rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1);
+
+        var modPoly = rawPoly.mod(rsPoly);
+        ecdata[r] = new Array(rsPoly.getLength() - 1);
+        for (var i = 0; i < ecdata[r].length; i += 1) {
+          var modIndex = i + modPoly.getLength() - ecdata[r].length;
+          ecdata[r][i] = (modIndex >= 0)? modPoly.getAt(modIndex) : 0;
+        }
+      }
+
+      var totalCodeCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalCodeCount += rsBlocks[i].totalCount;
+      }
+
+      var data = new Array(totalCodeCount);
+      var index = 0;
+
+      for (var i = 0; i < maxDcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < dcdata[r].length) {
+            data[index] = dcdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      for (var i = 0; i < maxEcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < ecdata[r].length) {
+            data[index] = ecdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      return data;
+    };
+
+    var createData = function(typeNumber, errorCorrectionLevel, dataList) {
+
+      var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectionLevel);
+
+      var buffer = qrBitBuffer();
+
+      for (var i = 0; i < dataList.length; i += 1) {
+        var data = dataList[i];
+        buffer.put(data.getMode(), 4);
+        buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+        data.write(buffer);
+      }
+
+      // calc num max data.
+      var totalDataCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalDataCount += rsBlocks[i].dataCount;
+      }
+
+      if (buffer.getLengthInBits() > totalDataCount * 8) {
+        throw 'code length overflow. ('
+          + buffer.getLengthInBits()
+          + '>'
+          + totalDataCount * 8
+          + ')';
+      }
+
+      // end code
+      if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+        buffer.put(0, 4);
+      }
+
+      // padding
+      while (buffer.getLengthInBits() % 8 != 0) {
+        buffer.putBit(false);
+      }
+
+      // padding
+      while (true) {
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD0, 8);
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD1, 8);
+      }
+
+      return createBytes(buffer, rsBlocks);
+    };
+
+    _this.addData = function(data, mode) {
+
+      mode = mode || 'Byte';
+
+      var newData = null;
+
+      switch(mode) {
+      case 'Numeric' :
+        newData = qrNumber(data);
+        break;
+      case 'Alphanumeric' :
+        newData = qrAlphaNum(data);
+        break;
+      case 'Byte' :
+        newData = qr8BitByte(data);
+        break;
+      case 'Kanji' :
+        newData = qrKanji(data);
+        break;
+      default :
+        throw 'mode:' + mode;
+      }
+
+      _dataList.push(newData);
+      _dataCache = null;
+    };
+
+    _this.isDark = function(row, col) {
+      if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) {
+        throw row + ',' + col;
+      }
+      return _modules[row][col];
+    };
+
+    _this.getModuleCount = function() {
+      return _moduleCount;
+    };
+
+    _this.make = function() {
+      if (_typeNumber < 1) {
+        var typeNumber = 1;
+
+        for (; typeNumber < 40; typeNumber++) {
+          var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, _errorCorrectionLevel);
+          var buffer = qrBitBuffer();
+
+          for (var i = 0; i < _dataList.length; i++) {
+            var data = _dataList[i];
+            buffer.put(data.getMode(), 4);
+            buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+            data.write(buffer);
+          }
+
+          var totalDataCount = 0;
+          for (var i = 0; i < rsBlocks.length; i++) {
+            totalDataCount += rsBlocks[i].dataCount;
+          }
+
+          if (buffer.getLengthInBits() <= totalDataCount * 8) {
+            break;
+          }
+        }
+
+        _typeNumber = typeNumber;
+      }
+
+      makeImpl(false, getBestMaskPattern() );
+    };
+
+    _this.createTableTag = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var qrHtml = '';
+
+      qrHtml += '<table style="';
+      qrHtml += ' border-width: 0px; border-style: none;';
+      qrHtml += ' border-collapse: collapse;';
+      qrHtml += ' padding: 0px; margin: ' + margin + 'px;';
+      qrHtml += '">';
+      qrHtml += '<tbody>';
+
+      for (var r = 0; r < _this.getModuleCount(); r += 1) {
+
+        qrHtml += '<tr>';
+
+        for (var c = 0; c < _this.getModuleCount(); c += 1) {
+          qrHtml += '<td style="';
+          qrHtml += ' border-width: 0px; border-style: none;';
+          qrHtml += ' border-collapse: collapse;';
+          qrHtml += ' padding: 0px; margin: 0px;';
+          qrHtml += ' width: ' + cellSize + 'px;';
+          qrHtml += ' height: ' + cellSize + 'px;';
+          qrHtml += ' background-color: ';
+          qrHtml += _this.isDark(r, c)? '#000000' : '#ffffff';
+          qrHtml += ';';
+          qrHtml += '"/>';
+        }
+
+        qrHtml += '</tr>';
+      }
+
+      qrHtml += '</tbody>';
+      qrHtml += '</table>';
+
+      return qrHtml;
+    };
+
+    _this.createSvgTag = function(cellSize, margin, alt, title) {
+
+      var opts = {};
+      if (typeof arguments[0] == 'object') {
+        // Called by options.
+        opts = arguments[0];
+        // overwrite cellSize and margin.
+        cellSize = opts.cellSize;
+        margin = opts.margin;
+        alt = opts.alt;
+        title = opts.title;
+      }
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      // Compose alt property surrogate
+      alt = (typeof alt === 'string') ? {text: alt} : alt || {};
+      alt.text = alt.text || null;
+      alt.id = (alt.text) ? alt.id || 'qrcode-description' : null;
+
+      // Compose title property surrogate
+      title = (typeof title === 'string') ? {text: title} : title || {};
+      title.text = title.text || null;
+      title.id = (title.text) ? title.id || 'qrcode-title' : null;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var c, mc, r, mr, qrSvg='', rect;
+
+      rect = 'l' + cellSize + ',0 0,' + cellSize +
+        ' -' + cellSize + ',0 0,-' + cellSize + 'z ';
+
+      qrSvg += '<svg version="1.1" xmlns="http://www.w3.org/2000/svg"';
+      qrSvg += !opts.scalable ? ' width="' + size + 'px" height="' + size + 'px"' : '';
+      qrSvg += ' viewBox="0 0 ' + size + ' ' + size + '" ';
+      qrSvg += ' preserveAspectRatio="xMinYMin meet"';
+      qrSvg += (title.text || alt.text) ? ' role="img" aria-labelledby="' +
+          escapeXml([title.id, alt.id].join(' ').trim() ) + '"' : '';
+      qrSvg += '>';
+      qrSvg += (title.text) ? '<title id="' + escapeXml(title.id) + '">' +
+          escapeXml(title.text) + '</title>' : '';
+      qrSvg += (alt.text) ? '<description id="' + escapeXml(alt.id) + '">' +
+          escapeXml(alt.text) + '</description>' : '';
+      qrSvg += '<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>';
+      qrSvg += '<path d="';
+
+      for (r = 0; r < _this.getModuleCount(); r += 1) {
+        mr = r * cellSize + margin;
+        for (c = 0; c < _this.getModuleCount(); c += 1) {
+          if (_this.isDark(r, c) ) {
+            mc = c*cellSize+margin;
+            qrSvg += 'M' + mc + ',' + mr + rect;
+          }
+        }
+      }
+
+      qrSvg += '" stroke="transparent" fill="black"/>';
+      qrSvg += '</svg>';
+
+      return qrSvg;
+    };
+
+    _this.createDataURL = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      return createDataURL(size, size, function(x, y) {
+        if (min <= x && x < max && min <= y && y < max) {
+          var c = Math.floor( (x - min) / cellSize);
+          var r = Math.floor( (y - min) / cellSize);
+          return _this.isDark(r, c)? 0 : 1;
+        } else {
+          return 1;
+        }
+      } );
+    };
+
+    _this.createImgTag = function(cellSize, margin, alt) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+
+      var img = '';
+      img += '<img';
+      img += '\u0020src="';
+      img += _this.createDataURL(cellSize, margin);
+      img += '"';
+      img += '\u0020width="';
+      img += size;
+      img += '"';
+      img += '\u0020height="';
+      img += size;
+      img += '"';
+      if (alt) {
+        img += '\u0020alt="';
+        img += escapeXml(alt);
+        img += '"';
+      }
+      img += '/>';
+
+      return img;
+    };
+
+    var escapeXml = function(s) {
+      var escaped = '';
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charAt(i);
+        switch(c) {
+        case '<': escaped += '&lt;'; break;
+        case '>': escaped += '&gt;'; break;
+        case '&': escaped += '&amp;'; break;
+        case '"': escaped += '&quot;'; break;
+        default : escaped += c; break;
+        }
+      }
+      return escaped;
+    };
+
+    var _createHalfASCII = function(margin) {
+      var cellSize = 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r1, r2, p;
+
+      var blocks = {
+        '██': '█',
+        '█ ': '▀',
+        ' █': '▄',
+        '  ': ' '
+      };
+
+      var blocksLastLineNoMargin = {
+        '██': '▀',
+        '█ ': '▀',
+        ' █': ' ',
+        '  ': ' '
+      };
+
+      var ascii = '';
+      for (y = 0; y < size; y += 2) {
+        r1 = Math.floor((y - min) / cellSize);
+        r2 = Math.floor((y + 1 - min) / cellSize);
+        for (x = 0; x < size; x += 1) {
+          p = '█';
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r1, Math.floor((x - min) / cellSize))) {
+            p = ' ';
+          }
+
+          if (min <= x && x < max && min <= y+1 && y+1 < max && _this.isDark(r2, Math.floor((x - min) / cellSize))) {
+            p += ' ';
+          }
+          else {
+            p += '█';
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          ascii += (margin < 1 && y+1 >= max) ? blocksLastLineNoMargin[p] : blocks[p];
+        }
+
+        ascii += '\n';
+      }
+
+      if (size % 2 && margin > 0) {
+        return ascii.substring(0, ascii.length - size - 1) + Array(size+1).join('▀');
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.createASCII = function(cellSize, margin) {
+      cellSize = cellSize || 1;
+
+      if (cellSize < 2) {
+        return _createHalfASCII(margin);
+      }
+
+      cellSize -= 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r, p;
+
+      var white = Array(cellSize+1).join('██');
+      var black = Array(cellSize+1).join('  ');
+
+      var ascii = '';
+      var line = '';
+      for (y = 0; y < size; y += 1) {
+        r = Math.floor( (y - min) / cellSize);
+        line = '';
+        for (x = 0; x < size; x += 1) {
+          p = 1;
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r, Math.floor((x - min) / cellSize))) {
+            p = 0;
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          line += p ? white : black;
+        }
+
+        for (r = 0; r < cellSize; r += 1) {
+          ascii += line + '\n';
+        }
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.renderTo2dContext = function(context, cellSize) {
+      cellSize = cellSize || 2;
+      var length = _this.getModuleCount();
+      for (var row = 0; row < length; row++) {
+        for (var col = 0; col < length; col++) {
+          context.fillStyle = _this.isDark(row, col) ? 'black' : 'white';
+          context.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrcode.stringToBytes
+  //---------------------------------------------------------------------
+
+  qrcode.stringToBytesFuncs = {
+    'default' : function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        bytes.push(c & 0xff);
+      }
+      return bytes;
+    }
+  };
+
+  qrcode.stringToBytes = qrcode.stringToBytesFuncs['default'];
+
+  //---------------------------------------------------------------------
+  // qrcode.createStringToBytes
+  //---------------------------------------------------------------------
+
+  /**
+   * @param unicodeData base64 string of byte array.
+   * [16bit Unicode],[16bit Bytes], ...
+   * @param numChars
+   */
+  qrcode.createStringToBytes = function(unicodeData, numChars) {
+
+    // create conversion map.
+
+    var unicodeMap = function() {
+
+      var bin = base64DecodeInputStream(unicodeData);
+      var read = function() {
+        var b = bin.read();
+        if (b == -1) throw 'eof';
+        return b;
+      };
+
+      var count = 0;
+      var unicodeMap = {};
+      while (true) {
+        var b0 = bin.read();
+        if (b0 == -1) break;
+        var b1 = read();
+        var b2 = read();
+        var b3 = read();
+        var k = String.fromCharCode( (b0 << 8) | b1);
+        var v = (b2 << 8) | b3;
+        unicodeMap[k] = v;
+        count += 1;
+      }
+      if (count != numChars) {
+        throw count + ' != ' + numChars;
+      }
+
+      return unicodeMap;
+    }();
+
+    var unknownChar = '?'.charCodeAt(0);
+
+    return function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        if (c < 128) {
+          bytes.push(c);
+        } else {
+          var b = unicodeMap[s.charAt(i)];
+          if (typeof b == 'number') {
+            if ( (b & 0xff) == b) {
+              // 1byte
+              bytes.push(b);
+            } else {
+              // 2bytes
+              bytes.push(b >>> 8);
+              bytes.push(b & 0xff);
+            }
+          } else {
+            bytes.push(unknownChar);
+          }
+        }
+      }
+      return bytes;
+    };
+  };
+
+  //---------------------------------------------------------------------
+  // QRMode
+  //---------------------------------------------------------------------
+
+  var QRMode = {
+    MODE_NUMBER :    1 << 0,
+    MODE_ALPHA_NUM : 1 << 1,
+    MODE_8BIT_BYTE : 1 << 2,
+    MODE_KANJI :     1 << 3
+  };
+
+  //---------------------------------------------------------------------
+  // QRErrorCorrectionLevel
+  //---------------------------------------------------------------------
+
+  var QRErrorCorrectionLevel = {
+    L : 1,
+    M : 0,
+    Q : 3,
+    H : 2
+  };
+
+  //---------------------------------------------------------------------
+  // QRMaskPattern
+  //---------------------------------------------------------------------
+
+  var QRMaskPattern = {
+    PATTERN000 : 0,
+    PATTERN001 : 1,
+    PATTERN010 : 2,
+    PATTERN011 : 3,
+    PATTERN100 : 4,
+    PATTERN101 : 5,
+    PATTERN110 : 6,
+    PATTERN111 : 7
+  };
+
+  //---------------------------------------------------------------------
+  // QRUtil
+  //---------------------------------------------------------------------
+
+  var QRUtil = function() {
+
+    var PATTERN_POSITION_TABLE = [
+      [],
+      [6, 18],
+      [6, 22],
+      [6, 26],
+      [6, 30],
+      [6, 34],
+      [6, 22, 38],
+      [6, 24, 42],
+      [6, 26, 46],
+      [6, 28, 50],
+      [6, 30, 54],
+      [6, 32, 58],
+      [6, 34, 62],
+      [6, 26, 46, 66],
+      [6, 26, 48, 70],
+      [6, 26, 50, 74],
+      [6, 30, 54, 78],
+      [6, 30, 56, 82],
+      [6, 30, 58, 86],
+      [6, 34, 62, 90],
+      [6, 28, 50, 72, 94],
+      [6, 26, 50, 74, 98],
+      [6, 30, 54, 78, 102],
+      [6, 28, 54, 80, 106],
+      [6, 32, 58, 84, 110],
+      [6, 30, 58, 86, 114],
+      [6, 34, 62, 90, 118],
+      [6, 26, 50, 74, 98, 122],
+      [6, 30, 54, 78, 102, 126],
+      [6, 26, 52, 78, 104, 130],
+      [6, 30, 56, 82, 108, 134],
+      [6, 34, 60, 86, 112, 138],
+      [6, 30, 58, 86, 114, 142],
+      [6, 34, 62, 90, 118, 146],
+      [6, 30, 54, 78, 102, 126, 150],
+      [6, 24, 50, 76, 102, 128, 154],
+      [6, 28, 54, 80, 106, 132, 158],
+      [6, 32, 58, 84, 110, 136, 162],
+      [6, 26, 54, 82, 110, 138, 166],
+      [6, 30, 58, 86, 114, 142, 170]
+    ];
+    var G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+    var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+    var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+
+    var _this = {};
+
+    var getBCHDigit = function(data) {
+      var digit = 0;
+      while (data != 0) {
+        digit += 1;
+        data >>>= 1;
+      }
+      return digit;
+    };
+
+    _this.getBCHTypeInfo = function(data) {
+      var d = data << 10;
+      while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
+        d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15) ) );
+      }
+      return ( (data << 10) | d) ^ G15_MASK;
+    };
+
+    _this.getBCHTypeNumber = function(data) {
+      var d = data << 12;
+      while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
+        d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18) ) );
+      }
+      return (data << 12) | d;
+    };
+
+    _this.getPatternPosition = function(typeNumber) {
+      return PATTERN_POSITION_TABLE[typeNumber - 1];
+    };
+
+    _this.getMaskFunction = function(maskPattern) {
+
+      switch (maskPattern) {
+
+      case QRMaskPattern.PATTERN000 :
+        return function(i, j) { return (i + j) % 2 == 0; };
+      case QRMaskPattern.PATTERN001 :
+        return function(i, j) { return i % 2 == 0; };
+      case QRMaskPattern.PATTERN010 :
+        return function(i, j) { return j % 3 == 0; };
+      case QRMaskPattern.PATTERN011 :
+        return function(i, j) { return (i + j) % 3 == 0; };
+      case QRMaskPattern.PATTERN100 :
+        return function(i, j) { return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 == 0; };
+      case QRMaskPattern.PATTERN101 :
+        return function(i, j) { return (i * j) % 2 + (i * j) % 3 == 0; };
+      case QRMaskPattern.PATTERN110 :
+        return function(i, j) { return ( (i * j) % 2 + (i * j) % 3) % 2 == 0; };
+      case QRMaskPattern.PATTERN111 :
+        return function(i, j) { return ( (i * j) % 3 + (i + j) % 2) % 2 == 0; };
+
+      default :
+        throw 'bad maskPattern:' + maskPattern;
+      }
+    };
+
+    _this.getErrorCorrectPolynomial = function(errorCorrectLength) {
+      var a = qrPolynomial([1], 0);
+      for (var i = 0; i < errorCorrectLength; i += 1) {
+        a = a.multiply(qrPolynomial([1, QRMath.gexp(i)], 0) );
+      }
+      return a;
+    };
+
+    _this.getLengthInBits = function(mode, type) {
+
+      if (1 <= type && type < 10) {
+
+        // 1 - 9
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 10;
+        case QRMode.MODE_ALPHA_NUM : return 9;
+        case QRMode.MODE_8BIT_BYTE : return 8;
+        case QRMode.MODE_KANJI     : return 8;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 27) {
+
+        // 10 - 26
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 12;
+        case QRMode.MODE_ALPHA_NUM : return 11;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 10;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 41) {
+
+        // 27 - 40
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 14;
+        case QRMode.MODE_ALPHA_NUM : return 13;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 12;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else {
+        throw 'type:' + type;
+      }
+    };
+
+    _this.getLostPoint = function(qrcode) {
+
+      var moduleCount = qrcode.getModuleCount();
+
+      var lostPoint = 0;
+
+      // LEVEL1
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount; col += 1) {
+
+          var sameCount = 0;
+          var dark = qrcode.isDark(row, col);
+
+          for (var r = -1; r <= 1; r += 1) {
+
+            if (row + r < 0 || moduleCount <= row + r) {
+              continue;
+            }
+
+            for (var c = -1; c <= 1; c += 1) {
+
+              if (col + c < 0 || moduleCount <= col + c) {
+                continue;
+              }
+
+              if (r == 0 && c == 0) {
+                continue;
+              }
+
+              if (dark == qrcode.isDark(row + r, col + c) ) {
+                sameCount += 1;
+              }
+            }
+          }
+
+          if (sameCount > 5) {
+            lostPoint += (3 + sameCount - 5);
+          }
+        }
+      };
+
+      // LEVEL2
+
+      for (var row = 0; row < moduleCount - 1; row += 1) {
+        for (var col = 0; col < moduleCount - 1; col += 1) {
+          var count = 0;
+          if (qrcode.isDark(row, col) ) count += 1;
+          if (qrcode.isDark(row + 1, col) ) count += 1;
+          if (qrcode.isDark(row, col + 1) ) count += 1;
+          if (qrcode.isDark(row + 1, col + 1) ) count += 1;
+          if (count == 0 || count == 4) {
+            lostPoint += 3;
+          }
+        }
+      }
+
+      // LEVEL3
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount - 6; col += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row, col + 1)
+              &&  qrcode.isDark(row, col + 2)
+              &&  qrcode.isDark(row, col + 3)
+              &&  qrcode.isDark(row, col + 4)
+              && !qrcode.isDark(row, col + 5)
+              &&  qrcode.isDark(row, col + 6) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount - 6; row += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row + 1, col)
+              &&  qrcode.isDark(row + 2, col)
+              &&  qrcode.isDark(row + 3, col)
+              &&  qrcode.isDark(row + 4, col)
+              && !qrcode.isDark(row + 5, col)
+              &&  qrcode.isDark(row + 6, col) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      // LEVEL4
+
+      var darkCount = 0;
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount; row += 1) {
+          if (qrcode.isDark(row, col) ) {
+            darkCount += 1;
+          }
+        }
+      }
+
+      var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+      lostPoint += ratio * 10;
+
+      return lostPoint;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // QRMath
+  //---------------------------------------------------------------------
+
+  var QRMath = function() {
+
+    var EXP_TABLE = new Array(256);
+    var LOG_TABLE = new Array(256);
+
+    // initialize tables
+    for (var i = 0; i < 8; i += 1) {
+      EXP_TABLE[i] = 1 << i;
+    }
+    for (var i = 8; i < 256; i += 1) {
+      EXP_TABLE[i] = EXP_TABLE[i - 4]
+        ^ EXP_TABLE[i - 5]
+        ^ EXP_TABLE[i - 6]
+        ^ EXP_TABLE[i - 8];
+    }
+    for (var i = 0; i < 255; i += 1) {
+      LOG_TABLE[EXP_TABLE[i] ] = i;
+    }
+
+    var _this = {};
+
+    _this.glog = function(n) {
+
+      if (n < 1) {
+        throw 'glog(' + n + ')';
+      }
+
+      return LOG_TABLE[n];
+    };
+
+    _this.gexp = function(n) {
+
+      while (n < 0) {
+        n += 255;
+      }
+
+      while (n >= 256) {
+        n -= 255;
+      }
+
+      return EXP_TABLE[n];
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrPolynomial
+  //---------------------------------------------------------------------
+
+  function qrPolynomial(num, shift) {
+
+    if (typeof num.length == 'undefined') {
+      throw num.length + '/' + shift;
+    }
+
+    var _num = function() {
+      var offset = 0;
+      while (offset < num.length && num[offset] == 0) {
+        offset += 1;
+      }
+      var _num = new Array(num.length - offset + shift);
+      for (var i = 0; i < num.length - offset; i += 1) {
+        _num[i] = num[i + offset];
+      }
+      return _num;
+    }();
+
+    var _this = {};
+
+    _this.getAt = function(index) {
+      return _num[index];
+    };
+
+    _this.getLength = function() {
+      return _num.length;
+    };
+
+    _this.multiply = function(e) {
+
+      var num = new Array(_this.getLength() + e.getLength() - 1);
+
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        for (var j = 0; j < e.getLength(); j += 1) {
+          num[i + j] ^= QRMath.gexp(QRMath.glog(_this.getAt(i) ) + QRMath.glog(e.getAt(j) ) );
+        }
+      }
+
+      return qrPolynomial(num, 0);
+    };
+
+    _this.mod = function(e) {
+
+      if (_this.getLength() - e.getLength() < 0) {
+        return _this;
+      }
+
+      var ratio = QRMath.glog(_this.getAt(0) ) - QRMath.glog(e.getAt(0) );
+
+      var num = new Array(_this.getLength() );
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        num[i] = _this.getAt(i);
+      }
+
+      for (var i = 0; i < e.getLength(); i += 1) {
+        num[i] ^= QRMath.gexp(QRMath.glog(e.getAt(i) ) + ratio);
+      }
+
+      // recursive call
+      return qrPolynomial(num, 0).mod(e);
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // QRRSBlock
+  //---------------------------------------------------------------------
+
+  var QRRSBlock = function() {
+
+    var RS_BLOCK_TABLE = [
+
+      // L
+      // M
+      // Q
+      // H
+
+      // 1
+      [1, 26, 19],
+      [1, 26, 16],
+      [1, 26, 13],
+      [1, 26, 9],
+
+      // 2
+      [1, 44, 34],
+      [1, 44, 28],
+      [1, 44, 22],
+      [1, 44, 16],
+
+      // 3
+      [1, 70, 55],
+      [1, 70, 44],
+      [2, 35, 17],
+      [2, 35, 13],
+
+      // 4
+      [1, 100, 80],
+      [2, 50, 32],
+      [2, 50, 24],
+      [4, 25, 9],
+
+      // 5
+      [1, 134, 108],
+      [2, 67, 43],
+      [2, 33, 15, 2, 34, 16],
+      [2, 33, 11, 2, 34, 12],
+
+      // 6
+      [2, 86, 68],
+      [4, 43, 27],
+      [4, 43, 19],
+      [4, 43, 15],
+
+      // 7
+      [2, 98, 78],
+      [4, 49, 31],
+      [2, 32, 14, 4, 33, 15],
+      [4, 39, 13, 1, 40, 14],
+
+      // 8
+      [2, 121, 97],
+      [2, 60, 38, 2, 61, 39],
+      [4, 40, 18, 2, 41, 19],
+      [4, 40, 14, 2, 41, 15],
+
+      // 9
+      [2, 146, 116],
+      [3, 58, 36, 2, 59, 37],
+      [4, 36, 16, 4, 37, 17],
+      [4, 36, 12, 4, 37, 13],
+
+      // 10
+      [2, 86, 68, 2, 87, 69],
+      [4, 69, 43, 1, 70, 44],
+      [6, 43, 19, 2, 44, 20],
+      [6, 43, 15, 2, 44, 16],
+
+      // 11
+      [4, 101, 81],
+      [1, 80, 50, 4, 81, 51],
+      [4, 50, 22, 4, 51, 23],
+      [3, 36, 12, 8, 37, 13],
+
+      // 12
+      [2, 116, 92, 2, 117, 93],
+      [6, 58, 36, 2, 59, 37],
+      [4, 46, 20, 6, 47, 21],
+      [7, 42, 14, 4, 43, 15],
+
+      // 13
+      [4, 133, 107],
+      [8, 59, 37, 1, 60, 38],
+      [8, 44, 20, 4, 45, 21],
+      [12, 33, 11, 4, 34, 12],
+
+      // 14
+      [3, 145, 115, 1, 146, 116],
+      [4, 64, 40, 5, 65, 41],
+      [11, 36, 16, 5, 37, 17],
+      [11, 36, 12, 5, 37, 13],
+
+      // 15
+      [5, 109, 87, 1, 110, 88],
+      [5, 65, 41, 5, 66, 42],
+      [5, 54, 24, 7, 55, 25],
+      [11, 36, 12, 7, 37, 13],
+
+      // 16
+      [5, 122, 98, 1, 123, 99],
+      [7, 73, 45, 3, 74, 46],
+      [15, 43, 19, 2, 44, 20],
+      [3, 45, 15, 13, 46, 16],
+
+      // 17
+      [1, 135, 107, 5, 136, 108],
+      [10, 74, 46, 1, 75, 47],
+      [1, 50, 22, 15, 51, 23],
+      [2, 42, 14, 17, 43, 15],
+
+      // 18
+      [5, 150, 120, 1, 151, 121],
+      [9, 69, 43, 4, 70, 44],
+      [17, 50, 22, 1, 51, 23],
+      [2, 42, 14, 19, 43, 15],
+
+      // 19
+      [3, 141, 113, 4, 142, 114],
+      [3, 70, 44, 11, 71, 45],
+      [17, 47, 21, 4, 48, 22],
+      [9, 39, 13, 16, 40, 14],
+
+      // 20
+      [3, 135, 107, 5, 136, 108],
+      [3, 67, 41, 13, 68, 42],
+      [15, 54, 24, 5, 55, 25],
+      [15, 43, 15, 10, 44, 16],
+
+      // 21
+      [4, 144, 116, 4, 145, 117],
+      [17, 68, 42],
+      [17, 50, 22, 6, 51, 23],
+      [19, 46, 16, 6, 47, 17],
+
+      // 22
+      [2, 139, 111, 7, 140, 112],
+      [17, 74, 46],
+      [7, 54, 24, 16, 55, 25],
+      [34, 37, 13],
+
+      // 23
+      [4, 151, 121, 5, 152, 122],
+      [4, 75, 47, 14, 76, 48],
+      [11, 54, 24, 14, 55, 25],
+      [16, 45, 15, 14, 46, 16],
+
+      // 24
+      [6, 147, 117, 4, 148, 118],
+      [6, 73, 45, 14, 74, 46],
+      [11, 54, 24, 16, 55, 25],
+      [30, 46, 16, 2, 47, 17],
+
+      // 25
+      [8, 132, 106, 4, 133, 107],
+      [8, 75, 47, 13, 76, 48],
+      [7, 54, 24, 22, 55, 25],
+      [22, 45, 15, 13, 46, 16],
+
+      // 26
+      [10, 142, 114, 2, 143, 115],
+      [19, 74, 46, 4, 75, 47],
+      [28, 50, 22, 6, 51, 23],
+      [33, 46, 16, 4, 47, 17],
+
+      // 27
+      [8, 152, 122, 4, 153, 123],
+      [22, 73, 45, 3, 74, 46],
+      [8, 53, 23, 26, 54, 24],
+      [12, 45, 15, 28, 46, 16],
+
+      // 28
+      [3, 147, 117, 10, 148, 118],
+      [3, 73, 45, 23, 74, 46],
+      [4, 54, 24, 31, 55, 25],
+      [11, 45, 15, 31, 46, 16],
+
+      // 29
+      [7, 146, 116, 7, 147, 117],
+      [21, 73, 45, 7, 74, 46],
+      [1, 53, 23, 37, 54, 24],
+      [19, 45, 15, 26, 46, 16],
+
+      // 30
+      [5, 145, 115, 10, 146, 116],
+      [19, 75, 47, 10, 76, 48],
+      [15, 54, 24, 25, 55, 25],
+      [23, 45, 15, 25, 46, 16],
+
+      // 31
+      [13, 145, 115, 3, 146, 116],
+      [2, 74, 46, 29, 75, 47],
+      [42, 54, 24, 1, 55, 25],
+      [23, 45, 15, 28, 46, 16],
+
+      // 32
+      [17, 145, 115],
+      [10, 74, 46, 23, 75, 47],
+      [10, 54, 24, 35, 55, 25],
+      [19, 45, 15, 35, 46, 16],
+
+      // 33
+      [17, 145, 115, 1, 146, 116],
+      [14, 74, 46, 21, 75, 47],
+      [29, 54, 24, 19, 55, 25],
+      [11, 45, 15, 46, 46, 16],
+
+      // 34
+      [13, 145, 115, 6, 146, 116],
+      [14, 74, 46, 23, 75, 47],
+      [44, 54, 24, 7, 55, 25],
+      [59, 46, 16, 1, 47, 17],
+
+      // 35
+      [12, 151, 121, 7, 152, 122],
+      [12, 75, 47, 26, 76, 48],
+      [39, 54, 24, 14, 55, 25],
+      [22, 45, 15, 41, 46, 16],
+
+      // 36
+      [6, 151, 121, 14, 152, 122],
+      [6, 75, 47, 34, 76, 48],
+      [46, 54, 24, 10, 55, 25],
+      [2, 45, 15, 64, 46, 16],
+
+      // 37
+      [17, 152, 122, 4, 153, 123],
+      [29, 74, 46, 14, 75, 47],
+      [49, 54, 24, 10, 55, 25],
+      [24, 45, 15, 46, 46, 16],
+
+      // 38
+      [4, 152, 122, 18, 153, 123],
+      [13, 74, 46, 32, 75, 47],
+      [48, 54, 24, 14, 55, 25],
+      [42, 45, 15, 32, 46, 16],
+
+      // 39
+      [20, 147, 117, 4, 148, 118],
+      [40, 75, 47, 7, 76, 48],
+      [43, 54, 24, 22, 55, 25],
+      [10, 45, 15, 67, 46, 16],
+
+      // 40
+      [19, 148, 118, 6, 149, 119],
+      [18, 75, 47, 31, 76, 48],
+      [34, 54, 24, 34, 55, 25],
+      [20, 45, 15, 61, 46, 16]
+    ];
+
+    var qrRSBlock = function(totalCount, dataCount) {
+      var _this = {};
+      _this.totalCount = totalCount;
+      _this.dataCount = dataCount;
+      return _this;
+    };
+
+    var _this = {};
+
+    var getRsBlockTable = function(typeNumber, errorCorrectionLevel) {
+
+      switch(errorCorrectionLevel) {
+      case QRErrorCorrectionLevel.L :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+      case QRErrorCorrectionLevel.M :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+      case QRErrorCorrectionLevel.Q :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+      case QRErrorCorrectionLevel.H :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+      default :
+        return undefined;
+      }
+    };
+
+    _this.getRSBlocks = function(typeNumber, errorCorrectionLevel) {
+
+      var rsBlock = getRsBlockTable(typeNumber, errorCorrectionLevel);
+
+      if (typeof rsBlock == 'undefined') {
+        throw 'bad rs block @ typeNumber:' + typeNumber +
+            '/errorCorrectionLevel:' + errorCorrectionLevel;
+      }
+
+      var length = rsBlock.length / 3;
+
+      var list = [];
+
+      for (var i = 0; i < length; i += 1) {
+
+        var count = rsBlock[i * 3 + 0];
+        var totalCount = rsBlock[i * 3 + 1];
+        var dataCount = rsBlock[i * 3 + 2];
+
+        for (var j = 0; j < count; j += 1) {
+          list.push(qrRSBlock(totalCount, dataCount) );
+        }
+      }
+
+      return list;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrBitBuffer
+  //---------------------------------------------------------------------
+
+  var qrBitBuffer = function() {
+
+    var _buffer = [];
+    var _length = 0;
+
+    var _this = {};
+
+    _this.getBuffer = function() {
+      return _buffer;
+    };
+
+    _this.getAt = function(index) {
+      var bufIndex = Math.floor(index / 8);
+      return ( (_buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+    };
+
+    _this.put = function(num, length) {
+      for (var i = 0; i < length; i += 1) {
+        _this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+      }
+    };
+
+    _this.getLengthInBits = function() {
+      return _length;
+    };
+
+    _this.putBit = function(bit) {
+
+      var bufIndex = Math.floor(_length / 8);
+      if (_buffer.length <= bufIndex) {
+        _buffer.push(0);
+      }
+
+      if (bit) {
+        _buffer[bufIndex] |= (0x80 >>> (_length % 8) );
+      }
+
+      _length += 1;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrNumber
+  //---------------------------------------------------------------------
+
+  var qrNumber = function(data) {
+
+    var _mode = QRMode.MODE_NUMBER;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _data;
+
+      var i = 0;
+
+      while (i + 2 < data.length) {
+        buffer.put(strToNum(data.substring(i, i + 3) ), 10);
+        i += 3;
+      }
+
+      if (i < data.length) {
+        if (data.length - i == 1) {
+          buffer.put(strToNum(data.substring(i, i + 1) ), 4);
+        } else if (data.length - i == 2) {
+          buffer.put(strToNum(data.substring(i, i + 2) ), 7);
+        }
+      }
+    };
+
+    var strToNum = function(s) {
+      var num = 0;
+      for (var i = 0; i < s.length; i += 1) {
+        num = num * 10 + chatToNum(s.charAt(i) );
+      }
+      return num;
+    };
+
+    var chatToNum = function(c) {
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      }
+      throw 'illegal char :' + c;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrAlphaNum
+  //---------------------------------------------------------------------
+
+  var qrAlphaNum = function(data) {
+
+    var _mode = QRMode.MODE_ALPHA_NUM;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var s = _data;
+
+      var i = 0;
+
+      while (i + 1 < s.length) {
+        buffer.put(
+          getCode(s.charAt(i) ) * 45 +
+          getCode(s.charAt(i + 1) ), 11);
+        i += 2;
+      }
+
+      if (i < s.length) {
+        buffer.put(getCode(s.charAt(i) ), 6);
+      }
+    };
+
+    var getCode = function(c) {
+
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      } else if ('A' <= c && c <= 'Z') {
+        return c.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
+      } else {
+        switch (c) {
+        case ' ' : return 36;
+        case '$' : return 37;
+        case '%' : return 38;
+        case '*' : return 39;
+        case '+' : return 40;
+        case '-' : return 41;
+        case '.' : return 42;
+        case '/' : return 43;
+        case ':' : return 44;
+        default :
+          throw 'illegal char :' + c;
+        }
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qr8BitByte
+  //---------------------------------------------------------------------
+
+  var qr8BitByte = function(data) {
+
+    var _mode = QRMode.MODE_8BIT_BYTE;
+    var _data = data;
+    var _bytes = qrcode.stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _bytes.length;
+    };
+
+    _this.write = function(buffer) {
+      for (var i = 0; i < _bytes.length; i += 1) {
+        buffer.put(_bytes[i], 8);
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrKanji
+  //---------------------------------------------------------------------
+
+  var qrKanji = function(data) {
+
+    var _mode = QRMode.MODE_KANJI;
+    var _data = data;
+
+    var stringToBytes = qrcode.stringToBytesFuncs['SJIS'];
+    if (!stringToBytes) {
+      throw 'sjis not supported.';
+    }
+    !function(c, code) {
+      // self test for sjis support.
+      var test = stringToBytes(c);
+      if (test.length != 2 || ( (test[0] << 8) | test[1]) != code) {
+        throw 'sjis not supported.';
+      }
+    }('\u53cb', 0x9746);
+
+    var _bytes = stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return ~~(_bytes.length / 2);
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _bytes;
+
+      var i = 0;
+
+      while (i + 1 < data.length) {
+
+        var c = ( (0xff & data[i]) << 8) | (0xff & data[i + 1]);
+
+        if (0x8140 <= c && c <= 0x9FFC) {
+          c -= 0x8140;
+        } else if (0xE040 <= c && c <= 0xEBBF) {
+          c -= 0xC140;
+        } else {
+          throw 'illegal char at ' + (i + 1) + '/' + c;
+        }
+
+        c = ( (c >>> 8) & 0xff) * 0xC0 + (c & 0xff);
+
+        buffer.put(c, 13);
+
+        i += 2;
+      }
+
+      if (i < data.length) {
+        throw 'illegal char at ' + (i + 1);
+      }
+    };
+
+    return _this;
+  };
+
+  //=====================================================================
+  // GIF Support etc.
+  //
+
+  //---------------------------------------------------------------------
+  // byteArrayOutputStream
+  //---------------------------------------------------------------------
+
+  var byteArrayOutputStream = function() {
+
+    var _bytes = [];
+
+    var _this = {};
+
+    _this.writeByte = function(b) {
+      _bytes.push(b & 0xff);
+    };
+
+    _this.writeShort = function(i) {
+      _this.writeByte(i);
+      _this.writeByte(i >>> 8);
+    };
+
+    _this.writeBytes = function(b, off, len) {
+      off = off || 0;
+      len = len || b.length;
+      for (var i = 0; i < len; i += 1) {
+        _this.writeByte(b[i + off]);
+      }
+    };
+
+    _this.writeString = function(s) {
+      for (var i = 0; i < s.length; i += 1) {
+        _this.writeByte(s.charCodeAt(i) );
+      }
+    };
+
+    _this.toByteArray = function() {
+      return _bytes;
+    };
+
+    _this.toString = function() {
+      var s = '';
+      s += '[';
+      for (var i = 0; i < _bytes.length; i += 1) {
+        if (i > 0) {
+          s += ',';
+        }
+        s += _bytes[i];
+      }
+      s += ']';
+      return s;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64EncodeOutputStream
+  //---------------------------------------------------------------------
+
+  var base64EncodeOutputStream = function() {
+
+    var _buffer = 0;
+    var _buflen = 0;
+    var _length = 0;
+    var _base64 = '';
+
+    var _this = {};
+
+    var writeEncoded = function(b) {
+      _base64 += String.fromCharCode(encode(b & 0x3f) );
+    };
+
+    var encode = function(n) {
+      if (n < 0) {
+        // error.
+      } else if (n < 26) {
+        return 0x41 + n;
+      } else if (n < 52) {
+        return 0x61 + (n - 26);
+      } else if (n < 62) {
+        return 0x30 + (n - 52);
+      } else if (n == 62) {
+        return 0x2b;
+      } else if (n == 63) {
+        return 0x2f;
+      }
+      throw 'n:' + n;
+    };
+
+    _this.writeByte = function(n) {
+
+      _buffer = (_buffer << 8) | (n & 0xff);
+      _buflen += 8;
+      _length += 1;
+
+      while (_buflen >= 6) {
+        writeEncoded(_buffer >>> (_buflen - 6) );
+        _buflen -= 6;
+      }
+    };
+
+    _this.flush = function() {
+
+      if (_buflen > 0) {
+        writeEncoded(_buffer << (6 - _buflen) );
+        _buffer = 0;
+        _buflen = 0;
+      }
+
+      if (_length % 3 != 0) {
+        // padding
+        var padlen = 3 - _length % 3;
+        for (var i = 0; i < padlen; i += 1) {
+          _base64 += '=';
+        }
+      }
+    };
+
+    _this.toString = function() {
+      return _base64;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64DecodeInputStream
+  //---------------------------------------------------------------------
+
+  var base64DecodeInputStream = function(str) {
+
+    var _str = str;
+    var _pos = 0;
+    var _buffer = 0;
+    var _buflen = 0;
+
+    var _this = {};
+
+    _this.read = function() {
+
+      while (_buflen < 8) {
+
+        if (_pos >= _str.length) {
+          if (_buflen == 0) {
+            return -1;
+          }
+          throw 'unexpected end of file./' + _buflen;
+        }
+
+        var c = _str.charAt(_pos);
+        _pos += 1;
+
+        if (c == '=') {
+          _buflen = 0;
+          return -1;
+        } else if (c.match(/^\s$/) ) {
+          // ignore if whitespace.
+          continue;
+        }
+
+        _buffer = (_buffer << 6) | decode(c.charCodeAt(0) );
+        _buflen += 6;
+      }
+
+      var n = (_buffer >>> (_buflen - 8) ) & 0xff;
+      _buflen -= 8;
+      return n;
+    };
+
+    var decode = function(c) {
+      if (0x41 <= c && c <= 0x5a) {
+        return c - 0x41;
+      } else if (0x61 <= c && c <= 0x7a) {
+        return c - 0x61 + 26;
+      } else if (0x30 <= c && c <= 0x39) {
+        return c - 0x30 + 52;
+      } else if (c == 0x2b) {
+        return 62;
+      } else if (c == 0x2f) {
+        return 63;
+      } else {
+        throw 'c:' + c;
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // gifImage (B/W)
+  //---------------------------------------------------------------------
+
+  var gifImage = function(width, height) {
+
+    var _width = width;
+    var _height = height;
+    var _data = new Array(width * height);
+
+    var _this = {};
+
+    _this.setPixel = function(x, y, pixel) {
+      _data[y * _width + x] = pixel;
+    };
+
+    _this.write = function(out) {
+
+      //---------------------------------
+      // GIF Signature
+
+      out.writeString('GIF87a');
+
+      //---------------------------------
+      // Screen Descriptor
+
+      out.writeShort(_width);
+      out.writeShort(_height);
+
+      out.writeByte(0x80); // 2bit
+      out.writeByte(0);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Global Color Map
+
+      // black
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+
+      // white
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+
+      //---------------------------------
+      // Image Descriptor
+
+      out.writeString(',');
+      out.writeShort(0);
+      out.writeShort(0);
+      out.writeShort(_width);
+      out.writeShort(_height);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Local Color Map
+
+      //---------------------------------
+      // Raster Data
+
+      var lzwMinCodeSize = 2;
+      var raster = getLZWRaster(lzwMinCodeSize);
+
+      out.writeByte(lzwMinCodeSize);
+
+      var offset = 0;
+
+      while (raster.length - offset > 255) {
+        out.writeByte(255);
+        out.writeBytes(raster, offset, 255);
+        offset += 255;
+      }
+
+      out.writeByte(raster.length - offset);
+      out.writeBytes(raster, offset, raster.length - offset);
+      out.writeByte(0x00);
+
+      //---------------------------------
+      // GIF Terminator
+      out.writeString(';');
+    };
+
+    var bitOutputStream = function(out) {
+
+      var _out = out;
+      var _bitLength = 0;
+      var _bitBuffer = 0;
+
+      var _this = {};
+
+      _this.write = function(data, length) {
+
+        if ( (data >>> length) != 0) {
+          throw 'length over';
+        }
+
+        while (_bitLength + length >= 8) {
+          _out.writeByte(0xff & ( (data << _bitLength) | _bitBuffer) );
+          length -= (8 - _bitLength);
+          data >>>= (8 - _bitLength);
+          _bitBuffer = 0;
+          _bitLength = 0;
+        }
+
+        _bitBuffer = (data << _bitLength) | _bitBuffer;
+        _bitLength = _bitLength + length;
+      };
+
+      _this.flush = function() {
+        if (_bitLength > 0) {
+          _out.writeByte(_bitBuffer);
+        }
+      };
+
+      return _this;
+    };
+
+    var getLZWRaster = function(lzwMinCodeSize) {
+
+      var clearCode = 1 << lzwMinCodeSize;
+      var endCode = (1 << lzwMinCodeSize) + 1;
+      var bitLength = lzwMinCodeSize + 1;
+
+      // Setup LZWTable
+      var table = lzwTable();
+
+      for (var i = 0; i < clearCode; i += 1) {
+        table.add(String.fromCharCode(i) );
+      }
+      table.add(String.fromCharCode(clearCode) );
+      table.add(String.fromCharCode(endCode) );
+
+      var byteOut = byteArrayOutputStream();
+      var bitOut = bitOutputStream(byteOut);
+
+      // clear code
+      bitOut.write(clearCode, bitLength);
+
+      var dataIndex = 0;
+
+      var s = String.fromCharCode(_data[dataIndex]);
+      dataIndex += 1;
+
+      while (dataIndex < _data.length) {
+
+        var c = String.fromCharCode(_data[dataIndex]);
+        dataIndex += 1;
+
+        if (table.contains(s + c) ) {
+
+          s = s + c;
+
+        } else {
+
+          bitOut.write(table.indexOf(s), bitLength);
+
+          if (table.size() < 0xfff) {
+
+            if (table.size() == (1 << bitLength) ) {
+              bitLength += 1;
+            }
+
+            table.add(s + c);
+          }
+
+          s = c;
+        }
+      }
+
+      bitOut.write(table.indexOf(s), bitLength);
+
+      // end code
+      bitOut.write(endCode, bitLength);
+
+      bitOut.flush();
+
+      return byteOut.toByteArray();
+    };
+
+    var lzwTable = function() {
+
+      var _map = {};
+      var _size = 0;
+
+      var _this = {};
+
+      _this.add = function(key) {
+        if (_this.contains(key) ) {
+          throw 'dup key:' + key;
+        }
+        _map[key] = _size;
+        _size += 1;
+      };
+
+      _this.size = function() {
+        return _size;
+      };
+
+      _this.indexOf = function(key) {
+        return _map[key];
+      };
+
+      _this.contains = function(key) {
+        return typeof _map[key] != 'undefined';
+      };
+
+      return _this;
+    };
+
+    return _this;
+  };
+
+  var createDataURL = function(width, height, getPixel) {
+    var gif = gifImage(width, height);
+    for (var y = 0; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        gif.setPixel(x, y, getPixel(x, y) );
+      }
+    }
+
+    var b = byteArrayOutputStream();
+    gif.write(b);
+
+    var base64 = base64EncodeOutputStream();
+    var bytes = b.toByteArray();
+    for (var i = 0; i < bytes.length; i += 1) {
+      base64.writeByte(bytes[i]);
+    }
+    base64.flush();
+
+    return 'data:image/gif;base64,' + base64;
+  };
+
+  //---------------------------------------------------------------------
+  // returns qrcode function.
+
+  return qrcode;
+}();
+
+// multibyte support
+!function() {
+
+  qrcode.stringToBytesFuncs['UTF-8'] = function(s) {
+    // http://stackoverflow.com/questions/18729405/how-to-convert-utf8-string-to-byte-array
+    function toUTF8Array(str) {
+      var utf8 = [];
+      for (var i=0; i < str.length; i++) {
+        var charcode = str.charCodeAt(i);
+        if (charcode < 0x80) utf8.push(charcode);
+        else if (charcode < 0x800) {
+          utf8.push(0xc0 | (charcode >> 6),
+              0x80 | (charcode & 0x3f));
+        }
+        else if (charcode < 0xd800 || charcode >= 0xe000) {
+          utf8.push(0xe0 | (charcode >> 12),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+        // surrogate pair
+        else {
+          i++;
+          // UTF-16 encodes 0x10000-0x10FFFF by
+          // subtracting 0x10000 and splitting the
+          // 20 bits of 0x0-0xFFFFF into two halves
+          charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+            | (str.charCodeAt(i) & 0x3ff));
+          utf8.push(0xf0 | (charcode >>18),
+              0x80 | ((charcode>>12) & 0x3f),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+      }
+      return utf8;
+    }
+    return toUTF8Array(s);
+  };
+
+  // Activar UTF-8 como codificador por defecto (los lectores de QR de los
+  // celulares interpretan el modo byte como UTF-8; el "default" de la
+  // librería sin esto codifica en Latin-1 y rompe tildes/ñ).
+  qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8'];
+
+}();
+  </script>
+</body>
+</html>

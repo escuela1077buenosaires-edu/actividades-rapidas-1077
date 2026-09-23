@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-09-23T02:36:08.788Z",
+  "actualizadaEn": "2026-09-23T02:39:25.243Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -459,6 +459,34 @@
       "habilitada": false,
       "creadaEn": "2026-09-21T12:19:54.262Z",
       "actualizadaEn": "2026-09-23T02:35:11.037Z"
+    },
+    {
+      "id": "mudhvhgd-3b1e9f",
+      "solicitudSubida": "b8a354e02aefea7c705e4ec814ebfd4fc2a2b61d577a33aec8768b0d31d48ae2",
+      "titulo": "Lengua Imagen Silabeo Sonido Escritura Palabra 1",
+      "area": "Lengua",
+      "grado": "1",
+      "tipo": "A",
+      "archivoOriginal": "Lengua-Imagen-Silabeo-Sonido-Escritura-Palabra-1.html",
+      "archivoRepositorio": "mudhvhgd-3b1e9f-Lengua-Imagen-Silabeo-Sonido-Escritura-Palabra-1.html",
+      "archivoPublico": "mudhvhgd-3b1e9f-Lengua-Imagen-Silabeo-Sonido-Escritura-Palabra-1.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-23T02:39:22.909Z",
+      "actualizadaEn": "2026-09-23T02:39:22.909Z"
+    },
+    {
+      "id": "mudhvhgj-cb76d0",
+      "solicitudSubida": "5a454fbd749c9add54f6450ba7bb213d887c8cb6daf304287f892d7928b6bf80",
+      "titulo": "Lengua Comprension Lectora El Pastorcito 2",
+      "area": "Lengua",
+      "grado": "2",
+      "tipo": "A",
+      "archivoOriginal": "Lengua-Comprension-Lectora-El-Pastorcito-2.html",
+      "archivoRepositorio": "mudhvhgj-cb76d0-Lengua-Comprension-Lectora-El-Pastorcito-2.html",
+      "archivoPublico": "mudhvhgj-cb76d0-Lengua-Comprension-Lectora-El-Pastorcito-2.html",
+      "habilitada": true,
+      "creadaEn": "2026-09-23T02:39:22.915Z",
+      "actualizadaEn": "2026-09-23T02:39:22.915Z"
     }
   ]
 }
