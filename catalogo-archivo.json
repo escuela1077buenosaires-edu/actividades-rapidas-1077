@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-10-07T02:32:40.334Z",
+  "actualizadaEn": "2026-10-07T02:51:22.927Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -487,6 +487,20 @@
       "habilitada": true,
       "creadaEn": "2026-09-23T02:39:22.915Z",
       "actualizadaEn": "2026-09-23T02:39:22.915Z"
+    },
+    {
+      "id": "muxigtoo-a47fc8",
+      "solicitudSubida": "f221419a54edeb14940551b61e2bf3a59257fc9e1f87899f6fd85f938bf6241f",
+      "titulo": "Ciencias Naturales Tierra Rotacion Traslacion Luna Fases Superficie 4",
+      "area": "Ciencias Naturales",
+      "grado": "4",
+      "tipo": "A",
+      "archivoOriginal": "Ciencias-Naturales-Tierra-Rotacion-Traslacion-Luna-Fases-Superficie-4.html",
+      "archivoRepositorio": "muxigtoo-a47fc8-Ciencias-Naturales-Tierra-Rotacion-Traslacion-Luna-Fases-Superficie-4.html",
+      "archivoPublico": "muxigtoo-a47fc8-Ciencias-Naturales-Tierra-Rotacion-Traslacion-Luna-Fases-Superficie-4.html",
+      "habilitada": true,
+      "creadaEn": "2026-10-07T02:51:22.056Z",
+      "actualizadaEn": "2026-10-07T02:51:22.056Z"
     }
   ]
 }
