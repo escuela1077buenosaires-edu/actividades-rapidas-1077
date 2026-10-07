@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-10-07T02:32:34.221Z",
+  "actualizadaEn": "2026-10-07T02:32:40.334Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -358,9 +358,9 @@
       "archivoOriginal": "Ciencias-Naturales-Sistema-Locomotor-Articulaciones-Musculos-4.html",
       "archivoRepositorio": "mu3dn9ad-c5228c-Ciencias-Naturales-Sistema-Locomotor-Articulaciones-Musculos-4.html",
       "archivoPublico": "mu3dn9ad-c5228c-Ciencias-Naturales-Sistema-Locomotor-Articulaciones-Musculos-4.html",
-      "habilitada": true,
+      "habilitada": false,
       "creadaEn": "2026-09-16T00:43:18.853Z",
-      "actualizadaEn": "2026-09-16T00:43:18.853Z"
+      "actualizadaEn": "2026-10-07T02:32:40.334Z"
     },
     {
       "id": "mu3dn9af-ca4eda",
