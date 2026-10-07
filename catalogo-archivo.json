@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-10-07T02:52:07.623Z",
+  "actualizadaEn": "2026-10-07T02:52:22.256Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -515,6 +515,20 @@
       "habilitada": true,
       "creadaEn": "2026-10-07T02:52:06.774Z",
       "actualizadaEn": "2026-10-07T02:52:06.774Z"
+    },
+    {
+      "id": "muxii3ih-a3f18b",
+      "solicitudSubida": "f3c180e729b9dd86d9dd55f76e064247b904e5b138731606a999a706f38f4f87",
+      "titulo": "Lengua Comprension Lectora El Pastorcito 2",
+      "area": "Lengua",
+      "grado": "2",
+      "tipo": "A",
+      "archivoOriginal": "Lengua-Comprension-Lectora-El-Pastorcito-2.html",
+      "archivoRepositorio": "muxii3ih-a3f18b-Lengua-Comprension-Lectora-El-Pastorcito-2.html",
+      "archivoPublico": "muxii3ih-a3f18b-Lengua-Comprension-Lectora-El-Pastorcito-2.html",
+      "habilitada": true,
+      "creadaEn": "2026-10-07T02:52:21.449Z",
+      "actualizadaEn": "2026-10-07T02:52:21.449Z"
     }
   ]
 }

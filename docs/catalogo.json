@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadaEn": "2026-10-07T02:52:07.623Z",
+  "actualizadaEn": "2026-10-07T02:52:22.256Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -172,6 +172,15 @@
       "tipo": "B",
       "archivo": "muxihs6u-48d722-Matematica-Tablas-Multiplicar-2-4-5-10-Dobles-2.html",
       "actualizadaEn": "2026-10-07T02:52:06.774Z"
+    },
+    {
+      "id": "muxii3ih-a3f18b",
+      "titulo": "Lengua Comprension Lectora El Pastorcito 2",
+      "area": "Lengua",
+      "grado": "2",
+      "tipo": "A",
+      "archivo": "muxii3ih-a3f18b-Lengua-Comprension-Lectora-El-Pastorcito-2.html",
+      "actualizadaEn": "2026-10-07T02:52:21.449Z"
     }
   ]
 }
