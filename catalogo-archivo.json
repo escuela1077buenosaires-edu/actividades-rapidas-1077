@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repositorio": "escuela1077buenosaires-edu/actividades-rapidas-1077",
-  "actualizadaEn": "2026-10-07T02:51:22.927Z",
+  "actualizadaEn": "2026-10-07T02:52:07.623Z",
   "actividades": [
     {
       "id": "mspgg3hh-264105",
@@ -501,6 +501,20 @@
       "habilitada": true,
       "creadaEn": "2026-10-07T02:51:22.056Z",
       "actualizadaEn": "2026-10-07T02:51:22.056Z"
+    },
+    {
+      "id": "muxihs6u-48d722",
+      "solicitudSubida": "41a08414944393736e0aa14fc302d102ddb04efa03bf50f321f9e1a7fd7aa9ca",
+      "titulo": "Matematica Tablas Multiplicar 2 4 5 10 Dobles 2",
+      "area": "Matematica",
+      "grado": "2",
+      "tipo": "B",
+      "archivoOriginal": "Matematica-Tablas-Multiplicar-2-4-5-10-Dobles-2.html",
+      "archivoRepositorio": "muxihs6u-48d722-Matematica-Tablas-Multiplicar-2-4-5-10-Dobles-2.html",
+      "archivoPublico": "muxihs6u-48d722-Matematica-Tablas-Multiplicar-2-4-5-10-Dobles-2.html",
+      "habilitada": true,
+      "creadaEn": "2026-10-07T02:52:06.774Z",
+      "actualizadaEn": "2026-10-07T02:52:06.774Z"
     }
   ]
 }
